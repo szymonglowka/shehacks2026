@@ -109,9 +109,17 @@ export function useOnboardingOptions(params: {
   });
 }
 
+export interface CompleteOnboardingResult {
+  user: {
+    id: number;
+    email: string;
+    profile: Record<string, unknown>;
+  };
+}
+
 export function useCompleteOnboarding() {
   return useMutation({
     mutationFn: (body: CompleteOnboardingInput) =>
-      apiPost<{ ok: boolean }>('/onboarding/complete', body),
+      apiPost<CompleteOnboardingResult>('/onboarding/complete', body),
   });
 }

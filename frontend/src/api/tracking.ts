@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { apiDelete, apiGet, apiPatch, apiPost, apiPut } from './client';
+import { ApiError, apiDelete, apiGet, apiPatch, apiPost, apiPut } from './client';
 
 export type Bleeding = 'none' | 'spotting' | 'light' | 'medium' | 'heavy';
 export type RiskLevel = 'none' | 'info' | 'moderate' | 'high' | 'urgent';
@@ -36,14 +36,15 @@ export interface UpsertCheckinResponse {
 export type CycleStatus =
   | {
       mode: 'postpartum';
-      days_since_birth: number;
-      postpartum_week: number;
-      stage: 'early' | 'recovery' | 'beyond';
+      days_since_birth: number | null;
+      postpartum_week: number | null;
+      stage: 'early' | 'recovery' | 'beyond' | null;
     }
   | {
       mode: 'cycle';
-      cycle_day: number;
-      phase: 'menstrual' | 'follicular' | 'ovulation' | 'luteal';
+      // Fresh cycle-mode profiles have no period yet → backend sends nulls.
+      cycle_day: number | null;
+      phase: 'menstrual' | 'follicular' | 'ovulation' | 'luteal' | null;
       next_period_date: string | null;
       confidence: 'low' | 'medium' | 'high';
     };
@@ -55,7 +56,8 @@ export interface Period {
 }
 
 export interface EpdsQuestion {
-  index: number;
+  /** Backend field name is `number` (1-based). */
+  number: number;
   text: string;
   options: string[];
 }
@@ -91,10 +93,20 @@ export function useCheckins(from: string, to: string) {
   });
 }
 
+/** GET /checkins/{date} → 404 when the day has no check-in; callers get null. */
+export async function fetchCheckin(date: string): Promise<CheckIn | null> {
+  try {
+    return await apiGet<CheckIn>(`/checkins/${date}`);
+  } catch (err) {
+    if (err instanceof ApiError && err.status === 404) return null;
+    throw err;
+  }
+}
+
 export function useCheckin(date: string) {
   return useQuery({
     queryKey: trackingKeys.checkin(date),
-    queryFn: () => apiGet<CheckIn | null>(`/checkins/${date}`),
+    queryFn: () => fetchCheckin(date),
   });
 }
 
@@ -111,6 +123,7 @@ export function useUpsertCheckin() {
       client.invalidateQueries({ queryKey: ['checkin', vars.date] });
       client.invalidateQueries({ queryKey: ['checkins'] });
       client.invalidateQueries({ queryKey: ['dashboard'] });
+      client.invalidateQueries({ queryKey: ['insights'] });
     },
   });
 }
@@ -137,6 +150,7 @@ export function useCreatePeriod() {
     onSuccess: () => {
       client.invalidateQueries({ queryKey: trackingKeys.periods });
       client.invalidateQueries({ queryKey: trackingKeys.cycleStatus });
+      client.invalidateQueries({ queryKey: ['dashboard'] });
     },
   });
 }
@@ -149,6 +163,7 @@ export function useUpdatePeriod() {
     onSuccess: () => {
       client.invalidateQueries({ queryKey: trackingKeys.periods });
       client.invalidateQueries({ queryKey: trackingKeys.cycleStatus });
+      client.invalidateQueries({ queryKey: ['dashboard'] });
     },
   });
 }
@@ -156,10 +171,11 @@ export function useUpdatePeriod() {
 export function useDeletePeriod() {
   const client = useQueryClient();
   return useMutation({
-    mutationFn: (id: number) => apiDelete<void>(`/periods/${id}`),
+    mutationFn: (id: number) => apiDelete(`/periods/${id}`),
     onSuccess: () => {
       client.invalidateQueries({ queryKey: trackingKeys.periods });
       client.invalidateQueries({ queryKey: trackingKeys.cycleStatus });
+      client.invalidateQueries({ queryKey: ['dashboard'] });
     },
   });
 }
@@ -168,10 +184,12 @@ export function usePeriodReturned() {
   const client = useQueryClient();
   return useMutation({
     mutationFn: (body: { start_date: string }) =>
-      apiPost<CycleStatus>('/profile/period-returned', body),
+      // Backend returns {mode: 'cycle', period: {...}}; status refetch carries the view.
+      apiPost<{ mode: string; period: Period }>('/profile/period-returned', body),
     onSuccess: () => {
       client.invalidateQueries({ queryKey: trackingKeys.periods });
       client.invalidateQueries({ queryKey: trackingKeys.cycleStatus });
+      client.invalidateQueries({ queryKey: ['dashboard'] });
       client.invalidateQueries({ queryKey: ['me'] });
     },
   });

@@ -92,6 +92,20 @@ function greetingKey(hour: number) {
   return 'greetingEvening';
 }
 
+function cap(s: string) {
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+/** Whole calendar days from `from` until ISO `dateStr`. Pure, unit-tested. */
+export function daysUntil(dateStr: string | null, from: Date = new Date()): number | null {
+  if (!dateStr) return null;
+  const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(dateStr);
+  if (!m) return null;
+  const a = new Date(from.getFullYear(), from.getMonth(), from.getDate());
+  const b = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+  return Math.round((b.getTime() - a.getTime()) / 86400000);
+}
+
 export default function TodayPage() {
   const { t } = useTranslation('today');
   const dashboard = useDashboard();
@@ -110,12 +124,31 @@ export default function TodayPage() {
               <h1 style={h1}>{t('subtitle')}</h1>
               <p style={muted}>{t('subcopy')}</p>
             </div>
-            {status.data?.mode === 'postpartum' && (
+            {status.data?.mode === 'postpartum' && status.data.postpartum_week != null && (
               <div style={stagePill}>
                 <span style={stageNum}>{status.data.postpartum_week}</span>
                 <span>
                   <strong style={{ display: 'block', fontSize: 14 }}>{t('stageWeek')}</strong>
-                  <small style={muted}>{t('stageDay', { day: status.data.days_since_birth })}</small>
+                  <small style={muted}>{t('stageDay', { day: status.data.days_since_birth ?? '–' })}</small>
+                </span>
+              </div>
+            )}
+            {status.data?.mode === 'cycle' && (
+              <div style={stagePill}>
+                <span style={ring} role="img" aria-label="cycle phase">
+                  {status.data.cycle_day ?? '–'}
+                </span>
+                <span>
+                  <strong style={{ display: 'block', fontSize: 14 }}>
+                    {t('cycleDay')} {status.data.cycle_day ?? '–'}
+                    {status.data.phase ? ` · ${t(`phase${cap(status.data.phase)}`)}` : ''}
+                  </strong>
+                  <small style={muted}>
+                    {(() => {
+                      const n = daysUntil(status.data.next_period_date);
+                      return n == null ? '' : t('periodIn', { n });
+                    })()}
+                  </small>
                 </span>
               </div>
             )}
@@ -206,6 +239,12 @@ const muted: React.CSSProperties = { fontSize: 13, color: 'var(--muted, #718079)
 const stagePill: React.CSSProperties = {
   display: 'flex', gap: 10, alignItems: 'center', background: 'var(--paper, #fffdf9)',
   border: '1px solid var(--line, #e5e7df)', borderRadius: 999, padding: '8px 18px 8px 8px',
+};
+const ring: React.CSSProperties = {
+  fontFamily: 'Newsreader, serif', fontSize: 22, fontWeight: 600,
+  border: '3px solid var(--sage, #dfeae2)', borderTopColor: 'var(--forest, #3f6959)',
+  borderRadius: '50%', width: 56, height: 56, minWidth: 56,
+  display: 'grid', placeItems: 'center', color: 'var(--forest-deep, #315648)',
 };
 const stageNum: React.CSSProperties = {
   fontFamily: 'Newsreader, serif', fontSize: 34, fontWeight: 600,

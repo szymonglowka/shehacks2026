@@ -1,25 +1,9 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { useCompleteOnboarding, useOnboardingOptions } from '../../../api/onboarding';
-
-/**
- * NOTE(f-daily): the push step should use f-core's `usePushSubscription`
- * (api/push.ts) once it lands — local `usePushOptIn` below covers the same
- * contract (permission + POST /push/subscriptions). See requests/f-daily.md.
- */
-function usePushOptIn() {
-  const [state, setState] = useState<NotificationPermission | 'unsupported'>(
-    typeof window !== 'undefined' && 'Notification' in window ? Notification.permission : 'unsupported',
-  );
-  const enable = async () => {
-    if (!('Notification' in window)) return;
-    const perm = await Notification.requestPermission();
-    setState(perm);
-  };
-  return { state, enable };
-}
+import { usePushSubscription } from '../../../api/push';
 
 function PetalBar({ step, total }: { step: number; total: number }) {
   return (
@@ -84,9 +68,11 @@ export default function OnboardingPage() {
   const [contact, setContact] = useState({ name: '', relation: '', phone: '' });
   const [tone, setTone] = useState<'gentle' | 'motivating'>('gentle');
   const [reminder, setReminder] = useState('20:00');
-  const [goalIds, setGoalIds] = useState<number[]>([1, 3]);
+  const [goalIds, setGoalIds] = useState<number[]>([]);
+  const [pushTried, setPushTried] = useState(false);
   const [done, setDone] = useState(false);
-  const push = usePushOptIn();
+  // f-core hook: permission + VAPID subscribe + POST /push/subscriptions.
+  const push = usePushSubscription();
   const complete = useCompleteOnboarding();
 
   const week = useMemo(() => {
@@ -97,6 +83,13 @@ export default function OnboardingPage() {
 
   const { data: options } = useOnboardingOptions({ mode, week, delivery_type: delivery });
   const picked = Object.values(scores).filter((v) => v > 0).length;
+  // Preselect the recommended goals once (real template ids come from the API).
+  const goalsInit = useRef(false);
+  useEffect(() => {
+    if (goalsInit.current || !options?.goal_templates.length) return;
+    goalsInit.current = true;
+    setGoalIds(options.goal_templates.slice(0, 3).map((g) => g.id));
+  }, [options]);
 
   const finish = () => {
     complete.mutate(
@@ -316,9 +309,20 @@ export default function OnboardingPage() {
                   <strong style={{ fontSize: 15 }}>{t('pushTitle')}</strong>
                   <p style={muted}>{t('pushBody')}</p>
                 </div>
-                <button type="button" onClick={push.enable} style={primary} disabled={push.state === 'granted'}>
-                  {t('pushEnable')} {push.state === 'granted' ? '✓' : ''}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setPushTried(true);
+                    push.mutate();
+                  }}
+                  style={primary}
+                  disabled={push.permission === 'granted' || push.isPending || (pushTried && push.isSuccess)}
+                >
+                  {t('pushEnable')} {push.permission === 'granted' || (pushTried && push.isSuccess) ? '✓' : ''}
                 </button>
+                {pushTried && push.isError && (
+                  <p style={muted}>{t('pushSkip')}</p>
+                )}
               </div>
             </>
           )}

@@ -50,3 +50,65 @@ lives strictly in my owned paths and compiles against the announced contracts.
 ## Contract deviations
 - None from SPEC §7. One addition: `handle: { modal: true }` on `/checkin`
   (per AGENT_PROMPTS modal-routes convention).
+
+---
+
+## Polish round (2026-10-04, against the REAL API)
+
+Setup: rebased on main (integrated, green); `.env` completed from
+`.env.example`, `VITE_USE_MOCKS=false`; `docker compose up -d --build db redis
+backend` on ports 8060/5174; `seed_content` + `seed_demo` green. Note: this
+machine's Docker Desktop app is broken and the default sandbox blocks all
+sockets, so every docker/curl/npm command ran with `require_escalated`.
+
+### Verified write flows (real backend, curl + python)
+- Auth + register; `PUT /checkins/{date}` incl. red flag `fever` → risk
+  `urgent`, reasons `[R2, R8]`, actions include `contact_doctor_now` /
+  `show_emergency` (RiskCard covers both → /help + `tel:112`).
+- `POST /epds` with q10=1 → `urgent` + `show_crisis` (EpdsPage navigates to
+  /help immediately, no result screen).
+- `POST /visit-questions` → `{id, text, done:false}` (check-in checkbox now
+  uses f-plan's `useAddVisitQuestion`, not raw fetch).
+- Register → `GET /onboarding/options` → `POST /onboarding/complete` for BOTH
+  modes → dashboard shows correct status (postpartum day 39 / cycle) + 2 goals.
+  Response is `{user: {...}}`, not `{ok}` — type fixed.
+- `POST /profile/period-returned` on a throwaway cycle account → cycle day 1,
+  menstrual, `next_period_date` set; dashboard status follows.
+- Kasia (cycle): status `{cycle_day:6, phase:menstrual, next:2026-10-27,
+  confidence:high}` — Today now renders the cycle stage pill (phase ring +
+  “okres za ~N dni”); fresh cycle profiles with null day/phase render safely.
+
+### Real-vs-mock mismatches found and fixed (all in my files)
+- `GET /checkins/{date}` → **404**, not null → new `fetchCheckin()` maps 404→
+  null; check-in modal now **prefills today's existing check-in** (edit mode)
+  via `draftFromCheckin()`.
+- EPDS questions use **`number`**, not `index` → type + MSW handler fixed.
+- Fresh cycle/postpartum statuses contain **nulls** → CycleStatus nulled,
+  Today/Calendar guard them.
+- Check-in save now also invalidates `['insights']`; period mutations +
+  period-returned also invalidate `['dashboard']` (mode switch reaches /today).
+- Onboarding push step now uses f-core's `usePushSubscription` (local
+  `usePushOptIn` removed); goals preselect the first 3 real template ids from
+  the API instead of hardcoded `[1,3]`.
+- MSW tracking handler: missing check-in → 404, questions → `{number}`.
+
+### Gates (all green)
+- `npm run typecheck` clean; `npx vitest run` **39/39 pass (11 files)**;
+  `npm run build` ok (PWA precache 25 entries); eslint on all owned files clean
+  (fixed `apiDelete<void>` invalid-void-type).
+- New tests: `fetch-checkin.test.ts` (404→null, 500 rethrows, data),
+  `draft.test.ts` (`draftFromCheckin` mapping/defaults/null + `daysUntil`),
+  mic-button-hidden test in `checkin.test.tsx`.
+- Dev server smoke: `npm run dev -- --port 5174` serves HTTP 200 with
+  `VITE_USE_MOCKS=false`; backend `/api/v1/health/` route exists
+  (earlier empty curl was the missing trailing slash).
+
+### Cleanup
+- All probe artifacts removed: 4 throwaway `test*` accounts deleted,
+  `seed_demo` re-run → Marta pristine (42 checkins, 3 EPDS, 3 visit questions,
+  today checkin mood 4, no red flags; 14 users total).
+
+### Not verified
+- Clicking through screens in a real browser at 1440/820/375, day+night, PL+EN
+  (no browser tooling in this environment — flows verified at the API level
+  plus unit/component tests). Visual responsive check is integrator/QA turf.

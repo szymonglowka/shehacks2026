@@ -60,4 +60,15 @@ describe('check-in flow', () => {
     const next = screen.getByRole('button', { name: /continue/i });
     expect(next.hasAttribute('disabled')).toBe(true);
   });
+
+  it('hides the voice dictation button when Web Speech API is unsupported', async () => {
+    const user = userEvent.setup();
+    renderPage();
+    expect('SpeechRecognition' in window).toBe(false);
+    await user.click(screen.getByRole('radio', { name: /mixed/i }));
+    await user.click(screen.getByRole('button', { name: /continue/i }));
+    await user.click(screen.getByRole('button', { name: /continue/i }));
+    await user.click(screen.getByRole('button', { name: /continue/i }));
+    expect(screen.queryByRole('button', { name: /dictate/i })).toBeNull();
+  });
 });
