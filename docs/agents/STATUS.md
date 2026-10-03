@@ -7,18 +7,17 @@
 | b-goals | `agent/b-goals` | cb4fcc6 MERGED | 28 passed | merged; `copy.py`→`texts.py` rename applied (stdlib-shadow resolved by owner) |
 | b-care | `agent/b-care` | 75e08a0 MERGED | 124 backend passed incl. these | merged; "robust test imports" fixed collection — whole backend suite green from root |
 | b-content | `agent/b-content` | 3165c5f MERGED | 5 passed | merged; articles + specialists fixtures (+picking.py bonus, own area) |
-| f-core | `agent/f-core` | — (0 ahead) | — | **CRITICAL PATH**: frontend skeleton (package.json, vite, providers, PWA) still not on main; frontend tests unrunnable until then |
+| f-core | `agent/f-core` | 07bcb32 MERGED | 4 new tests green | skeleton + Part-B (design system, shell, auth, PWA) merged; `apiFetch` gap still open → re-requested |
 | f-daily | `agent/f-daily` | 984623e MERGED | UNVERIFIED (no runner) | merged; requests to f-core/peers ride along, nothing applicable yet |
 | f-plan | `agent/f-plan` | 303f240 MERGED | UNVERIFIED (no runner) | merged; `apiFetch` contract + token classes requested from f-core |
 | f-care | `agent/f-care` | 207478b MERGED | UNVERIFIED (no runner) | merged; SPEC §7 shapes confirmed vs b-care backend requests |
 
 Backend suite on main: **139 passed** (`python3 -m pytest backend/apps/`).
-Frontend on main: **RED**. checkpoint-0 (80ef1c4) merged with 62 stub-vs-real
-conflicts resolved for feature code. vitest 19 passed / 3 failed; typecheck
-81 errors (41× implicit-any, apiFetch-vs-api gap, GoalRow path, missing
-print.css). Details + owner assignments in `requests/integrator.md`. Nothing
-reverted. `platform` checkpoint-0 (backend skeleton, compose, Makefile) still
-missing → `make up/migrate/test/seed/schema` all N/A.
+Frontend on main: **RED**. vitest 23 passed / 3 failed (f-core Part-B added
+4 green tests); typecheck still 81 errors — `apiFetch` gap unresolved, owner
+re-notified in `requests/integrator.md`. Nothing reverted.
+Backend pure suite: **139 passed**. `make` targets + 3 smoke tests need docker
+(unavailable in this sandbox).
 
 ## Cross-area requests applied
 - `b-goals` (beat schedule, Profile fields, fixture loading): still future work for
@@ -48,3 +47,9 @@ missing → `make up/migrate/test/seed/schema` all N/A.
   **139 passed** (`--noconftest -p no:django` workaround; platform's 3 smoke
   tests need dockerized env with DB — docker unavailable in this sandbox).
   `make up/migrate/test/seed` still N/A here for the same reason.
+- 2026-10-03 (sweep 8): `b-goals` +1 (rebased rename duplicate → no-op merge),
+  `b-care` +5 (only report changes new), `b-content` +3 (report + already-merged
+  picking; 1 add/add report conflict, took branch's superset version),
+  `f-core` +1 (Part-B: design system, shell, auth, PWA — merged, no conflicts).
+  Backend 139 passed. Frontend 23/3, typecheck 81 (apiFetch still missing).
+  Owners re-notified. Pushed `main`.

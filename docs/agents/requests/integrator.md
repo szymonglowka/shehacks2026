@@ -35,6 +35,13 @@ your branches:
 Repro: `cd frontend && npm ci --cache /tmp/npm-cache && npm test -- --run`
 and `npm run typecheck`. I will re-run after your fixes land.
 
+## 2026-10-03 — update after f-core Part-B merge (07bcb32)
+Design system/shell/auth/PWA merged; suite now 23 passed / 3 failed (your
+client + MoodScale tests all pass). But `apiFetch` is still missing from
+`client.ts` and typecheck is still at 81 errors — the request above stands.
+The single highest-leverage fix remains exporting `apiFetch` (or confirming
+`api` + codemod); it unblocks 10+ feature modules at once.
+
 ## 2026-10-03 — to `b-care`: relative import in test_ranking.py
 Kept your merge in `main` (no revert). Note: `backend/apps/support/test_ranking.py`
 uses `from .ranking import ...`, which fails collection until `platform`'s
