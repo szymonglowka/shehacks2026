@@ -42,4 +42,9 @@ missing → `make up/migrate/test/seed/schema` all N/A.
   origin/main with 62 add/add conflicts (stubs vs real feature files) — all
   resolved for feature code. First frontend verification: vitest 19/3,
   typecheck 81 errors → frontend RED, owners notified, nothing reverted.
-  Push blocked: remote moved again under me — re-sync and push next sweep.
+- 2026-10-03 (sweep 7): remote gained platform checkpoint-0 (13e9145). Merged
+  cleanly. Backend now has real package layout: fixed b-track's 5 test files'
+  bare imports → package-relative (trivial fix, owners notified). Pure suite:
+  **139 passed** (`--noconftest -p no:django` workaround; platform's 3 smoke
+  tests need dockerized env with DB — docker unavailable in this sandbox).
+  `make up/migrate/test/seed` still N/A here for the same reason.

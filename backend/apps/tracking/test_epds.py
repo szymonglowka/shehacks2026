@@ -3,8 +3,8 @@ from datetime import date, timedelta
 
 import pytest
 
-import epds
-from epds import is_due, score_answers
+from . import epds
+from .epds import is_due, score_answers
 
 
 def test_ten_questions_with_citation():

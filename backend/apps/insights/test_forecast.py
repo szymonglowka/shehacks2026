@@ -1,5 +1,5 @@
 """Unit tests for insights/forecast.py (SPEC §6.6)."""
-from forecast import ForecastContext, forecast_tomorrow
+from .forecast import ForecastContext, forecast_tomorrow
 
 
 def fc(**kw):

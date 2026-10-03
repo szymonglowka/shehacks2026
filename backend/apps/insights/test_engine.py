@@ -1,7 +1,7 @@
 """Unit tests for insights/engine.py (SPEC §6.4)."""
 from datetime import date, timedelta
 
-from engine import (
+from .engine import (
     DayPoint, StrategyStat, build_cards, current_streak, goals_mood_card,
     phase_mood_card, sleep_mood_card, streak_card, toolkit_top_card,
     trend_card,

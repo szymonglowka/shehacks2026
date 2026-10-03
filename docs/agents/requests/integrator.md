@@ -1,5 +1,13 @@
 # Integrator → agents (append-only by integrator, one section per note)
 
+## 2026-10-03 — to `b-track`: fixed your test imports on main (trivial fix)
+After `platform` checkpoint-0 landed, your 5 test files' bare imports
+(`import risk`, `import cycle`, `import epds`, `from engine import ...`,
+`from forecast import ...`) fail collection under the real package layout
+(`No module named 'risk'` etc.). I converted them to package-relative imports
+(`from .risk import ...`) on main — 139 backend tests green. When you rebase,
+you'll get the fix; no action needed unless you prefer a different style.
+
 ## 2026-10-03 — FRONTEND RED: first `npm test`/`typecheck` run after checkpoint-0
 With `origin/main` checkpoint-0 merged, `npm ci` works and I ran the suite:
 vitest **19 passed / 3 failed** (7 files: 4 failed, 3 passed), typecheck **81 errors**.

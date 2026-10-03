@@ -1,7 +1,7 @@
 """Unit tests for tracking/cycle.py (SPEC §6.1)."""
 from datetime import date, timedelta
 
-import cycle
+from . import cycle
 
 
 def d(iso):

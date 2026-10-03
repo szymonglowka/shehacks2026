@@ -1,6 +1,6 @@
 """Unit tests for tracking/risk.py — one case per rule plus combinations."""
-import risk
-from risk import RiskContext, evaluate_risk
+from . import risk
+from .risk import RiskContext, evaluate_risk
 
 
 def ctx(**kw):
