@@ -267,7 +267,13 @@ class DashboardView(APIView):
         today_checkin = DailyCheckIn.objects.filter(user=user, date=today).first()
         goals = self._today_goals(user)
         latest_epds = EPDSAssessment.objects.filter(user=user).first()
-        last_at = latest_epds.created_at.date() if latest_epds else None
+        # NOTE (b-care cross-area fix): see apps/tracking/views.py -- UTC
+        # datetimes must be converted before taking the local day.
+        last_at = (
+            timezone.localtime(latest_epds.created_at).date()
+            if latest_epds
+            else None
+        )
         points, checkin_days = _day_points(user)
         cards = build_cards(points, today, checkin_days, _strategy_stats(user))
         unread = (

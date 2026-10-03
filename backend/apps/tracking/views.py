@@ -49,7 +49,7 @@ def _fresh_epds(user, today):
     latest = EPDSAssessment.objects.filter(user=user).order_by("-created_at").first()
     if latest is None:
         return None
-    if (today - latest.created_at.date()).days > EPDS_FRESH_DAYS:
+    if (today - timezone.localtime(latest.created_at).date()).days > EPDS_FRESH_DAYS:
         return None
     return latest
 
@@ -246,7 +246,12 @@ class EPDSDueView(APIView):
     def get(self, request):
         today = timezone.localdate()
         latest = EPDSAssessment.objects.filter(user=request.user).first()
-        last_at = latest.created_at.date() if latest else None
+        # NOTE (b-care cross-area fix): created_at is UTC; .date() on it uses
+        # the UTC day, but `today` is the user's local day. Convert first so
+        # the suite is green at every hour (was red 22:00-00:00 UTC).
+        last_at = (
+            timezone.localtime(latest.created_at).date() if latest else None
+        )
         return Response(
             {
                 "due": epds_module.is_due(request.user.profile.mode, last_at, today),
