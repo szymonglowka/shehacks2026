@@ -1,1 +1,422 @@
-{"strategies": [{"category": "breathing", "code": "breath_478", "description_en": "A calming 4-7-8 breath. One minute, eyes open or closed.", "description_pl": "Uspokajający oddech 4-7-8. Minuta, oczy otwarte lub zamknięte.", "duration_min": 1, "icon": "wind", "name_en": "4-7-8 breathing", "name_pl": "Oddech 4-7-8", "steps_en": ["Breathe in through your nose for 4 counts.", "Hold for 7 counts.", "Breathe out slowly through your mouth for 8 counts.", "Repeat 3 times."], "steps_pl": ["Wciągnij powietrze nosem, licząc do 4.", "Wstrzymaj na 7.", "Powoli wypuść ustami, licząc do 8.", "Powtórz 3 razy."]}, {"category": "breathing", "code": "box_breathing", "description_en": "Even, square breathing that steadies a racing mind.", "description_pl": "Równy, „pudełkowy” oddech, który uspokaja gonitwę myśli.", "duration_min": 2, "icon": "box", "name_en": "Box breathing", "name_pl": "Oddech pudełkowy", "steps_en": ["Breathe in for 4 counts.", "Hold for 4 counts.", "Breathe out for 4 counts.", "Hold empty for 4 counts.", "Repeat for 4 rounds."], "steps_pl": ["Wdech na 4.", "Wstrzymaj na 4.", "Wydech na 4.", "Pauza na 4.", "Powtórz 4 rundy."]}, {"category": "movement", "code": "short_walk", "description_en": "Fresh air and movement, no performance goals. Pram optional.", "description_pl": "Świeże powietrze i ruch, bez celów sportowych. Wózek opcjonalny.", "duration_min": 10, "icon": "footprints", "name_en": "A short walk", "name_pl": "Krótki spacer", "steps_en": ["Put on shoes and step outside.", "Walk at whatever pace feels easy.", "Notice 3 things you can see or hear.", "Come back when you feel like it."], "steps_pl": ["Włóż buty i wyjdź na zewnątrz.", "Idź tempem, jakie Ci pasuje.", "Zauważ 3 rzeczy, które widzisz lub słyszysz.", "Wróć, kiedy będziesz mieć ochotę."]}, {"category": "movement", "code": "gentle_stretch", "description_en": "Loosen neck, shoulders and back. After birth: only with your doctor's or physio's OK.", "description_pl": "Rozluźnij kark, barki i plecy. Po porodzie: tylko po konsultacji z lekarzem lub fizjoterapeutką.", "duration_min": 5, "icon": "person-standing", "name_en": "Gentle stretching", "name_pl": "Delikatne rozciąganie", "steps_en": ["Roll your shoulders back 5 times.", "Tilt your head ear-to-shoulder, each side, 20 seconds.", "Interlace fingers, push palms up, breathe.", "Gently arch and round your back 5 times."], "steps_pl": ["Zatocz barki w tył 5 razy.", "Pochyl głowę uchem do ramienia, po 20 sekund na stronę.", "Spleć palce, wypchnij dłonie w górę, oddychaj.", "Delikatnie wygnij i zaokrąglij plecy 5 razy."]}, {"category": "social", "code": "call_someone", "description_en": "Hearing a kind voice helps. No need to explain everything.", "description_pl": "Usłyszenie życzliwego głosu pomaga. Nie musisz wszystkiego tłumaczyć.", "duration_min": 10, "icon": "phone", "name_en": "Call someone kind", "name_pl": "Zadzwoń do kogoś życzliwego", "steps_en": ["Pick one person from your circle.", "Call or send a voice note.", "Say how you are in one honest sentence.", "Let the conversation end whenever you want."], "steps_pl": ["Wybierz jedną osobę ze swojego kręgu.", "Zadzwoń lub wyślij wiadomość głosową.", "Powiedz jednym szczerym zdaniem, jak się masz.", "Zakończ rozmowę, kiedy zechcesz."]}, {"category": "social", "code": "ask_for_help", "description_en": "One concrete request beats silent struggling. Use a ready-made message.", "description_pl": "Jedna konkretna prośba jest lepsza niż ciche zmaganie. Użyj gotowej wiadomości.", "duration_min": 2, "icon": "heart-handshake", "name_en": "Ask for help", "name_pl": "Poproś o pomoc", "steps_en": ["Open your circle in the app.", "Pick one small, concrete task.", "Send the ready-made message.", "Accept the help without apologising."], "steps_pl": ["Otwórz swój krąg w aplikacji.", "Wybierz jedno małe, konkretne zadanie.", "Wyślij gotową wiadomość.", "Przyjmij pomoc bez przepraszania."]}, {"category": "sensory", "code": "grounding_54321", "description_en": "The 5-4-3-2-1 technique for anxiety: back to the here and now.", "description_pl": "Technika 5-4-3-2-1 na lęk: powrót do tu i teraz.", "duration_min": 3, "icon": "hand", "name_en": "Grounding 5-4-3-2-1", "name_pl": "Uziemienie 5-4-3-2-1", "steps_en": ["Name 5 things you can see.", "Name 4 things you can touch.", "Name 3 things you can hear.", "Name 2 things you can smell.", "Name 1 thing you can taste."], "steps_pl": ["Wymień 5 rzeczy, które widzisz.", "Wymień 4 rzeczy, które możesz dotknąć.", "Wymień 3 rzeczy, które słyszysz.", "Wymień 2 rzeczy, które czujesz zapachem.", "Wymień 1 rzecz, którą czujesz smakiem."]}, {"category": "sensory", "code": "warm_drink", "description_en": "Warmth in your hands, a small pause. The coffee may go cold again — normal.", "description_pl": "Ciepło w dłoniach, mała pauza. Kawa znowu wystygnie — normalka.", "duration_min": 5, "icon": "coffee", "name_en": "Something warm to drink", "name_pl": "Coś ciepłego do picia", "steps_en": ["Make tea, coffee or warm milk.", "Hold the cup with both hands.", "Take 3 slow sips, tasting each.", "Sit while you drink — even 2 minutes count."], "steps_pl": ["Zrób herbatę, kawę albo ciepłe mleko.", "Obejmij kubek obiema dłońmi.", "Weź 3 powolne łyki, smakując każdy.", "Usiądź na czas picia — nawet 2 minuty się liczą."]}, {"category": "rest", "code": "micro_rest", "description_en": "Not sleep — just switching off for a few minutes. It counts.", "description_pl": "Nie sen — po prostu wyłączenie się na kilka minut. To się liczy.", "duration_min": 10, "icon": "moon", "name_en": "Micro-rest", "name_pl": "Mikroodpoczynek", "steps_en": ["Lie down or lean back comfortably.", "Close your eyes, unclench your jaw.", "Breathe slowly, no phone.", "Get up after 10 minutes — or stay longer."], "steps_pl": ["Połóż się lub wygodnie oprzyj.", "Zamknij oczy, rozluźnij szczękę.", "Oddychaj powoli, bez telefonu.", "Wstań po 10 minutach — albo zostań dłużej."]}, {"category": "rest", "code": "shower_reset", "description_en": "Warm water as a reset button. Five minutes just for you.", "description_pl": "Ciepła woda jak przycisk reset. Pięć minut tylko dla Ciebie.", "duration_min": 5, "icon": "shower-head", "name_en": "Reset shower", "name_pl": "Prysznic reset", "steps_en": ["Ask someone to watch the baby, or wait for sleep.", "Stand under warm water for 5 minutes.", "Notice the water on your shoulders.", "Change into something fresh afterwards."], "steps_pl": ["Poproś kogoś o przypilnowanie malucha albo poczekaj na drzemkę.", "Postój pod ciepłą wodą 5 minut.", "Poczuj wodę na ramionach.", "Potem przebierz się w coś świeżego."]}, {"category": "creative", "code": "small_win_note", "description_en": "Write down one thing that worked today. The jar fills with petals.", "description_pl": "Zapisz jedną rzecz, która dziś się udała. Słoik zapełnia się płatkami.", "duration_min": 2, "icon": "sprout", "name_en": "Note a small win", "name_pl": "Zapisz małą wygraną", "steps_en": ["Think of one thing, however tiny.", "Write it in the wins jar.", "Read yesterday's win.", "Let it sit — no analysis needed."], "steps_pl": ["Pomyśl o jednej rzeczy, choćby drobnej.", "Zapisz ją w słoiku wygranych.", "Przeczytaj wczorajszą wygraną.", "Zostaw to tak — bez analizowania."]}, {"category": "creative", "code": "music_break", "description_en": "One favourite song, loud or quiet. Music regulates faster than thoughts.", "description_pl": "Jedna ulubiona piosenka, głośno albo cicho. Muzyka reguluje szybciej niż myśli.", "duration_min": 4, "icon": "music", "name_en": "Music break", "name_pl": "Muzyczna przerwa", "steps_en": ["Put on one song you love.", "Turn it up or hum along.", "Move a little if you feel like it.", "Notice how your shoulders feel after."], "steps_pl": ["Włącz jedną piosenkę, którą kochasz.", "Podgłośnij albo nuć razem.", "Porusz się trochę, jeśli masz ochotę.", "Zauważ, jak czują się Twoje barki po niej."]}, {"category": "mindfulness", "code": "self_compassion", "description_en": "What you would say to a friend, said to yourself.", "description_pl": "To, co powiedziałabyś przyjaciółce, powiedz sobie.", "duration_min": 3, "icon": "heart", "name_en": "Self-compassion pause", "name_pl": "Pauza życzliwości dla siebie", "steps_en": ["Put a hand on your chest.", "Say: „This is hard right now.”", "Say: „Other mums feel this too.”", "Say: „May I be kind to myself.”"], "steps_pl": ["Połóż dłoń na piersi.", "Powiedz: „Jest mi teraz trudno.”", "Powiedz: „Inne mamy też tak mają.”", "Powiedz: „Mogę być dla siebie dobra.”"]}, {"category": "mindfulness", "code": "body_scan", "description_en": "A short journey through the body, good for falling asleep too.", "description_pl": "Krótka podróż przez ciało, dobra też do zasypiania.", "duration_min": 5, "icon": "scan", "name_en": "Mini body scan", "name_pl": "Mini skan ciała", "steps_en": ["Lie down, close your eyes.", "Move attention from feet to head, slowly.", "Where it is tense, breathe into that spot.", "End with 3 deep breaths."], "steps_pl": ["Połóż się, zamknij oczy.", "Przesuwaj uwagę od stóp do głowy, powoli.", "Tam, gdzie czujesz napięcie, oddychaj w to miejsce.", "Zakończ 3 głębokimi oddechami."]}, {"category": "practical", "code": "one_small_thing", "description_en": "One tiny task, finished. Momentum beats motivation.", "description_pl": "Jedno drobne zadanie, dokończone. Rozpęd wygrywa z motywacją.", "duration_min": 5, "icon": "list-checks", "name_en": "Do one small thing", "name_pl": "Zrób jedną małą rzecz", "steps_en": ["Pick the smallest thing on your mind.", "Set a 5-minute timer.", "Do only that.", "Cross it off and stop."], "steps_pl": ["Wybierz najmniejszą rzecz, która chodzi Ci po głowie.", "Ustaw minutnik na 5 minut.", "Zrób tylko to.", "Odznacz i przestań."]}, {"category": "practical", "code": "tomorrow_prep", "description_en": "Evening prep so the morning is kinder: clothes, bag, breakfast.", "description_pl": "Wieczorne przygotowanie, żeby poranek był łagodniejszy: ubranie, torba, śniadanie.", "duration_min": 10, "icon": "backpack", "name_en": "Prepare tomorrow", "name_pl": "Przygotuj jutro", "steps_en": ["Lay out clothes for you and the baby.", "Pack the bag by the door.", "Set up breakfast things.", "Write down the one thing that matters tomorrow."], "steps_pl": ["Przygotuj ubrania dla siebie i malucha.", "Spakuj torbę przy drzwiach.", "Przygotuj rzeczy na śniadanie.", "Zapisz jedną rzecz, która jutro jest ważna."]}]}
+[
+  {
+    "model": "support.copingstrategy",
+    "pk": 1,
+    "fields": {
+      "code": "breathing_478",
+      "category": "breathing",
+      "description_en": "A calming 4-7-8 breath. One minute, eyes open or closed.",
+      "description_pl": "Uspokajający oddech 4-7-8. Minuta, oczy otwarte lub zamknięte.",
+      "duration_min": 1,
+      "icon": "wind",
+      "name_en": "4-7-8 breathing",
+      "name_pl": "Oddech 4-7-8",
+      "steps_en": [
+        "Breathe in through your nose for 4 counts.",
+        "Hold for 7 counts.",
+        "Breathe out slowly through your mouth for 8 counts.",
+        "Repeat 3 times."
+      ],
+      "steps_pl": [
+        "Wciągnij powietrze nosem, licząc do 4.",
+        "Wstrzymaj na 7.",
+        "Powoli wypuść ustami, licząc do 8.",
+        "Powtórz 3 razy."
+      ]
+    }
+  },
+  {
+    "model": "support.copingstrategy",
+    "pk": 2,
+    "fields": {
+      "code": "box_breathing",
+      "category": "breathing",
+      "description_en": "Even, square breathing that steadies a racing mind.",
+      "description_pl": "Równy, „pudełkowy” oddech, który uspokaja gonitwę myśli.",
+      "duration_min": 2,
+      "icon": "box",
+      "name_en": "Box breathing",
+      "name_pl": "Oddech pudełkowy",
+      "steps_en": [
+        "Breathe in for 4 counts.",
+        "Hold for 4 counts.",
+        "Breathe out for 4 counts.",
+        "Hold empty for 4 counts.",
+        "Repeat for 4 rounds."
+      ],
+      "steps_pl": [
+        "Wdech na 4.",
+        "Wstrzymaj na 4.",
+        "Wydech na 4.",
+        "Pauza na 4.",
+        "Powtórz 4 rundy."
+      ]
+    }
+  },
+  {
+    "model": "support.copingstrategy",
+    "pk": 3,
+    "fields": {
+      "code": "short_walk",
+      "category": "movement",
+      "description_en": "Fresh air and movement, no performance goals. Pram optional.",
+      "description_pl": "Świeże powietrze i ruch, bez celów sportowych. Wózek opcjonalny.",
+      "duration_min": 10,
+      "icon": "footprints",
+      "name_en": "A short walk",
+      "name_pl": "Krótki spacer",
+      "steps_en": [
+        "Put on shoes and step outside.",
+        "Walk at whatever pace feels easy.",
+        "Notice 3 things you can see or hear.",
+        "Come back when you feel like it."
+      ],
+      "steps_pl": [
+        "Włóż buty i wyjdź na zewnątrz.",
+        "Idź tempem, jakie Ci pasuje.",
+        "Zauważ 3 rzeczy, które widzisz lub słyszysz.",
+        "Wróć, kiedy będziesz mieć ochotę."
+      ]
+    }
+  },
+  {
+    "model": "support.copingstrategy",
+    "pk": 4,
+    "fields": {
+      "code": "gentle_stretch",
+      "category": "movement",
+      "description_en": "Loosen neck, shoulders and back. After birth: only with your doctor's or physio's OK.",
+      "description_pl": "Rozluźnij kark, barki i plecy. Po porodzie: tylko po konsultacji z lekarzem lub fizjoterapeutką.",
+      "duration_min": 5,
+      "icon": "person-standing",
+      "name_en": "Gentle stretching",
+      "name_pl": "Delikatne rozciąganie",
+      "steps_en": [
+        "Roll your shoulders back 5 times.",
+        "Tilt your head ear-to-shoulder, each side, 20 seconds.",
+        "Interlace fingers, push palms up, breathe.",
+        "Gently arch and round your back 5 times."
+      ],
+      "steps_pl": [
+        "Zatocz barki w tył 5 razy.",
+        "Pochyl głowę uchem do ramienia, po 20 sekund na stronę.",
+        "Spleć palce, wypchnij dłonie w górę, oddychaj.",
+        "Delikatnie wygnij i zaokrąglij plecy 5 razy."
+      ]
+    }
+  },
+  {
+    "model": "support.copingstrategy",
+    "pk": 5,
+    "fields": {
+      "code": "call_someone",
+      "category": "social",
+      "description_en": "Hearing a kind voice helps. No need to explain everything.",
+      "description_pl": "Usłyszenie życzliwego głosu pomaga. Nie musisz wszystkiego tłumaczyć.",
+      "duration_min": 10,
+      "icon": "phone",
+      "name_en": "Call someone kind",
+      "name_pl": "Zadzwoń do kogoś życzliwego",
+      "steps_en": [
+        "Pick one person from your circle.",
+        "Call or send a voice note.",
+        "Say how you are in one honest sentence.",
+        "Let the conversation end whenever you want."
+      ],
+      "steps_pl": [
+        "Wybierz jedną osobę ze swojego kręgu.",
+        "Zadzwoń lub wyślij wiadomość głosową.",
+        "Powiedz jednym szczerym zdaniem, jak się masz.",
+        "Zakończ rozmowę, kiedy zechcesz."
+      ]
+    }
+  },
+  {
+    "model": "support.copingstrategy",
+    "pk": 6,
+    "fields": {
+      "code": "ask_for_help",
+      "category": "social",
+      "description_en": "One concrete request beats silent struggling. Use a ready-made message.",
+      "description_pl": "Jedna konkretna prośba jest lepsza niż ciche zmaganie. Użyj gotowej wiadomości.",
+      "duration_min": 2,
+      "icon": "heart-handshake",
+      "name_en": "Ask for help",
+      "name_pl": "Poproś o pomoc",
+      "steps_en": [
+        "Open your circle in the app.",
+        "Pick one small, concrete task.",
+        "Send the ready-made message.",
+        "Accept the help without apologising."
+      ],
+      "steps_pl": [
+        "Otwórz swój krąg w aplikacji.",
+        "Wybierz jedno małe, konkretne zadanie.",
+        "Wyślij gotową wiadomość.",
+        "Przyjmij pomoc bez przepraszania."
+      ]
+    }
+  },
+  {
+    "model": "support.copingstrategy",
+    "pk": 7,
+    "fields": {
+      "code": "grounding_54321",
+      "category": "sensory",
+      "description_en": "The 5-4-3-2-1 technique for anxiety: back to the here and now.",
+      "description_pl": "Technika 5-4-3-2-1 na lęk: powrót do tu i teraz.",
+      "duration_min": 3,
+      "icon": "hand",
+      "name_en": "Grounding 5-4-3-2-1",
+      "name_pl": "Uziemienie 5-4-3-2-1",
+      "steps_en": [
+        "Name 5 things you can see.",
+        "Name 4 things you can touch.",
+        "Name 3 things you can hear.",
+        "Name 2 things you can smell.",
+        "Name 1 thing you can taste."
+      ],
+      "steps_pl": [
+        "Wymień 5 rzeczy, które widzisz.",
+        "Wymień 4 rzeczy, które możesz dotknąć.",
+        "Wymień 3 rzeczy, które słyszysz.",
+        "Wymień 2 rzeczy, które czujesz zapachem.",
+        "Wymień 1 rzecz, którą czujesz smakiem."
+      ]
+    }
+  },
+  {
+    "model": "support.copingstrategy",
+    "pk": 8,
+    "fields": {
+      "code": "warm_drink",
+      "category": "sensory",
+      "description_en": "Warmth in your hands, a small pause. The coffee may go cold again — normal.",
+      "description_pl": "Ciepło w dłoniach, mała pauza. Kawa znowu wystygnie — normalka.",
+      "duration_min": 5,
+      "icon": "coffee",
+      "name_en": "Something warm to drink",
+      "name_pl": "Coś ciepłego do picia",
+      "steps_en": [
+        "Make tea, coffee or warm milk.",
+        "Hold the cup with both hands.",
+        "Take 3 slow sips, tasting each.",
+        "Sit while you drink — even 2 minutes count."
+      ],
+      "steps_pl": [
+        "Zrób herbatę, kawę albo ciepłe mleko.",
+        "Obejmij kubek obiema dłońmi.",
+        "Weź 3 powolne łyki, smakując każdy.",
+        "Usiądź na czas picia — nawet 2 minuty się liczą."
+      ]
+    }
+  },
+  {
+    "model": "support.copingstrategy",
+    "pk": 9,
+    "fields": {
+      "code": "micro_rest",
+      "category": "rest",
+      "description_en": "Not sleep — just switching off for a few minutes. It counts.",
+      "description_pl": "Nie sen — po prostu wyłączenie się na kilka minut. To się liczy.",
+      "duration_min": 10,
+      "icon": "moon",
+      "name_en": "Micro-rest",
+      "name_pl": "Mikroodpoczynek",
+      "steps_en": [
+        "Lie down or lean back comfortably.",
+        "Close your eyes, unclench your jaw.",
+        "Breathe slowly, no phone.",
+        "Get up after 10 minutes — or stay longer."
+      ],
+      "steps_pl": [
+        "Połóż się lub wygodnie oprzyj.",
+        "Zamknij oczy, rozluźnij szczękę.",
+        "Oddychaj powoli, bez telefonu.",
+        "Wstań po 10 minutach — albo zostań dłużej."
+      ]
+    }
+  },
+  {
+    "model": "support.copingstrategy",
+    "pk": 10,
+    "fields": {
+      "code": "shower_reset",
+      "category": "rest",
+      "description_en": "Warm water as a reset button. Five minutes just for you.",
+      "description_pl": "Ciepła woda jak przycisk reset. Pięć minut tylko dla Ciebie.",
+      "duration_min": 5,
+      "icon": "shower-head",
+      "name_en": "Reset shower",
+      "name_pl": "Prysznic reset",
+      "steps_en": [
+        "Ask someone to watch the baby, or wait for sleep.",
+        "Stand under warm water for 5 minutes.",
+        "Notice the water on your shoulders.",
+        "Change into something fresh afterwards."
+      ],
+      "steps_pl": [
+        "Poproś kogoś o przypilnowanie malucha albo poczekaj na drzemkę.",
+        "Postój pod ciepłą wodą 5 minut.",
+        "Poczuj wodę na ramionach.",
+        "Potem przebierz się w coś świeżego."
+      ]
+    }
+  },
+  {
+    "model": "support.copingstrategy",
+    "pk": 11,
+    "fields": {
+      "code": "small_win_note",
+      "category": "creative",
+      "description_en": "Write down one thing that worked today. The jar fills with petals.",
+      "description_pl": "Zapisz jedną rzecz, która dziś się udała. Słoik zapełnia się płatkami.",
+      "duration_min": 2,
+      "icon": "sprout",
+      "name_en": "Note a small win",
+      "name_pl": "Zapisz małą wygraną",
+      "steps_en": [
+        "Think of one thing, however tiny.",
+        "Write it in the wins jar.",
+        "Read yesterday's win.",
+        "Let it sit — no analysis needed."
+      ],
+      "steps_pl": [
+        "Pomyśl o jednej rzeczy, choćby drobnej.",
+        "Zapisz ją w słoiku wygranych.",
+        "Przeczytaj wczorajszą wygraną.",
+        "Zostaw to tak — bez analizowania."
+      ]
+    }
+  },
+  {
+    "model": "support.copingstrategy",
+    "pk": 12,
+    "fields": {
+      "code": "music_break",
+      "category": "creative",
+      "description_en": "One favourite song, loud or quiet. Music regulates faster than thoughts.",
+      "description_pl": "Jedna ulubiona piosenka, głośno albo cicho. Muzyka reguluje szybciej niż myśli.",
+      "duration_min": 4,
+      "icon": "music",
+      "name_en": "Music break",
+      "name_pl": "Muzyczna przerwa",
+      "steps_en": [
+        "Put on one song you love.",
+        "Turn it up or hum along.",
+        "Move a little if you feel like it.",
+        "Notice how your shoulders feel after."
+      ],
+      "steps_pl": [
+        "Włącz jedną piosenkę, którą kochasz.",
+        "Podgłośnij albo nuć razem.",
+        "Porusz się trochę, jeśli masz ochotę.",
+        "Zauważ, jak czują się Twoje barki po niej."
+      ]
+    }
+  },
+  {
+    "model": "support.copingstrategy",
+    "pk": 13,
+    "fields": {
+      "code": "self_compassion",
+      "category": "mindfulness",
+      "description_en": "What you would say to a friend, said to yourself.",
+      "description_pl": "To, co powiedziałabyś przyjaciółce, powiedz sobie.",
+      "duration_min": 3,
+      "icon": "heart",
+      "name_en": "Self-compassion pause",
+      "name_pl": "Pauza życzliwości dla siebie",
+      "steps_en": [
+        "Put a hand on your chest.",
+        "Say: „This is hard right now.”",
+        "Say: „Other mums feel this too.”",
+        "Say: „May I be kind to myself.”"
+      ],
+      "steps_pl": [
+        "Połóż dłoń na piersi.",
+        "Powiedz: „Jest mi teraz trudno.”",
+        "Powiedz: „Inne mamy też tak mają.”",
+        "Powiedz: „Mogę być dla siebie dobra.”"
+      ]
+    }
+  },
+  {
+    "model": "support.copingstrategy",
+    "pk": 14,
+    "fields": {
+      "code": "body_scan",
+      "category": "mindfulness",
+      "description_en": "A short journey through the body, good for falling asleep too.",
+      "description_pl": "Krótka podróż przez ciało, dobra też do zasypiania.",
+      "duration_min": 5,
+      "icon": "scan",
+      "name_en": "Mini body scan",
+      "name_pl": "Mini skan ciała",
+      "steps_en": [
+        "Lie down, close your eyes.",
+        "Move attention from feet to head, slowly.",
+        "Where it is tense, breathe into that spot.",
+        "End with 3 deep breaths."
+      ],
+      "steps_pl": [
+        "Połóż się, zamknij oczy.",
+        "Przesuwaj uwagę od stóp do głowy, powoli.",
+        "Tam, gdzie czujesz napięcie, oddychaj w to miejsce.",
+        "Zakończ 3 głębokimi oddechami."
+      ]
+    }
+  },
+  {
+    "model": "support.copingstrategy",
+    "pk": 15,
+    "fields": {
+      "code": "one_small_thing",
+      "category": "practical",
+      "description_en": "One tiny task, finished. Momentum beats motivation.",
+      "description_pl": "Jedno drobne zadanie, dokończone. Rozpęd wygrywa z motywacją.",
+      "duration_min": 5,
+      "icon": "list-checks",
+      "name_en": "Do one small thing",
+      "name_pl": "Zrób jedną małą rzecz",
+      "steps_en": [
+        "Pick the smallest thing on your mind.",
+        "Set a 5-minute timer.",
+        "Do only that.",
+        "Cross it off and stop."
+      ],
+      "steps_pl": [
+        "Wybierz najmniejszą rzecz, która chodzi Ci po głowie.",
+        "Ustaw minutnik na 5 minut.",
+        "Zrób tylko to.",
+        "Odznacz i przestań."
+      ]
+    }
+  },
+  {
+    "model": "support.copingstrategy",
+    "pk": 16,
+    "fields": {
+      "code": "tomorrow_prep",
+      "category": "practical",
+      "description_en": "Evening prep so the morning is kinder: clothes, bag, breakfast.",
+      "description_pl": "Wieczorne przygotowanie, żeby poranek był łagodniejszy: ubranie, torba, śniadanie.",
+      "duration_min": 10,
+      "icon": "backpack",
+      "name_en": "Prepare tomorrow",
+      "name_pl": "Przygotuj jutro",
+      "steps_en": [
+        "Lay out clothes for you and the baby.",
+        "Pack the bag by the door.",
+        "Set up breakfast things.",
+        "Write down the one thing that matters tomorrow."
+      ],
+      "steps_pl": [
+        "Przygotuj ubrania dla siebie i malucha.",
+        "Spakuj torbę przy drzwiach.",
+        "Przygotuj rzeczy na śniadanie.",
+        "Zapisz jedną rzecz, która jutro jest ważna."
+      ]
+    }
+  }
+]

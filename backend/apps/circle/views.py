@@ -5,6 +5,8 @@ from rest_framework import permissions, status, viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from apps.common.throttling import PublicThrottle
+
 from .models import CareRequest, CircleLink
 from .public import build_public_payload
 from .serializers import (
@@ -46,7 +48,7 @@ def _today_mood(user):
         return None
     try:
         return mood_today(user)
-    except Exception:
+    except Exception:  # noqa: BLE001 -- cross-app guard: tracking must never break circle
         return None
 
 
@@ -124,6 +126,8 @@ class PublicCircleView(APIView):
     """GET /circle/public/{token} (AllowAny; revoked token -> 404)."""
 
     permission_classes = (permissions.AllowAny,)
+    throttle_classes = (PublicThrottle,)
+    throttle_scope = "public"
 
     def get(self, request, token):
         link = _get_link_or_404(token)
@@ -136,6 +140,8 @@ class PublicClaimView(APIView):
     """POST /circle/public/{token}/requests/{id}/claim {name} (AllowAny)."""
 
     permission_classes = (permissions.AllowAny,)
+    throttle_classes = (PublicThrottle,)
+    throttle_scope = "public"
 
     def post(self, request, token, pk):
         link = _get_link_or_404(token)
@@ -170,6 +176,8 @@ class PublicDoneView(APIView):
     """POST /circle/public/{token}/requests/{id}/done (AllowAny)."""
 
     permission_classes = (permissions.AllowAny,)
+    throttle_classes = (PublicThrottle,)
+    throttle_scope = "public"
 
     def post(self, request, token, pk):
         link = _get_link_or_404(token)

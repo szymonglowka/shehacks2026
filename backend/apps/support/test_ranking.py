@@ -82,7 +82,10 @@ def test_pristine_top_prior_beats_everything_below_perfect():
     low.helped_score_sum, low.used_count = 10.0, 10  # 10x "yes"
     low.score = strategy_score(1, 10.0, 10)
     assert low.score < strategy_score(3)
-    assert [s.code for s in rank_strategies([low, RankedStrategy(code="aaa", survey_score=3)])][0] == "aaa"
+    best = next(
+        iter(rank_strategies([low, RankedStrategy(code="aaa", survey_score=3)]))
+    )
+    assert best.code == "aaa"
 
 
 def test_untried_rejected_sort_last():

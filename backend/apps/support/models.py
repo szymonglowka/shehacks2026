@@ -3,6 +3,7 @@ from typing import ClassVar
 
 from django.conf import settings
 from django.db import models
+from django.utils import timezone
 
 from apps.common.models import TimeStampedModel
 
@@ -83,7 +84,7 @@ class SupportSession(TimeStampedModel):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="support_sessions"
     )
-    started_at = models.DateTimeField(auto_now_add=True)
+    started_at = models.DateTimeField(default=timezone.now)
     ended_at = models.DateTimeField(null=True, blank=True)
     intensity = models.PositiveSmallIntegerField()
     trigger = models.CharField(max_length=20, choices=TRIGGER_CHOICES, default="manual")
@@ -129,6 +130,8 @@ class Helpline(models.Model):
     description_en = models.TextField(default="")
     is_emergency = models.BooleanField(default=False)
     order = models.PositiveSmallIntegerField(default=0)
+    # Product-safety: numbers stay unverified until a human confirms them.
+    is_verified = models.BooleanField(default=False)
 
     class Meta:
         ordering = ("order", "id")

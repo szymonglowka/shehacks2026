@@ -4,13 +4,7 @@ from rest_framework import serializers
 
 from apps.common.i18n import get_lang, localized
 
-from .models import (
-    CopingStrategy,
-    Helpline,
-    SupportSession,
-    TrustedContact,
-    UserCopingPreference,
-)
+from .models import CopingStrategy, Helpline, SupportSession, TrustedContact
 
 
 class ToolkitStrategySerializer(serializers.ModelSerializer):
@@ -134,7 +128,16 @@ class HelplineSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Helpline
-        fields = ("id", "name", "phone", "hours", "description", "is_emergency", "order")
+        fields = (
+            "id",
+            "name",
+            "phone",
+            "hours",
+            "description",
+            "is_emergency",
+            "order",
+            "is_verified",
+        )
 
     def _lang(self):
         return get_lang(self.context.get("request"))

@@ -13,7 +13,8 @@ caller passes them in.
 
 from __future__ import annotations
 
-from typing import Any, Mapping
+from collections.abc import Mapping
+from typing import Any
 
 #: The only CareRequest fields the public page may expose (SPEC section 6.8).
 PUBLIC_REQUEST_KEYS = (
