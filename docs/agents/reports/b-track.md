@@ -15,3 +15,13 @@ Models + migrations, all endpoints (/checkins, /cycle/status, /periods, /profile
 
 ## Contract deviations
 None. No requests to other agents yet.
+Note: `b-goals` asked (via `requests/b-goals.md`) to keep the `tracking.risk`
+import path stable for their `send_gentle_nudges` try-import — confirmed:
+`backend/apps/tracking/risk.py` with `evaluate_risk` / `RiskContext` stays.
+
+## 2026-10-03 update
+Rebased on latest `origin/main` (includes merged b-goals/b-care phase-1 work);
+branch pushed, ready for integrator merge. Full-tree check: 93 passed
+(b-track 65 + b-goals 28); only failure is b-care's known pre-existing
+`test_ranking.py` relative-import collection error (integrator's shim covers
+it, not my files). Phase 2 (models/endpoints) still blocked on checkpoint-0.
