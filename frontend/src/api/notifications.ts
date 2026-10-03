@@ -36,7 +36,7 @@ export function useMarkNotificationRead(id: number) {
 export function useMarkAllNotificationsRead() {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: () => apiFetch<void>("/notifications/read-all", { method: "POST" }),
+    mutationFn: () => apiFetch("/notifications/read-all", { method: "POST" }),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["notifications"] });
     },
@@ -45,7 +45,7 @@ export function useMarkAllNotificationsRead() {
 
 export function useSendTestPush() {
   return useMutation({
-    mutationFn: () => apiFetch<void>("/push/test", { method: "POST" }),
+    mutationFn: () => apiFetch("/push/test", { method: "POST" }),
   });
 }
 

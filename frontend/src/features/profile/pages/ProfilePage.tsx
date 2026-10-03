@@ -105,6 +105,29 @@ export default function ProfilePage() {
         />
         <Row
           icon={<CircleHelp size={20} strokeWidth={1.8} />}
+          title={profile?.mode === "cycle" ? t("modeCycle") : t("modePostpartum")}
+          hint={t("modeHint")}
+          control={
+            <div className="flex shrink-0 gap-2">
+              <button
+                onClick={() => update.mutate({ mode: "postpartum" })}
+                aria-pressed={profile?.mode === "postpartum"}
+                className={`min-h-[44px] rounded-full px-4 text-[14px] font-medium ${profile?.mode === "postpartum" ? "bg-forest text-paper" : "bg-sage-light text-ink"}`}
+              >
+                {t("modePostpartum")}
+              </button>
+              <button
+                onClick={() => update.mutate({ mode: "cycle" })}
+                aria-pressed={profile?.mode === "cycle"}
+                className={`min-h-[44px] rounded-full px-4 text-[14px] font-medium ${profile?.mode === "cycle" ? "bg-forest text-paper" : "bg-sage-light text-ink"}`}
+              >
+                {t("modeCycle")}
+              </button>
+            </div>
+          }
+        />
+        <Row
+          icon={<CircleHelp size={20} strokeWidth={1.8} />}
           title={t("sections.survey")}
           hint={t("surveyHint")}
           control={

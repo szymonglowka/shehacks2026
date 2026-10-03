@@ -44,6 +44,25 @@ export default function ArticleReaderPage() {
 
   const paragraphs = article.body.split("\n\n");
 
+  const renderInline = (text: string, keyPrefix: string) => {
+    const parts = text.split(/(\[[^\]]+\]\([^)]+\))/g);
+    return parts.map((part, j) => {
+      const m = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+      if (!m) return <span key={`${keyPrefix}-${j}`}>{part}</span>;
+      return (
+        <a
+          key={`${keyPrefix}-${j}`}
+          href={m[2]}
+          target="_blank"
+          rel="noreferrer"
+          className="font-medium text-forest underline underline-offset-2"
+        >
+          {m[1]}
+        </a>
+      );
+    });
+  };
+
   return (
     <main className="mx-auto max-w-[680px] px-4 pb-24">
       <Link
@@ -79,11 +98,17 @@ export default function ArticleReaderPage() {
           ) : p.startsWith("- ") ? (
             <ul key={i} className="list-disc space-y-1 pl-6">
               {p.split("\n").map((li, j) => (
-                <li key={j}>{li.replace(/^- /, "")}</li>
+                <li key={j}>{renderInline(li.replace(/^- /, ""), `ul-${i}`)}</li>
               ))}
             </ul>
+          ) : /^\d+\. /m.test(p) ? (
+            <ol key={i} className="list-decimal space-y-1 pl-6">
+              {p.split("\n").map((li, j) => (
+                <li key={j}>{renderInline(li.replace(/^\d+\. /, ""), `ol-${i}`)}</li>
+              ))}
+            </ol>
           ) : (
-            <p key={i}>{p}</p>
+            <p key={i}>{renderInline(p, `p-${i}`)}</p>
           ),
         )}
       </article>

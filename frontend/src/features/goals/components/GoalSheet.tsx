@@ -1,7 +1,16 @@
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Trash2 } from "lucide-react";
 import type { Goal, GoalFormValues } from "@/api/goals";
-import { reminderSentence, useCreateGoal, useUpdateGoal, validateGoalForm } from "@/api/goals";
+import {
+  reminderSentence,
+  shortTime,
+  toApiTime,
+  useCreateGoal,
+  useDeleteGoal,
+  useUpdateGoal,
+  validateGoalForm,
+} from "@/api/goals";
 
 const CATEGORIES = ["movement", "rest", "nutrition", "mind", "social", "recovery", "selfcare"] as const;
 
@@ -24,7 +33,7 @@ function fromGoal(goal: Goal): GoalFormValues {
     frequency: goal.frequency,
     target_count: goal.target_count,
     reminder_enabled: goal.reminder_enabled,
-    reminder_time: goal.reminder_time ?? "18:00",
+    reminder_time: shortTime(goal.reminder_time) ?? "18:00",
     reminder_weekdays: goal.reminder_weekdays,
   };
 }
@@ -36,8 +45,11 @@ export function GoalSheet({ goal, onClose }: { goal: Goal | null; onClose: () =>
   const simpleT = (key: string) => t(key);
   const [values, setValues] = useState<GoalFormValues>(goal ? fromGoal(goal) : emptyValues());
   const [touched, setTouched] = useState(false);
+  const [confirmingDelete, setConfirmingDelete] = useState(false);
   const create = useCreateGoal();
-  const update = goal ? useUpdateGoal(goal.id) : null;
+  // Hooks stay unconditional; mutations only fire from the edit/new submit paths below.
+  const update = useUpdateGoal(goal?.id ?? 0);
+  const remove = useDeleteGoal(goal?.id ?? 0);
 
   const errors = useMemo(
     () => (touched ? validateGoalForm(values, simpleT) : {}),
@@ -62,8 +74,9 @@ export function GoalSheet({ goal, onClose }: { goal: Goal | null; onClose: () =>
     setTouched(true);
     if (Object.keys(validateGoalForm(values, simpleT)).length > 0) return;
     const done = () => onClose();
-    if (goal && update) update.mutate(values, { onSuccess: done });
-    else create.mutate(values, { onSuccess: done });
+    const payload = { ...values, reminder_time: toApiTime(values.reminder_time) };
+    if (goal) update.mutate(payload, { onSuccess: done });
+    else create.mutate(payload, { onSuccess: done });
   };
 
   const dayNames = t("weekdaysShort", { returnObjects: true }) as string[];
@@ -232,6 +245,40 @@ export function GoalSheet({ goal, onClose }: { goal: Goal | null; onClose: () =>
             {t("save")}
           </button>
         </div>
+
+        {goal && (
+          <div className="mt-3 text-center">
+            {!confirmingDelete ? (
+              <button
+                type="button"
+                onClick={() => setConfirmingDelete(true)}
+                className="inline-flex min-h-[44px] items-center gap-1 text-[14px] font-medium text-muted"
+              >
+                <Trash2 size={16} strokeWidth={1.8} /> {t("delete")}
+              </button>
+            ) : (
+              <div className="rounded-[14px] bg-[#b4533c]/10 p-3">
+                <p className="text-[13px] text-ink">{t("deleteConfirm")}</p>
+                <div className="mt-2 flex gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setConfirmingDelete(false)}
+                    className="min-h-[44px] flex-1 rounded-[14px] border border-line text-[14px] text-ink"
+                  >
+                    {t("cancel")}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => remove.mutate(undefined, { onSuccess: onClose })}
+                    className="min-h-[44px] flex-1 rounded-[14px] bg-[#b4533c] text-[14px] font-semibold text-paper"
+                  >
+                    {t("deleteConfirmButton")}
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
       </section>
     </div>
   );

@@ -1,4 +1,4 @@
-/* Visit report print: clean A4-like output, ink on white. */
+/* Visit report print: clean A4-like document, day tokens pinned even in night theme. */
 @media print {
   body {
     background: #fff !important;
@@ -9,6 +9,22 @@
   }
 
   .report-sheet {
+    /* Pin day-theme tokens so a night session still prints ink-on-white. */
+    --ink: #25342f;
+    --muted: #718079;
+    --forest: #3f6959;
+    --forest-deep: #315648;
+    --sage: #dfeae2;
+    --sage-light: #f1f5f0;
+    --cream: #f8f5ef;
+    --paper: #fffdf9;
+    --line: #e5e7df;
+    --peach: #e9b9a0;
+    --peach-soft: #f5e1d6;
+    --lavender: #ddd8e9;
+    color-scheme: light;
+    background: #fff !important;
+    color: #25342f !important;
     box-shadow: none !important;
     border: none !important;
     border-radius: 0 !important;

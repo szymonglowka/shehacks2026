@@ -16,7 +16,7 @@ export interface MockGoal {
   progress_this_week: boolean[];
 }
 
-let goals: MockGoal[] = [
+const goals: MockGoal[] = [
   {
     id: 1,
     title: "Szklanka wody rano",
