@@ -218,3 +218,11 @@ def test_dashboard_isolation(auth_client, user):
     body = auth_client.get("/api/v1/dashboard").json()
     assert body["today_checkin"] is None
     assert body["epds_due"] == {"due": True, "last_at": None}
+
+
+def test_dashboard_accepts_dict_from_content_selector(auth_client, user, monkeypatch):
+    # apps.content.selectors.article_of_the_day returns an already-localized dict
+    article = {"slug": "dno-miednicy-podstawy", "title": "Dno miednicy", "summary": "…"}
+    monkeypatch.setattr(insights_views, "article_of_the_day", lambda u, lang: article)
+    body = auth_client.get("/api/v1/dashboard").json()
+    assert body["article_of_day"]["slug"] == "dno-miednicy-podstawy"

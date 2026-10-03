@@ -311,6 +311,8 @@ class DashboardView(APIView):
         article = article_of_the_day(user, lang)
         if article is None:
             return None
+        if isinstance(article, dict):  # content.selectors returns an already-localized dict
+            return article
         title = getattr(article, f"title_{lang}", None) or getattr(article, "title_pl", "")
         summary = getattr(article, f"summary_{lang}", None) or getattr(
             article, "summary_pl", ""

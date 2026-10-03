@@ -96,9 +96,11 @@ def test_epds_due_rule():
     assert epds_due(recent, date(2026, 9, 28)) is False  # 8 days ago
 
 
-def test_checkin_and_epds_tasks_degrade_without_tracking_models(user):
-    assert send_checkin_reminders()["skipped"] == "tracking.DailyCheckIn missing"
-    assert send_epds_due()["skipped"] == "tracking.EPDSAssessment missing"
+def test_checkin_and_epds_tasks_run_against_tracking_models(user):
+    # tracking models are merged now, so the tasks must no longer report "skipped"
+    with patch("apps.notifications.push.send_push_to_user", return_value=1):
+        assert "skipped" not in send_checkin_reminders()
+        assert "skipped" not in send_epds_due()
 
 
 @freeze_time(FROZEN_UTC)
