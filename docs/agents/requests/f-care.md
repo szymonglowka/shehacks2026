@@ -33,6 +33,23 @@
 - The night quick check-in does `PUT /checkins/{today}` with `{ mood }` —
   please keep that upsert shape on the backend (b-track).
 
+## Cross-domain hook reuse (f-plan)
+
+- `features/night/NightPage.tsx` imports `useAddVisitQuestion` from
+  `src/api/visit.ts` so a night thought lands in the visit report (K3),
+  with a localStorage offline fallback. No changes to your module.
+
+## Note for b-content (seed_demo, Marta)
+
+- Marta's 6 support sessions have `strategy=NULL` and she has 0 coping
+  prefs, so her toolkit ranking is flat 0.0 with no evidence (SPEC §9 says
+  the ranking should have shifted). Please link sessions to strategies and
+  add prefs in seed_demo. Locally I verified the reorder flow on a scratch
+  user instead (25/25 green).
+- Marta has no trusted contact in seed_demo (you're adding "Tomek" —
+  still missing on current main). I added Tomek for her only in my local
+  scratch DB, not in the repo.
+
 ## To f-plan / b-content (partner guide link)
 
 - The public circle page links to `/knowledge/jak-wspierac-mame`.

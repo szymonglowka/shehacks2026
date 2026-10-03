@@ -42,11 +42,37 @@ export function SupportPage() {
           <TopStrategiesCards />
         </div>
         {(toolkit.data?.strategies.length ?? 0) > 2 && (
-          <p className="mt-2 text-sm">
-            <Link to="/tough-day" className="underline">
-              {t("seeAll")}
-            </Link>
-          </p>
+          <ol className="mt-3 grid gap-2">
+            {toolkit.data?.strategies.slice(2).map((s, i) => (
+              <li
+                key={s.code}
+                className="flex items-center justify-between gap-3 rounded-3xl bg-paper p-4"
+              >
+                <div>
+                  <div className="font-serif text-lg">
+                    <span className="mr-2 tabular-nums opacity-50">{i + 3}.</span>
+                    {s.title}
+                  </div>
+                  <div className="text-sm opacity-70">
+                    {s.total_count > 0
+                      ? t("helpedEvidence", {
+                          helped: s.helped_count,
+                          total: s.total_count,
+                        })
+                      : t("helpedEvidenceNone")}{" "}
+                    · <span className="tabular-nums">{t("minutes", { count: s.duration_minutes })}</span>
+                  </div>
+                </div>
+                <Link
+                  to="/tough-day"
+                  className="inline-flex min-h-[44px] shrink-0 items-center rounded-full bg-forest/10 px-4 py-2 text-sm"
+                  aria-label={`${t("start")}: ${s.title}`}
+                >
+                  {t("start")} →
+                </Link>
+              </li>
+            ))}
+          </ol>
         )}
       </section>
 

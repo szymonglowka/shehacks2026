@@ -6,6 +6,8 @@
 import { useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { apiFetch } from "../../api/client";
+import { useAddVisitQuestion } from "../../api/visit";
 import {
   dismissNightRedirect,
   isNightHour,
@@ -40,18 +42,10 @@ function QuickMood() {
 
   const save = async (mood: number) => {
     const today = new Date().toISOString().slice(0, 10);
-    const base =
-      (import.meta.env.VITE_API_URL as string | undefined) ??
-      "http://localhost:8000/api/v1";
-    const token = localStorage.getItem("otula:access");
     try {
-      await fetch(`${base}/checkins/${today}`, {
+      await apiFetch(`/checkins/${today}`, {
         method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          ...(token ? { Authorization: `Bearer ${token}` } : {}),
-        },
-        body: JSON.stringify({ mood }),
+        body: { mood },
       });
     } catch {
       /* offline at 3 a.m. is fine — the gesture still counts */
@@ -106,21 +100,34 @@ function MorningNote() {
   const { t } = useTranslation("night");
   const [text, setText] = useState("");
   const [saved, setSaved] = useState(false);
+  // Reuses f-plan's visit-question hook so the note lands in the visit
+  // report (K3); localStorage is the offline fallback.
+  const addQuestion = useAddVisitQuestion();
+
+  const stashLocal = (value: string) => {
+    try {
+      const key = "otula:morning-notes";
+      const prev = JSON.parse(localStorage.getItem(key) ?? "[]") as string[];
+      localStorage.setItem(key, JSON.stringify([...prev, value]));
+    } catch {
+      /* private mode */
+    }
+  };
 
   if (saved) return <p role="status">{t("noteSaved")}</p>;
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        if (!text.trim()) return;
-        try {
-          const key = "otula:morning-notes";
-          const prev = JSON.parse(localStorage.getItem(key) ?? "[]") as string[];
-          localStorage.setItem(key, JSON.stringify([...prev, text.trim()]));
-        } catch {
-          /* private mode */
-        }
-        setSaved(true);
+        const value = text.trim();
+        if (!value) return;
+        addQuestion.mutate(value, {
+          onSuccess: () => setSaved(true),
+          onError: () => {
+            stashLocal(value);
+            setSaved(true);
+          },
+        });
       }}
     >
       <label htmlFor="morning-note" className="sr-only">

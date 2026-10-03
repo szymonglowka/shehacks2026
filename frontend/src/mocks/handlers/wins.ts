@@ -48,14 +48,16 @@ export const winsHandlers = [
   }),
 
   http.post(`${API}/wins`, async ({ request }) => {
-    const body = (await request.json()) as { text: string };
+    const body = (await request.json()) as { text: string; date?: string };
     winSeq += 1;
+    const today = new Date().toISOString().slice(0, 10);
     const created = {
       id: winSeq,
       text: body.text,
-      created_at: new Date().toISOString().slice(0, 10),
+      date: body.date ?? today,
+      created_at: today,
     };
-    wins.push(created);
+    wins.push({ id: created.id, text: created.text, created_at: created.date });
     return HttpResponse.json(created, { status: 201 });
   }),
 

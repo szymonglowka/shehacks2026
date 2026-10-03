@@ -15,8 +15,7 @@ export interface MockStrategy {
   steps: string[];
   icon: string;
   score: number;
-  helped_count: number;
-  total_count: number;
+  evidence: { used: number; helped_yes: number; helped_somewhat: number };
 }
 
 const toolkitPl: MockStrategy[] = [
@@ -34,8 +33,7 @@ const toolkitPl: MockStrategy[] = [
     ],
     icon: "moon",
     score: 0.94,
-    helped_count: 4,
-    total_count: 5,
+    evidence: { used: 5, helped_yes: 4, helped_somewhat: 0 },
   },
   {
     code: "short-walk",
@@ -51,8 +49,7 @@ const toolkitPl: MockStrategy[] = [
     ],
     icon: "footprints",
     score: 0.81,
-    helped_count: 3,
-    total_count: 5,
+    evidence: { used: 5, helped_yes: 3, helped_somewhat: 0 },
   },
   {
     code: "breath-478",
@@ -68,8 +65,7 @@ const toolkitPl: MockStrategy[] = [
     ],
     icon: "wind",
     score: 0.77,
-    helped_count: 5,
-    total_count: 7,
+    evidence: { used: 7, helped_yes: 5, helped_somewhat: 0 },
   },
   {
     code: "warm-shower",
@@ -85,8 +81,7 @@ const toolkitPl: MockStrategy[] = [
     ],
     icon: "droplets",
     score: 0.66,
-    helped_count: 2,
-    total_count: 4,
+    evidence: { used: 4, helped_yes: 2, helped_somewhat: 0 },
   },
   {
     code: "call-friend",
@@ -102,8 +97,7 @@ const toolkitPl: MockStrategy[] = [
     ],
     icon: "phone",
     score: 0.58,
-    helped_count: 2,
-    total_count: 5,
+    evidence: { used: 5, helped_yes: 2, helped_somewhat: 0 },
   },
   {
     code: "tea-window",
@@ -119,8 +113,7 @@ const toolkitPl: MockStrategy[] = [
     ],
     icon: "coffee",
     score: 0.44,
-    helped_count: 1,
-    total_count: 3,
+    evidence: { used: 3, helped_yes: 1, helped_somewhat: 0 },
   },
 ];
 

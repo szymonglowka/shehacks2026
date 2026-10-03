@@ -25,5 +25,7 @@
     "ok": "so-so",
     "good": "good",
     "great": "very good"
-  }
+  },
+  "rateTitle": "One moment",
+  "rateText": "Too many tries at once. Wait a minute and try again."
 }

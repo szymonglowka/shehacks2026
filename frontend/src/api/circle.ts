@@ -68,7 +68,7 @@ export function useMutateCircleLink() {
     onSuccess: invalidate,
   });
   const revoke = useMutation({
-    mutationFn: () => apiFetch<void>("/circle/link", { method: "DELETE" }),
+    mutationFn: () => apiFetch<unknown>("/circle/link", { method: "DELETE" }),
     onSuccess: () => {
       qc.setQueryData(["circle", "link"], null);
     },
@@ -97,10 +97,26 @@ export function useMutateCareRequests() {
   });
   const remove = useMutation({
     mutationFn: (id: number) =>
-      apiFetch<void>(`/circle/requests/${id}`, { method: "DELETE" }),
+      apiFetch<unknown>(`/circle/requests/${id}`, { method: "DELETE" }),
     onSuccess: invalidate,
   });
   return { create, remove };
+}
+
+type ApiPublicCircle = PublicCircle & {
+  mood?: { color: string; label: string } | null;
+};
+
+/** Claim/done return the full public payload, not a single request. */
+function toPublicCircle(
+  c: ApiPublicCircle,
+): PublicCircle {
+  return {
+    ...c,
+    mood_color: c.mood_color ?? c.mood?.color ?? null,
+    mood_word: c.mood_word ?? c.mood?.label ?? null,
+    requests: c.requests.map(withClaimedBy),
+  };
 }
 
 export function usePublicCircle(
@@ -110,7 +126,7 @@ export function usePublicCircle(
   return useQuery<PublicCircle>({
     queryKey: ["circle", "public", token],
     queryFn: () =>
-      apiFetch<PublicCircle & { mood?: { color: string; label: string } | null }>(`/circle/public/${token}`, { auth: false }).then((c) => ({ ...c, mood_color: c.mood_color ?? c.mood?.color ?? null, mood_word: c.mood_word ?? c.mood?.label ?? null, requests: c.requests.map(withClaimedBy) })),
+      apiFetch<ApiPublicCircle>(`/circle/public/${token}`, { auth: false }).then(toPublicCircle),
     enabled: token != null && token.length > 0,
     retry: false,
     ...options,
@@ -121,11 +137,11 @@ export function useClaimRequest(token: string) {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: ({ id, name }: { id: number; name: string }) =>
-      apiFetch<CareRequest>(`/circle/public/${token}/requests/${id}/claim`, {
+      apiFetch<ApiPublicCircle>(`/circle/public/${token}/requests/${id}/claim`, {
         method: "POST",
         body: { name },
         auth: false,
-      }),
+      }).then(toPublicCircle),
     onSuccess: () => {
       void qc.invalidateQueries({ queryKey: ["circle", "public", token] });
     },
@@ -136,10 +152,10 @@ export function useMarkRequestDone(token: string) {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (id: number) =>
-      apiFetch<CareRequest>(`/circle/public/${token}/requests/${id}/done`, {
+      apiFetch<ApiPublicCircle>(`/circle/public/${token}/requests/${id}/done`, {
         method: "POST",
         auth: false,
-      }),
+      }).then(toPublicCircle),
     onSuccess: () => {
       void qc.invalidateQueries({ queryKey: ["circle", "public", token] });
     },

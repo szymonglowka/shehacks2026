@@ -44,13 +44,14 @@ const publicData = {
   ],
 };
 
-let publicError = false;
+let publicError: false | { status: number } = false;
 
 vi.mock("../../api/circle", () => ({
   usePublicCircle: () => ({
     data: publicError ? undefined : publicData,
     isPending: false,
-    isError: publicError,
+    isError: publicError !== false,
+    error: publicError !== false ? publicError : null,
   }),
   useClaimRequest: () => ({
     mutate: (
@@ -108,9 +109,17 @@ describe("PublicCirclePage (no auth)", () => {
   });
 
   it("invalid token shows the revoked-link state", () => {
-    publicError = true;
+    publicError = { status: 404 };
     renderPublic("dead-token");
     expect(screen.getByText("invalidTitle")).toBeTruthy();
+    publicError = false;
+  });
+
+  it("rate limit shows the friendly slow-down state", () => {
+    publicError = { status: 429 };
+    renderPublic();
+    expect(screen.getByText("rateTitle")).toBeTruthy();
+    expect(screen.getByText("rateText")).toBeTruthy();
     publicError = false;
   });
 });

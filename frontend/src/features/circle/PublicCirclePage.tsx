@@ -84,10 +84,16 @@ export function PublicCirclePage() {
   }
 
   if (circle.isError || !circle.data) {
+    const rateLimited =
+      (circle.error as { status?: number } | null)?.status === 429;
     return (
       <main className="mx-auto max-w-xl px-4 py-10 text-center">
-        <h1 className="font-serif text-3xl">{t("invalidTitle")}</h1>
-        <p className="mt-2 opacity-70">{t("invalidText")}</p>
+        <h1 className="font-serif text-3xl">
+          {rateLimited ? t("rateTitle") : t("invalidTitle")}
+        </h1>
+        <p className="mt-2 opacity-70">
+          {rateLimited ? t("rateText") : t("invalidText")}
+        </p>
       </main>
     );
   }

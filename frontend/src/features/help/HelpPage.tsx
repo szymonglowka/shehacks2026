@@ -10,6 +10,9 @@ export function HelpPage() {
   const contacts = useContacts();
   const trusted =
     contacts.data && contacts.data.length > 0 ? contacts.data[0] : null;
+  const lines = helplines.data ?? [];
+  const emergency = lines.find((h) => h.is_emergency);
+  const rest = lines.filter((h) => !h.is_emergency);
 
   return (
     <main className="mx-auto max-w-xl bg-paper px-4 pb-16 pt-10">
@@ -21,14 +24,14 @@ export function HelpPage() {
         className="mt-6 rounded-3xl bg-clay p-6 text-cream"
       >
         <h2 id="emergency-title" className="font-serif text-2xl">
-          {t("emergency")}
+          {emergency ? emergency.label : t("emergency")}
         </h2>
         <p className="mt-1 opacity-90">{t("emergencyText")}</p>
         <a
-          href="tel:112"
+          href={emergency ? emergency.number_href : "tel:112"}
           className="mt-4 inline-flex min-h-[56px] items-center rounded-full bg-cream px-8 py-3 text-xl font-medium text-ink"
         >
-          {t("call112")}
+          {emergency ? `${t("call")}: ${emergency.number}` : t("call112")}
         </a>
       </section>
 
@@ -37,7 +40,7 @@ export function HelpPage() {
           {t("linesTitle")}
         </h2>
         <ul className="mt-3 grid gap-3">
-          {(helplines.data ?? []).map((h) => (
+          {rest.map((h) => (
             <li key={h.code} className="rounded-3xl bg-cream p-4">
               <div className="font-medium">{h.label}</div>
               <div className="text-sm opacity-70">

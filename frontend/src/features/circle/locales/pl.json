@@ -25,5 +25,7 @@
     "ok": "różnie",
     "good": "dobrze",
     "great": "bardzo dobrze"
-  }
+  },
+  "rateTitle": "Chwilę przerwy",
+  "rateText": "Za dużo prób naraz. Odczekaj minutę i spróbuj ponownie."
 }

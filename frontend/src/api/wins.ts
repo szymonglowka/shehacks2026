@@ -40,8 +40,15 @@ export function useRandomWin(enabled = true) {
 export function useAddWin() {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (body: { text: string }) =>
-      apiFetch<SmallWin>("/wins", { method: "POST", body }),
+    // The API requires `date` (SmallWinSerializer); default to today.
+    mutationFn: (body: { text: string; date?: string }) =>
+      apiFetch<SmallWin>("/wins", {
+        method: "POST",
+        body: {
+          date: new Date().toISOString().slice(0, 10),
+          ...body,
+        },
+      }),
     onSuccess: () => {
       void qc.invalidateQueries({ queryKey: ["wins"] });
     },
@@ -52,7 +59,7 @@ export function useDeleteWin() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (id: number) =>
-      apiFetch<void>(`/wins/${id}`, { method: "DELETE" }),
+      apiFetch<unknown>(`/wins/${id}`, { method: "DELETE" }),
     onSuccess: () => {
       void qc.invalidateQueries({ queryKey: ["wins"] });
     },

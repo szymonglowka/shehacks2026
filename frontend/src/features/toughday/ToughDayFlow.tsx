@@ -450,6 +450,10 @@ export function ToughDayFlow() {
           <p className="mt-1 opacity-70">{t("intensityCopy")}</p>
           <div className="mt-6">
             <IntensityPetals value={intensity} onPick={pickIntensity} />
+            <p aria-live="polite" className="mt-3 min-h-[1.5rem] text-center font-serif text-xl">
+              {intensity != null &&
+                (t("intensityLabels", { returnObjects: true }) as string[])[intensity - 1]}
+            </p>
           </div>
           <button
             className="mt-6 min-h-[44px] w-full underline"
@@ -499,6 +503,15 @@ export function ToughDayFlow() {
                   >
                     <strong className="font-serif text-lg">{s.title}</strong>
                     <div className="text-sm opacity-70">{s.description}</div>
+                    <div className="mt-1 text-sm opacity-70">
+                      {s.total_count > 0
+                        ? t("helpedEvidence", {
+                            helped: s.helped_count,
+                            total: s.total_count,
+                          })
+                        : t("helpedEvidenceNone")}{" "}
+                      · <span className="tabular-nums">{t("minutes", { count: s.duration_minutes })}</span>
+                    </div>
                   </button>
                 </li>
               ))}

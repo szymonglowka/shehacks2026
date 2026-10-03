@@ -67,6 +67,7 @@ export interface Helpline {
   number_href: string;
   hours: string;
   verify: boolean;
+  is_emergency: boolean;
 }
 
 // ---- API → UI adapters (backend field names per apps/support serializers) ----
@@ -110,6 +111,7 @@ interface ApiHelpline {
   number?: string;
   hours: string;
   is_verified?: boolean;
+  is_emergency?: boolean;
   verify?: boolean;
 }
 
@@ -121,7 +123,8 @@ function toHelpline(h: ApiHelpline): Helpline {
     number,
     number_href: `tel:${number.replace(/[^0-9+]/g, "")}`,
     hours: h.hours,
-    verify: h.verify ?? !h.is_verified,
+    verify: h.verify ?? h.is_verified ?? false,
+    is_emergency: h.is_emergency ?? false,
   };
 }
 
@@ -207,7 +210,7 @@ export function useMutateContacts() {
   });
   const remove = useMutation({
     mutationFn: (id: number) =>
-      apiFetch<void>(`/support/contacts/${id}`, { method: "DELETE" }),
+      apiFetch<unknown>(`/support/contacts/${id}`, { method: "DELETE" }),
     onSuccess: invalidate,
   });
   return { create, remove };
