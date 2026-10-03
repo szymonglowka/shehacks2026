@@ -48,3 +48,10 @@
 - Post-checkpoint-0 selector will map `Article` rows to `ArticleCandidate`
   and call `pick_article_of_the_day`; `selectors.py` then only adds the
   profile/week lookup and localization.
+
+## Update (rebased on 80ef1c4 — frontend skeleton only)
+- `origin/main` gained `chore(checkpoint-0): frontend skeleton`; the Django
+  backend skeleton (`backend/config`, requirements, `apps.py`) is still
+  missing and `origin/agent/platform` does not exist yet. Models, migrations,
+  API views and seed commands therefore remain blocked by protocol.
+- Rebase clean, suite re-run: **15 passed**. Nothing else changed.
