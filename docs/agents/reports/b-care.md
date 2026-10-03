@@ -21,6 +21,19 @@
 No skeleton files created (`__init__.py`, `apps.py`, `urls.py` untouched) —
 waiting for checkpoint-0.
 
+## Added while waiting for checkpoint-0 (still no skeleton on main)
+- `backend/apps/circle/messages.py` — pure "ask for support" builder:
+  `pick_template` (tone/lang with gentle-PL fallback, explicit id wins),
+  `render_text` (`{task}` substitution), `normalize_phone_for_whatsapp`
+  (bare 9-digit PL numbers get 48 prefix), `sms_url` / `whatsapp_url`,
+  `build_contact_message` → `{text, sms_url, whatsapp_url}` for the future
+  `GET /support/contacts/{id}/message`. 9 tests in `test_messages.py`.
+- `backend/apps/journal/summary.py` — pure visit-report aggregations over
+  SPEC-§5-shaped dataclasses (`symptom_frequency`, `red_flags_seen`,
+  `mood_sleep_summary`, `epds_trend`); the future `GET /reports/visit` view
+  is a thin queryset→dataclass translation layer. 5 tests in `test_summary.py`.
+- 26 pure-logic tests total, all passing (stdlib harness, pytest absent here).
+
 ## Missing (post-checkpoint-0)
 Full models/views/URLs per SPEC §7 for support, circle, journal + export.py
 files + endpoint tests. Will rebase on main once checkpoint-0 lands.
