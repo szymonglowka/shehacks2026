@@ -44,7 +44,7 @@ You own: docker-compose.yml, Makefile, .env.example, backend/Dockerfile, backend
 and the empty skeleton of every other backend app.
 
 PART A — CHECKPOINT-0 (do this first, fast, ≤30 min, commit directly to main with prefix "chore(checkpoint-0)" and push):
-1. docker-compose.yml: db (postgres:16 + healthcheck + volume), redis:7, backend (runserver 0.0.0.0:8000 → host ${BACKEND_PORT:-8000}), worker, beat,
+1. docker-compose.yml: db (postgres:16 + healthcheck + volume, NO host port mapping), redis:7 (NO host port mapping), backend (runserver 0.0.0.0:8000 → host ${BACKEND_PORT:-8000}), worker, beat,
    frontend (node:22, `npm ci && npm run dev -- --host --port 5173` → host ${FRONTEND_PORT:-5173}; must tolerate frontend/ not existing yet: use a profile `frontend`
    or a guard command). All config from .env (django-environ). .env.example with every variable incl. COMPOSE_PROJECT_NAME, ports, FIELD_ENCRYPTION_KEY, VAPID_*, DEMO_PASSWORD, VITE_API_URL, VITE_USE_MOCKS.
 2. Makefile: up, down, logs, migrate, makemigrations, seed (seed_content + seed_demo, ignore if missing), test (pytest + `npm test` if frontend exists), lint, schema, shell.
