@@ -1,1 +1,24 @@
-{}
+{
+  "welcome_title": "Care for the mother. Not only the baby.",
+  "welcome_sub": "A daily check-in, support on tougher days, and a plan back to yourself. At your pace.",
+  "welcome_start": "Get started",
+  "welcome_login": "I already have an account",
+  "welcome_quote": "“You don't need to fix anything today.”",
+  "welcome_crisis": "Need help right now?",
+  "welcome_crisis_link": "Support lines",
+  "login_eyebrow": "Log in",
+  "login_title": "Good to see you",
+  "login_submit": "Log in",
+  "register_eyebrow": "Sign up",
+  "register_title": "Let's meet",
+  "register_submit": "Create account",
+  "display_name": "What should we call you?",
+  "email": "Email",
+  "password": "Password",
+  "health_consent": "I consent to processing my health data (mood, sleep, symptoms) so the app can work. I can withdraw consent by deleting my account.",
+  "consent_required": "To create an account, please accept the health-data consent.",
+  "no_account": "No account yet?",
+  "have_account": "Already have an account?",
+  "loading": "One moment…",
+  "generic_error": "Something went wrong. Please try again."
+}

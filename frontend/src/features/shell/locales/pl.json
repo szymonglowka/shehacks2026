@@ -1,0 +1,31 @@
+{
+  "main_nav": "Główna nawigacja",
+  "nav": {
+    "today": "Dzisiaj",
+    "calendar": "Kalendarz",
+    "patterns": "Wzorce",
+    "goals": "Cele",
+    "support": "Wsparcie",
+    "knowledge": "Wiedza",
+    "profile": "Profil"
+  },
+  "need_help": "Potrzebujesz pomocy?",
+  "support_phones": "Telefony wsparcia",
+  "tough_day": "Gorszy dzień",
+  "night_toggle": "Przełącz tryb nocny",
+  "notifications": "Powiadomienia",
+  "login": "Mam już konto",
+  "quick_add_label": "Szybkie dodawanie",
+  "quick_add_eyebrow": "Szybkie dodawanie",
+  "quick_add_title": "Co chcesz zapisać?",
+  "quick_add": {
+    "checkin_title": "Check-in",
+    "checkin_hint": "Nastrój, sen i objawy — około 30 sekund",
+    "win_title": "Mała wygrana",
+    "win_hint": "Co dziś Ci się udało, choćby drobiazg",
+    "question_title": "Pytanie na wizytę",
+    "question_hint": "Zapisz, zanim wyleci Ci z głowy",
+    "period_title": "Okres się zaczął",
+    "period_hint": "Zapisz pierwszy dzień w kalendarzu"
+  }
+}

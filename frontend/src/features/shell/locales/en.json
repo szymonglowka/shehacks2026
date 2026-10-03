@@ -1,0 +1,31 @@
+{
+  "main_nav": "Main navigation",
+  "nav": {
+    "today": "Today",
+    "calendar": "Calendar",
+    "patterns": "Patterns",
+    "goals": "Goals",
+    "support": "Support",
+    "knowledge": "Knowledge",
+    "profile": "Profile"
+  },
+  "need_help": "Need help?",
+  "support_phones": "Support lines",
+  "tough_day": "Tough day",
+  "night_toggle": "Toggle night mode",
+  "notifications": "Notifications",
+  "login": "I already have an account",
+  "quick_add_label": "Quick add",
+  "quick_add_eyebrow": "Quick add",
+  "quick_add_title": "What would you like to save?",
+  "quick_add": {
+    "checkin_title": "Check-in",
+    "checkin_hint": "Mood, sleep and symptoms — about 30 seconds",
+    "win_title": "Small win",
+    "win_hint": "What went well today, however tiny",
+    "question_title": "Question for the visit",
+    "question_hint": "Write it down before it slips away",
+    "period_title": "Period started",
+    "period_hint": "Log day one in the calendar"
+  }
+}
