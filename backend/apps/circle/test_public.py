@@ -1,9 +1,19 @@
 """Tests for circle.public (pure, no Django needed)."""
 
 try:  # project convention after checkpoint-0 (backend/ on sys.path)
-    from apps.circle.public import build_public_payload, public_request
+    from apps.circle.public import (
+        MOOD_DISPLAY,
+        build_public_payload,
+        mood_display,
+        public_request,
+    )
 except ImportError:  # before checkpoint-0: namespace packages from repo root
-    from backend.apps.circle.public import build_public_payload, public_request
+    from backend.apps.circle.public import (
+        MOOD_DISPLAY,
+        build_public_payload,
+        mood_display,
+        public_request,
+    )
 
 
 def full_request(**overrides):
@@ -63,18 +73,20 @@ def test_cancelled_requests_stay_hidden():
     assert [r["id"] for r in payload["requests"]] == [1, 3, 4]
 
 
-def test_mood_color_only_when_shared():
-    assert (
-        build_public_payload("Marta", [], share_mood=True, mood_color="#dfb48f")[
-            "mood_color"
-        ]
-        == "#dfb48f"
-    )
-    assert (
-        "mood_color"
-        not in build_public_payload("Marta", [], share_mood=False, mood_color="#dfb48f")
-    )
-    assert "mood_color" not in build_public_payload("Marta", [], share_mood=True)
+def test_mood_only_when_shared_and_no_raw_number_leaks():
+    payload = build_public_payload("Marta", [], share_mood=True, mood=2)
+    assert payload["mood"] == {"color": "#dfb48f", "label": "low"}
+    assert "2" not in str(payload["mood"].values())
+    assert "mood" not in build_public_payload("Marta", [], share_mood=False, mood=2)
+    assert "mood" not in build_public_payload("Marta", [], share_mood=True)
+    assert "mood" not in build_public_payload("Marta", [], share_mood=True, mood=9)
+
+
+def test_mood_scale_matches_screens():
+    assert set(MOOD_DISPLAY) == {1, 2, 3, 4, 5}
+    assert mood_display(1) == {"color": "#c98b6b", "label": "very_low"}
+    assert mood_display(5) == {"color": "#7fa891", "label": "great"}
+    assert mood_display(None) is None
 
 
 def test_empty_circle_is_valid_payload():

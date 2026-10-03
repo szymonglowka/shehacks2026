@@ -34,21 +34,43 @@ def public_request(data: Mapping[str, Any]) -> dict:
     return {key: data.get(key) for key in PUBLIC_REQUEST_KEYS}
 
 
+#: Mood value (1-5) -> (color, label key) per SCREENS section 4.
+#: The frontend translates the label key; the number itself never leaks.
+MOOD_DISPLAY = {
+    1: ("#c98b6b", "very_low"),
+    2: ("#dfb48f", "low"),
+    3: ("#e8d9b5", "ok"),
+    4: ("#bcd3c2", "good"),
+    5: ("#7fa891", "great"),
+}
+
+
+def mood_display(mood: int | None) -> dict | None:
+    """``{color, label}`` for today's mood, or None when unknown / not shared."""
+    if mood not in MOOD_DISPLAY:
+        return None
+    color, label = MOOD_DISPLAY[mood]
+    return {"color": color, "label": label}
+
+
 def build_public_payload(
     mom_name: str,
     requests: list[Mapping[str, Any]],
     share_mood: bool = False,
-    mood_color: str | None = None,
+    mood: int | None = None,
 ) -> dict:
-    """Return ``{mom_name, mood_color?, requests:[...]}`` for strangers.
+    """Return ``{mom_name, mood?, requests:[...]}`` for strangers.
 
-    ``mood_color`` is included only when the mum opted in via
-    ``CircleLink.share_mood``; otherwise it is dropped even if provided.
+    ``mood`` (today's 1-5 value) is exposed only as ``{color, label}`` and
+    only when the mum opted in via ``CircleLink.share_mood``; otherwise it
+    is dropped even if provided.
     """
     visible = [
         public_request(r) for r in requests if r.get("status") in PUBLIC_STATUSES
     ]
     payload: dict[str, Any] = {"mom_name": mom_name, "requests": visible}
-    if share_mood and mood_color:
-        payload["mood_color"] = mood_color
+    if share_mood:
+        display = mood_display(mood)
+        if display is not None:
+            payload["mood"] = display
     return payload
