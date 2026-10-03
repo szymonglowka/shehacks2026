@@ -78,8 +78,30 @@
   `tests/test_seed_commands.py` (both commands twice, no duplicates).
 - Verification (docker daemon unreachable from this worktree, so local run:
   in-memory SQLite per `config.settings.test`, Django 6.1 vs pinned 5.1,
-  uncommitted `/tmp/stubs` for celery/drf-spectacular/pywebpush):
+  uncommitted `/tmp/stubs` for celery/drf-spectacular/pywebpush/cryptography):
   content suite **27 passed**; whole backend **197 passed + 1 xfailed**
   (2 modules uncollectable locally — they import `freezegun`, not
   installed; green on docker main per integrator). `ruff check` clean
   (format not a repo gate).
+
+## Update (polish round — Marta's story coherent, verified on real stack)
+- Sessions carry real strategy codes with `apply_feedback` accounting
+  (same as PATCH view): `short_walk` used 4 / helped 3.5 → toolkit top
+  (score 0.917, evidence used 4, helped 3+1). Survey priors set for 5 codes.
+- Trusted contact Tomek (partner, +48 600 000 000, whatsapp) with a ready
+  default message; circle claim by Tomek unchanged.
+- Check-ins rebuilt: 40 rows (postpartum days 0–39), realistic symptoms
+  (`wound_pain`/`fatigue`/`lack_of_sleep` early, `headache`/`back_pain`/
+  `breast_pain` in the dip, sparse after) and canonical emotions; red flags
+  always empty; bleeding medium→light→spotting→none.
+- Today's check-in exists by default; `seed_demo --no-today` strips it for
+  the live empty-state demo (tested).
+- Visit questions grown to 5 (2 new about wound pain and headaches).
+- Verified: seeds twice idempotent (tests), content suite **29 passed**,
+  backend **263 passed** (3 modules uncollectable locally — `freezegun`
+  missing), `ruff check` clean, and a real-stack smoke run (JWT login +
+  `/support/toolkit`, `/support/contacts`, `/reports/visit?weeks=6`,
+  `/articles`, `/articles/jak-wspierac-mame`, `/specialists`) — all green,
+  report shows fatigue ×27 / lack_of_sleep ×12 with empty red flags.
+- Not verified in a browser (no frontend work in my area) nor via docker
+  (daemon unreachable from this worktree) — needs integrator's docker run.
