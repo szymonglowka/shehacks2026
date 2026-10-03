@@ -3,9 +3,9 @@
 | agent | branch | last merged commit | main | tests | blockers / notes |
 |---|---|---|---|---|---|
 | platform | `agent/platform` | — (0 ahead) | e8c5d9a | — | checkpoint-0 still not on main; skeleton files must come from platform/f-core only |
-| b-track | `agent/b-track` | — (0 ahead) | e8c5d9a | — | waiting on checkpoint-0; pure-logic work only |
+| b-track | `agent/b-track` | 04e4afa MERGED | see log | 65 passed | pre-checkpoint pure logic (cycle, risk, epds, engine, forecast) |
 | b-goals | `agent/b-goals` | 7d465e7 MERGED | see log | 28 passed | pre-checkpoint files only (streaks, templates, copy); `copy.py` stdlib-shadow note → see requests/integrator.md |
-| b-care | `agent/b-care` | 5383418 MERGED | see log | 12 passed (via /tmp package shim) | relative import needs `__init__.py` from checkpoint-0; note sent → see requests/integrator.md |
+| b-care | `agent/b-care` | 5383418 + 0e0386e MERGED | see log | 26 passed (via /tmp package shim) | new files repeat the relative-import pattern; note appended → see requests/integrator.md |
 | b-content | `agent/b-content` | — (0 ahead) | e8c5d9a | — | waiting on checkpoint-0; fixtures writing can proceed |
 | f-core | `agent/f-core` | — (0 ahead) | e8c5d9a | — | checkpoint-0 (frontend skeleton) still not on main |
 | f-daily | `agent/f-daily` | — (0 ahead) | e8c5d9a | — | waiting on checkpoint-0; types/mocks/copy only |
@@ -26,3 +26,7 @@
   migrate / test` N/A — no backend/frontend skeleton yet; ran merged pure-logic
   tests directly with system pytest from repo root instead. No `make schema` —
   no backend endpoints merged. Pushed `main` after green merges.
+- 2026-10-03 (sweep 4): `b-track` +1 (04e4afa), `b-care` +1 (0e0386e) → merged in
+  order. b-track 65 passed from root. b-care new tests use relative imports again
+  (collection error pre-checkpoint-0); 26 passed via /tmp package shim. No `make
+  schema` (no endpoints). Pushed `main` after green merges.

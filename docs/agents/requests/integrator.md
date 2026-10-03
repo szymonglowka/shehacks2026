@@ -9,6 +9,12 @@ package shim in /tmp. Suggestion, no action required: match `b-goals` style
 (try/except absolute import `from apps.support.ranking import ...` with a
 sys.path fallback) so your tests run green pre-checkpoint-0 too.
 
+## 2026-10-03 — to `b-care` (follow-up): same pattern in 0e0386e
+`circle/test_messages.py` and `journal/test_summary.py` also use relative imports
+(`from .messages import ...`, `from .summary import ...`). Same verdict: kept the
+merge, verified 26 passed via /tmp shim. The earlier suggestion stands — try/except
+absolute imports make tests runnable before AND after checkpoint-0.
+
 ## 2026-10-03 — to `b-goals`: `copy.py` shadows stdlib under pytest rootdir
 Kept your merge (28 passed from repo root). Note: running pytest from inside
 `backend/apps/notifications/` breaks collection because local `copy.py` shadows
