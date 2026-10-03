@@ -1,6 +1,6 @@
 # Otula — specyfikacja produktu (ImpactHer @ HackYeah 2026)
 
-> Nazwa robocza: **Otula** (od „otulić”). Do zmiany po projekcie w Figmie.
+> Nazwa: **Otula** (od „otulić”), potwierdzona projektem w Figmie (`docs/design/`).
 > Stack: Django 5 + DRF · React (Vite + TS) · PostgreSQL 16 · Redis + Celery · Docker Compose · PWA (web push).
 
 ## 1. Problem i propozycja wartości
@@ -26,6 +26,12 @@
 | W4 | **Plan „czwartego trymestru”** | Rekomendowane cele i artykuły zależne od tygodnia po porodzie i rodzaju porodu (np. po cesarskim cięciu inne ćwiczenia). |
 | W5 | **Wykrywanie zależności** | Automatyczne karty: „W dni, gdy śpisz >6 h, Twój nastrój jest średnio o 1,2 pkt wyższy”, „Nastrój spada w fazie lutealnej”, „Dni z wykonanym celem = lepszy nastrój”. |
 | W6 | **Objawy alarmowe po porodzie** | Check-in w połogu zawiera listę objawów alarmowych (wg schematu POST-BIRTH). Zaznaczenie któregoś → komunikat „skontaktuj się z lekarzem / 112”. |
+| W8 | **Nocna zmiana** | Tryb 22:00–6:00: ciepły ciemny motyw, duże przyciski na jedną rękę, „X mam z Otuli też teraz nie śpi” (zanonimizowane, ukryte przy < 5). |
+| W9 | **Krąg wsparcia z listą próśb** | Konkretne prośby; bliscy dostają link bez konta i klikają „Biorę to”; mama dostaje push. |
+| W10 | **Raport na wizytę** | Raport do druku/PDF: trendy, EPDS, objawy, czerwone flagi i własne pytania do lekarza/położnej. |
+| W11 | **Prognoza na jutro** | Regułowa „pogoda samopoczucia” z fazy cyklu, snu, trendu i doby połogu z proaktywną radą. |
+| W12 | **Słoik małych wygranych** | Szybkie wpisy „dziś mi się udało”, losowo przypominane w gorszy dzień. |
+| W13 | **Check-in głosem** | Web Speech API w przeglądarce, bez zewnętrznych usług. |
 | W7 | (opcjonalnie) **Podsumowanie AI** | Cotygodniowe, ciepłe podsumowanie. Działa w trybie bez klucza API (szablony), a z kluczem przez LLM. Ostatnie zadanie. |
 
 ## 3. Persony i tryby
@@ -36,7 +42,9 @@
 
 ## 4. Ekrany (wszystkie w prototypie)
 
-Nawigacja dolna: **Start · Check-in · Cele · Wiedza · Profil** oraz pływający przycisk **„Gorszy dzień” (serce)**, widoczny zawsze.
+> **Szczegółowy projekt każdego ekranu, copy i zasady „nie wygląda jak AI”: `docs/design/SCREENS.md`** (ma pierwszeństwo przed skrótem poniżej).
+
+Nawigacja wg Figmy (`docs/design/README.md`): sidebar **Dzisiaj · Kalendarz · Wzorce · Cele · Wsparcie · Wiedza · Profil** (desktop) / dolny pasek **Dzisiaj · Kalendarz · [+] · Cele · Wsparcie** (mobile). Przycisk **„Gorszy dzień” (serce)** stale w topbarze. Check-in i Gorszy dzień otwierają się jako modale (na mobile pełnoekranowe arkusze).
 
 1. **Powitanie / logowanie / rejestracja** (e-mail i hasło).
 2. **Onboarding** (wieloetapowy, z paskiem postępu, można pominąć kroki opcjonalne):
@@ -97,6 +105,15 @@ Nawigacja dolna: **Start · Check-in · Cele · Wiedza · Profil** oraz pływaj�
 - `PushSubscription`: `user`, `endpoint` (unikalny), `p256dh`, `auth`, `created_at`
 - `Notification`: `user`, `kind` (goal_reminder|checkin_reminder|epds_due|gentle_nudge|system), `title`, `body`, `url`, `created_at`, `sent_at`, `read_at`
 
+**circle** (krąg wsparcia, W9)
+- `CircleLink`: `user`, `token` (uuid4, unikalny), `share_mood` (bool), `created_at`, `revoked_at` (null)
+- `CareRequest`: `user`, `title`, `category` (meal|night|chores|errands|company|siblings|other), `when_date` (null), `when_label` (np. „czw. wieczorem”), `note`, `status` (open|claimed|done|cancelled), `claimed_by_name`, `claimed_at`, `done_at`, `created_at`
+
+**journal** (W10, W12)
+- `SmallWin`: `user`, `date`, `text` (szyfrowane), `created_at`
+- `VisitQuestion`: `user`, `text` (szyfrowane), `done` (bool), `created_at`
+- `Profile` += `night_mode` (auto|off), `last_seen_at` (aktualizowane max. co 5 min przez middleware)
+
 **content**
 - `Article`: `slug`, `title_pl/en`, `summary_pl/en`, `body_pl/en` (markdown), `category` (postpartum_recovery|mental_health|cycle|movement|sleep|nutrition|relationships|breastfeeding), `mode` (postpartum|cycle|both), `min_week`, `max_week`, `reading_minutes`, `cover_emoji`
 - `Specialist` (seed, **przykładowe dane, oznaczone w UI**): `name`, `specialty`, `city`, `online`, `phone`, `website`, `description_pl/en`
@@ -145,6 +162,23 @@ Okno 30 dni, wymagane ≥7 punktów danych na kartę. Karty zwracane jako `{code
 - Web push przez `pywebpush` i klucze VAPID z `.env`. Wygasłe subskrypcje (404/410) usuwamy.
 - Demo: `POST /push/test` wysyła testowe powiadomienie natychmiast.
 
+### 6.6 Prognoza na jutro (`insights/forecast.py`, W11)
+Wynik `{outlook: sunny|partly|cloudy|rainy, factors:[code], tip_code}`. Punkty startowe 0, każdy czynnik odejmuje:
+- cykl: jutro = 2 dni przed okresem lub 1.–2. dzień okresu → −2; faza lutealna → −1,
+- połóg: jutro = doba 3–5 → −2 (szczyt baby blues); doba ≤ 14 → −1,
+- sen: średnia z 3 ostatnich nocy < 5 h → −2, < 6 h → −1,
+- trend: nastrój z 3 dni ≤ 2,5 → −1; seria wykonanych celów ≥ 3 → +1.
+
+Mapowanie: ≥0 sunny, −1 partly, −2/−3 cloudy, ≤−4 rainy. `tip_code` wg najsilniejszego czynnika (`rest_more`, `lower_expectations`, `plan_me_time`, `ask_circle`, `keep_going`). UI zawsze z dopiskiem „to wskazówka, nie wyrocznia”.
+
+### 6.7 Nocna zmiana (W8)
+- `GET /night/now` → `{awake_count: int|null}`: liczba **innych** użytkowniczek z `last_seen_at` w ostatnich 60 min, gdy ich lokalna godzina to 22:00–6:00. `null`, gdy < 5 (prywatność). W demo liczba pochodzi z kont z `seed_demo` i trzeba to uczciwie powiedzieć na pitchu.
+- Przełączanie motywu po stronie frontu: `night_mode=auto` i lokalna godzina 22–6 → `data-theme="night"`.
+
+### 6.8 Krąg (W9)
+- Endpointy publiczne `/circle/public/{token}/…` bez JWT, z rate limitem (DRF throttling 30/min/IP), 404 dla unieważnionego tokenu. Zwracają tylko imię wyświetlane mamy, otwarte i wzięte prośby oraz (jeśli `share_mood`) dzisiejszy nastrój jako kod koloru. Nigdy notatek ani objawów.
+- Wzięcie prośby → `Notification` + push do mamy: „{name} wziął/wzięła: {title}”.
+
 ## 7. Kontrakt API (`/api/v1`, JSON, JWT `Authorization: Bearer`)
 
 Konwencje: snake_case, daty ISO (`YYYY-MM-DD`), paginacja tylko tam, gdzie zaznaczono (`?page=`), błędy `{"detail": "...", "errors": {field: [..]}}`. Język treści: nagłówek `Accept-Language: pl|en` (fallback: profil).
@@ -189,6 +223,17 @@ Konwencje: snake_case, daty ISO (`YYYY-MM-DD`), paginacja tylko tam, gdzie zazna
 | GET | `/articles?category=&mode=` | (paginacja) |
 | GET | `/articles/{slug}` | |
 | GET | `/specialists?specialty=&city=&online=` | |
+| GET | `/forecast/tomorrow` | patrz 6.6 |
+| GET | `/night/now` | patrz 6.7 |
+| GET/POST | `/circle/link` | aktualny link `{token, url, share_mood}` / utwórz nowy (unieważnia stary) |
+| PATCH/DELETE | `/circle/link` | `share_mood` / unieważnij |
+| CRUD | `/circle/requests` | prośby mamy |
+| GET | `/circle/public/{token}` | **publiczne**: `{mom_name, mood_color?, requests:[...]}` |
+| POST | `/circle/public/{token}/requests/{id}/claim` | **publiczne** `{name}` |
+| POST | `/circle/public/{token}/requests/{id}/done` | **publiczne** |
+| CRUD | `/wins` | + `GET /wins/random` |
+| CRUD | `/visit-questions` | |
+| GET | `/reports/visit?weeks=2|4|6` | dane do raportu: profil, serie, EPDS, objawy (częstotliwość), czerwone flagi, pytania |
 | POST | `/ai/weekly-summary` | (opcjonalne) `{text, source: "llm"|"template"}` |
 
 OpenAPI generowane przez `drf-spectacular` pod `/api/schema/` i `/api/docs/`. Frontend generuje typy z `openapi-typescript`.
@@ -208,6 +253,8 @@ OpenAPI generowane przez `drf-spectacular` pod `/api/schema/` i `/api/docs/`. Fr
 - tryb postpartum, poród 38 dni temu, cesarskie cięcie, karmienie piersią,
 - 6 tygodni check-inów z realistycznym przebiegiem (dołek w 2.–3. tygodniu, poprawa po wprowadzeniu spacerów i snu), 3 EPDS (14 → 11 → 8), 5 celów z historią, 6 sesji „Gorszy dzień” z feedbackiem (ranking ma się przesunąć),
 - drugie konto `demo-cycle@otula.app` z 4 cyklami.
+- dla Marty: link kręgu z 4 prośbami (1 wzięta przez „Tomek”, 1 wykonana), 9 małych wygranych, 3 pytania na wizytę,
+- 12 dodatkowych kont „tła” z `last_seen_at` w nocy (żeby Nocna zmiana pokazywała licznik w demo; na pitchu mówimy, że to dane demo).
 
 ## 10. Poza zakresem (MVP)
 
@@ -215,4 +262,4 @@ Natywne aplikacje mobilne, śledzenie dziecka, czat z ludźmi, telekonsultacje, 
 
 ## 11. Ujawnienie zasobów (wymóg regulaminu)
 
-Lista w README: użyte narzędzia AI (Muse Code / Claude Code), biblioteki open-source, EPDS (Cox i in., 1987), źródła treści artykułów. Praca rozpoczęta po 3.10.2026 23:00. Te dokumenty planistyczne powstały wcześniej jako koncepcja.
+Lista w README: użyte narzędzia AI (Muse Code / Claude Code), biblioteki open-source, EPDS (Cox i in., 1987), źródła treści artykułów. W README rzetelnie opisujemy, co powstało przed oficjalnym startem (3.10.2026, 23:00), a co w trakcie hackathonu.
