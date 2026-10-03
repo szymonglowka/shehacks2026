@@ -64,7 +64,7 @@ export function useToggleVisitQuestion(id: number) {
 export function useDeleteVisitQuestion(id: number) {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: () => apiFetch<void>(`/visit-questions/${id}`, { method: "DELETE" }),
+    mutationFn: () => apiFetch(`/visit-questions/${id}`, { method: "DELETE" }),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["visit-questions"] });
     },

@@ -13,10 +13,28 @@ export interface ProfileData {
   push_enabled: boolean;
 }
 
+interface CycleStatus {
+  mode: string;
+  days_since_birth?: number | null;
+  postpartum_week?: number | null;
+  cycle_day?: number | null;
+}
+
 export function useProfile() {
   return useQuery({
     queryKey: ["me", "profile"],
-    queryFn: () => apiFetch<{ profile: ProfileData }>("/me").then((r) => r.profile),
+    queryFn: async () => {
+      const [{ profile }, status] = await Promise.all([
+        apiFetch<{ profile: ProfileData }>("/me"),
+        apiFetch<CycleStatus>("/cycle/status").catch(() => null),
+      ]);
+      return {
+        ...profile,
+        postpartum_day: status?.days_since_birth ?? profile.postpartum_day,
+        postpartum_week: status?.postpartum_week ?? profile.postpartum_week,
+        cycle_day: status?.cycle_day ?? profile.cycle_day,
+      };
+    },
   });
 }
 
@@ -39,7 +57,7 @@ export function useExportData() {
 
 export function useDeleteAccount() {
   return useMutation({
-    mutationFn: () => apiFetch<void>("/me", { method: "DELETE" }),
+    mutationFn: () => apiFetch("/me", { method: "DELETE" }),
   });
 }
 

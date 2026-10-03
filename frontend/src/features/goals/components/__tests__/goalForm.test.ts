@@ -1,5 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { reminderSentence, validateGoalForm, type GoalFormValues } from "@/api/goals";
+import {
+  reminderSentence,
+  shortTime,
+  toApiTime,
+  validateGoalForm,
+  type GoalFormValues,
+} from "@/api/goals";
+import { templateReason } from "../RecommendedCarousel";
 
 const t = (key: string) => key;
 
@@ -63,6 +70,48 @@ describe("validateGoalForm", () => {
       reminder_weekdays: [1, 3],
     };
     expect(validateGoalForm(values, t)).toEqual({});
+  });
+});
+
+describe("shortTime / toApiTime", () => {
+  it("trims backend HH:MM:SS to HH:MM", () => {
+    expect(shortTime("09:00:00")).toBe("09:00");
+    expect(shortTime(null)).toBeNull();
+  });
+
+  it("round-trips through the time input", () => {
+    expect(toApiTime("18:00")).toBe("18:00:00");
+    expect(toApiTime("18:00:00")).toBe("18:00:00");
+    expect(toApiTime(null)).toBeNull();
+  });
+});
+
+describe("templateReason", () => {
+  const stubT = (key: "reasonFromWeek" | "reasonCesarean", vars: { min?: number | null }) =>
+    `${key} ${Object.values(vars).join(" ")}`;
+  const tpl = {
+    id: 1,
+    title: "x",
+    description: "x",
+    category: "movement",
+    frequency: "daily" as const,
+    target_count: 1,
+    default_reminder_time: null,
+    safety_note: null,
+  };
+
+  it("prefers the backend reason when present", () => {
+    expect(templateReason({ ...tpl, reason: "Dla Ciebie" }, stubT)).toBe("Dla Ciebie");
+  });
+
+  it("builds a reason from week range and cesarean", () => {
+    expect(
+      templateReason({ ...tpl, min_week: 3, delivery_types: ["cesarean"] }, stubT),
+    ).toBe("reasonFromWeek 3 reasonCesarean ");
+  });
+
+  it("returns null with nothing to say", () => {
+    expect(templateReason(tpl, stubT)).toBeNull();
   });
 });
 

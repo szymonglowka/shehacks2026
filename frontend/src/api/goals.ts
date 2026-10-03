@@ -28,7 +28,22 @@ export interface GoalTemplate {
   default_reminder_time: string | null;
   safety_note: string | null;
   /** Human reason why this template fits the user right now */
-  reason: string | null;
+  reason?: string | null;
+  mode?: string | null;
+  min_week?: number | null;
+  max_week?: number | null;
+  delivery_types?: string[];
+}
+
+/** Backend sends "HH:MM:SS"; UI shows and edits "HH:MM". */
+export function shortTime(time: string | null): string | null {
+  if (!time) return null;
+  return time.slice(0, 5);
+}
+
+export function toApiTime(time: string | null): string | null {
+  if (!time) return null;
+  return time.length === 5 ? `${time}:00` : time;
 }
 
 export interface GoalFormValues {
@@ -130,7 +145,7 @@ export function useUpdateGoal(id: number) {
 export function useDeleteGoal(id: number) {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: () => apiFetch<void>(`/goals/${id}`, { method: "DELETE" }),
+    mutationFn: () => apiFetch(`/goals/${id}`, { method: "DELETE" }),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["goals"] });
     },

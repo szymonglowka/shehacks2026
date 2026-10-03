@@ -214,7 +214,15 @@ export const handlers = [
     const url = new URL(request.url);
     const category = url.searchParams.get("category");
     const mode = url.searchParams.get("mode");
-    let list = articles.map(({ body, ...rest }) => rest);
+    let list = articles.map((a) => ({
+      slug: a.slug,
+      title: a.title,
+      summary: a.summary,
+      category: a.category,
+      mode: a.mode,
+      reading_minutes: a.reading_minutes,
+      cover_emoji: a.cover_emoji,
+    }));
     if (category) list = list.filter((a) => a.category === category);
     if (mode) list = list.filter((a) => a.mode === mode || a.mode === "both");
     return HttpResponse.json(list);

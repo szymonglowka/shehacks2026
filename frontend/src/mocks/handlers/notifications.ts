@@ -10,7 +10,7 @@ interface AppNotification {
   read_at: string | null;
 }
 
-let notifications: AppNotification[] = [
+const notifications: AppNotification[] = [
   {
     id: 1,
     kind: "goal_reminder",
