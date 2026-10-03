@@ -6,7 +6,8 @@ is unit-testable now and reusable by Django views later.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import date
+from datetime import date, timedelta
+from itertools import pairwise
 
 
 @dataclass(frozen=True)
@@ -41,8 +42,7 @@ _RECOVERY_MAX = 42
 def postpartum_status(birth_date: date, today: date) -> PostpartumStatus:
     """Days since birth, 1-indexed week number and stage name."""
     days = (today - birth_date).days
-    if days < 0:
-        days = 0  # birth date in the future: treat as day 0
+    days = max(days, 0)  # birth date in the future: treat as day 0
     week = days // 7 + 1
     if days <= _EARLY_MAX:
         stage = "early"
@@ -58,7 +58,7 @@ def _average_cycle(periods: list[PeriodInput]) -> float | None:
     starts = sorted(p.start_date for p in periods)
     if len(starts) < 2:
         return None
-    gaps = [(b - a).days for a, b in zip(starts, starts[1:])]
+    gaps = [(b - a).days for a, b in pairwise(starts)]
     gaps = [g for g in gaps if g > 0]
     if not gaps:
         return None
@@ -95,10 +95,9 @@ def cycle_status(
         period_len = int(avg_period_length)
 
     cycle_day = (today - last.start_date).days + 1
-    if cycle_day < 1:
-        cycle_day = 1
+    cycle_day = max(cycle_day, 1)
 
-    ovulation = int(round(cycle_len)) - 14
+    ovulation = round(cycle_len) - 14
     if cycle_day <= period_len:
         phase = "menstrual"
     elif ovulation - 1 <= cycle_day <= ovulation + 1:
@@ -110,9 +109,7 @@ def cycle_status(
     else:
         phase = "luteal"
 
-    next_period = last.start_date.fromordinal(
-        last.start_date.toordinal() + int(round(cycle_len))
-    )
+    next_period = last.start_date + timedelta(days=round(cycle_len))
     return CycleStatus(
         cycle_day=cycle_day,
         phase=phase,

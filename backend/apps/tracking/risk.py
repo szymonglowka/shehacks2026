@@ -5,8 +5,7 @@ its result is returned in the API response.
 """
 from __future__ import annotations
 
-from dataclasses import dataclass, field
-
+from dataclasses import dataclass
 
 LEVELS = ("none", "info", "moderate", "high", "urgent")
 _LEVEL_RANK = {name: i for i, name in enumerate(LEVELS)}
