@@ -15,12 +15,12 @@ const base =
 
 const variants: Record<ButtonVariant, string> = {
   // Default CTA on light surfaces (Figma .primary-button.full)
-  primary: 'bg-forest text-white hover:bg-forest-deep rounded-[14px] min-h-[46px] px-5 text-[13px]',
+  primary: 'bg-forest text-onforest hover:bg-forest-deep rounded-[14px] min-h-[46px] px-5 text-[13px]',
   // Alias kept for the forest-on-light CTA
-  forest: 'bg-forest text-white hover:bg-forest-deep rounded-[14px] min-h-[46px] px-5 text-[13px]',
+  forest: 'bg-forest text-onforest hover:bg-forest-deep rounded-[14px] min-h-[46px] px-5 text-[13px]',
   // CTA on forest-green cards (Figma .primary-button)
   peach:
-    'bg-peach-soft text-[#684b3d] hover:bg-[#f8e8df] rounded-[14px] min-h-[46px] px-5 text-[13px]',
+    'bg-peach-soft text-peachink hover:brightness-105 rounded-[14px] min-h-[46px] px-5 text-[13px]',
   link: 'text-forest font-bold text-[12px] p-1 min-h-[44px] hover:underline underline-offset-4',
   text: 'text-muted font-medium text-[12px] min-h-[44px] px-2 hover:text-ink',
   icon: 'rounded-full w-10 h-10 grid place-items-center text-ink hover:bg-sage-light min-w-[44px] min-h-[44px]',

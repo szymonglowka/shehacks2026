@@ -12,6 +12,7 @@ export { MoodScale, MOOD_COLORS, MOOD_LABELS_PL } from './MoodScale';
 export { Scale, Stepper } from './Scale';
 export { PetalBar, PetalFinale, PetalProgress } from './PetalProgress';
 export { Modal } from './Modal';
+export { ErrorBoundary } from './ErrorBoundary';
 export { ToastProvider, useToast } from './Toast';
 export { EmptyState, Skeleton } from './EmptyState';
 export { Placeholder } from './Placeholder';

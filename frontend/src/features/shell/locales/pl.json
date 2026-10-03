@@ -27,5 +27,10 @@
     "question_hint": "Zapisz, zanim wyleci Ci z głowy",
     "period_title": "Okres się zaczął",
     "period_hint": "Zapisz pierwszy dzień w kalendarzu"
-  }
+  },
+  "error_eyebrow": "Otula",
+  "error_title": "Coś poszło nie tak.",
+  "error_body": "Spróbuj wrócić do Dzisiaj. Twoje zapisane dane są bezpieczne.",
+  "error_today": "Wróć do Dzisiaj",
+  "error_help": "Telefony wsparcia"
 }

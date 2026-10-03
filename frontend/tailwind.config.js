@@ -22,6 +22,14 @@ export default {
           soft: 'var(--peach-soft)',
         },
         lavender: 'var(--lavender)',
+        clay: {
+          DEFAULT: 'var(--clay)',
+          deep: 'var(--clay-deep)',
+        },
+        onforest: 'var(--on-forest)',
+        peachink: 'var(--peach-ink)',
+        danger: 'var(--danger)',
+        warm: 'var(--warm)',
       },
       fontFamily: {
         serif: ['Newsreader', 'Georgia', 'serif'],
