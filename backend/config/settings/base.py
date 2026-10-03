@@ -98,9 +98,9 @@ REST_FRAMEWORK = {
         "rest_framework.parsers.JSONParser",
     ),
     "EXCEPTION_HANDLER": "apps.common.exceptions.exception_handler",
-    "DEFAULT_THROTTLE_CLASSES": (
-        "apps.common.throttling.PublicThrottle",
-    ),
+    # Throttling only where SPEC §6.8 asks for it: public circle views set PublicThrottle explicitly.
+    # A global 30/min limit would break normal app usage (one screen fires several queries).
+    "DEFAULT_THROTTLE_CLASSES": (),
     "DEFAULT_THROTTLE_RATES": {
         "public": "30/min",
     },
