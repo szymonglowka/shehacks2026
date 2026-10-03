@@ -1,0 +1,43 @@
+{
+  "title": "Knowledge without scares",
+  "subtitle": "Concrete reads for your season — for the gaps between naps.",
+  "tabs": {
+    "articles": "Articles",
+    "specialists": "Specialists",
+    "helplines": "Helplines"
+  },
+  "featuredForYou": "Picked for your week",
+  "allArticles": "All reads",
+  "minRead": "{{count}} min read",
+  "filterAll": "All",
+  "categories": {
+    "postpartum_recovery": "Postpartum & body",
+    "mental_health": "Mind",
+    "cycle": "Cycle",
+    "movement": "Movement",
+    "sleep": "Sleep",
+    "nutrition": "Food",
+    "relationships": "Loved ones",
+    "breastfeeding": "Breastfeeding"
+  },
+  "sources": "Sources",
+  "saveAsQuestion": "Save as a visit question",
+  "questionSaved": "Saved. You will find it in your visit report.",
+  "questionPlaceholder": "What do you want to ask your midwife or doctor?",
+  "sampleBadge": "sample data",
+  "sampleNote": "These are sample entries — the real directory is still growing.",
+  "online": "Online",
+  "call": "Call",
+  "specialtyFilter": "Specialty",
+  "specialties": {
+    "midwife": "Midwife",
+    "physiotherapist": "Pelvic floor physiotherapist",
+    "psychologist": "Psychologist",
+    "psychiatrist": "Psychiatrist",
+    "lactation": "Lactation consultant"
+  },
+  "emptyArticles": "Nothing here yet. Check back later — we keep adding reads.",
+  "emptySpecialists": "No matches for these filters. Loosen them a little.",
+  "back": "Back",
+  "exerciseNote": "Postpartum exercise — always after consulting your doctor or physiotherapist."
+}
