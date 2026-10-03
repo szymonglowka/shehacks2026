@@ -1,0 +1,22 @@
+{
+  "publicTitle": "{{name}} would love help with these:",
+  "publicSubtitle": "No account needed. Tap “I'll take it” and mum gets a message.",
+  "takeIt": "I'll take it",
+  "yourName": "Your name",
+  "yourNamePh": "e.g. Tomek",
+  "thanks": "Thanks, {{name}}! Marta got the message.",
+  "markDone": "Mark as done",
+  "takenBy": "On it: {{name}}",
+  "doneBadge": "Done",
+  "moodToday": "How {{name}} feels today:",
+  "guideTitle": "How to support a mum after birth",
+  "guideText": "A short guide: what to say, what not to say, and how to help concretely.",
+  "guideCta": "Read the guide",
+  "helpTitle": "Need help?",
+  "helpCta": "Support lines",
+  "invalidTitle": "This link no longer works",
+  "invalidText": "Mum may have revoked it or created a new one. Ask her for a fresh link.",
+  "loading": "Checking the list…",
+  "claim": "Confirm",
+  "cancel": "Cancel"
+}

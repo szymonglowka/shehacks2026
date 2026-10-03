@@ -1,0 +1,20 @@
+{
+  "greeting": "Nocna zmiana.",
+  "awake": "{{count}} mam z Otuli też teraz nie śpi.",
+  "checkin": "Szybki check-in",
+  "checkinDone": "Zapisane. Śpij, kiedy mała pozwoli.",
+  "breathe": "Oddychaj ze mną",
+  "cantSleep": "Nie mogę zasnąć",
+  "cantSleepTitle": "5–4–3–2–1",
+  "cantSleepStep": "Zauważ: {{n}} rzeczy, które {{sense}}.",
+  "senses": ["widzisz", "słyszysz", "czujesz ciałem", "pachną", "smakują"],
+  "cantSleepDone": "A teraz odłóż telefon ekranem do dołu.",
+  "noteMorning": "Zapisz myśl na rano",
+  "notePh": "Rano sama to ogarniesz. Teraz tylko zapisz…",
+  "noteSaved": "Zapisane. Głowa wolna.",
+  "backMorning": "Wróć do tego rano",
+  "toughDay": "Gorszy dzień",
+  "helpNow": "Telefon wsparcia czynny w nocy",
+  "dismiss": "Wróć do dziennego widoku",
+  "loading": "Cisza…"
+}

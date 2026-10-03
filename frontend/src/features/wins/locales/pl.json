@@ -1,0 +1,16 @@
+{
+  "jarTitle": "Słoik małych wygranych",
+  "jarSubtitle": "Dziś mi się udało…",
+  "jarCount": "{{count}}",
+  "addWin": "Dodaj wygraną",
+  "addTitle": "Co dziś Ci się udało?",
+  "addPh": "np. Wzięłam prysznic bez pośpiechu.",
+  "addHint": "Małe też się liczy. Zwłaszcza małe.",
+  "save": "Zapisz do słoika",
+  "cancel": "Anuluj",
+  "empty": "Słoik czeka na pierwszy płatek. Może szklanka wody rano?",
+  "randomTitle": "Pamiętasz?",
+  "another": "Wylosuj inną",
+  "noWins": "Najpierw dodaj coś do słoika.",
+  "loading": "Zaglądam do słoika…"
+}

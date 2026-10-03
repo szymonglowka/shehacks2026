@@ -1,0 +1,20 @@
+{
+  "greeting": "Night shift.",
+  "awake": "{{count}} mums from Otula are awake too.",
+  "checkin": "Quick check-in",
+  "checkinDone": "Saved. Sleep when the little one lets you.",
+  "breathe": "Breathe with me",
+  "cantSleep": "Can't sleep",
+  "cantSleepTitle": "5–4–3–2–1",
+  "cantSleepStep": "Notice: {{n}} things you {{sense}}.",
+  "senses": ["see", "hear", "feel in your body", "smell", "taste"],
+  "cantSleepDone": "Now put the phone face-down.",
+  "noteMorning": "Save a thought for morning",
+  "notePh": "Morning-you will handle it. Just write it down…",
+  "noteSaved": "Saved. Mind clear.",
+  "backMorning": "Come back to this in the morning",
+  "toughDay": "Tough day",
+  "helpNow": "Support line open at night",
+  "dismiss": "Back to the day view",
+  "loading": "Quiet…"
+}

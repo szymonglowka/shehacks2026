@@ -1,0 +1,22 @@
+{
+  "publicTitle": "{{name}} będzie wdzięczna za pomoc w tych sprawach:",
+  "publicSubtitle": "Bez zakładania konta. Kliknij „Biorę to”, a mama dostanie wiadomość.",
+  "takeIt": "Biorę to",
+  "yourName": "Twoje imię",
+  "yourNamePh": "np. Tomek",
+  "thanks": "Dzięki, {{name}}! Marta dostała wiadomość.",
+  "markDone": "Oznacz jako zrobione",
+  "takenBy": "Bierze: {{name}}",
+  "doneBadge": "Zrobione",
+  "moodToday": "Jak {{name}} się dziś czuje:",
+  "guideTitle": "Jak wspierać mamę po porodzie",
+  "guideText": "Krótki poradnik: co mówić, czego nie mówić i jak pomagać konkretnie.",
+  "guideCta": "Przeczytaj poradnik",
+  "helpTitle": "Potrzebujesz pomocy?",
+  "helpCta": "Telefony wsparcia",
+  "invalidTitle": "Ten link już nie działa",
+  "invalidText": "Mama mogła go unieważnić albo utworzyć nowy. Zapytaj ją o świeży link.",
+  "loading": "Sprawdzam listę…",
+  "claim": "Potwierdź",
+  "cancel": "Anuluj"
+}
