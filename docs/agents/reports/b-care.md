@@ -61,6 +61,43 @@ waiting for checkpoint-0.
   (circle public `share_mood`), `notifications.services.notify`
   (circle claim/done).
 
+## 2026-10-04 post-checkpoint delivery (main d6a0d0d, 256 tests green)
+Implemented everything (models, migrations, endpoints per SPEC §7,
+selectors, export.py, endpoint + isolation tests). Full suite: **293 passed**
+with the project venv (Django 5.1.15, sqlite test settings); docker daemon
+is unreachable from this sandbox, so `docker compose run` could not be used
+— same requirements, same pytest path, noted for the integrator to re-run.
+Ruff clean on all touched files (2 remaining findings are b-content's).
+- support: models (CopingStrategy, UserCopingPreference, SupportSession with
+  `started_at default=now` so seed_demo backdating works, TrustedContact,
+  Helpline + new `is_verified` flag), `selectors.top_strategies`,
+  GET /support/toolkit (ranked + evidence used/helped_yes/helped_somewhat),
+  POST /support/sessions (intensity=5 → risk urgent/show_crisis),
+  PATCH sessions (repeat-safe feedback accounting), PUT /support/preferences
+  (code validation), contacts CRUD, contacts/{id}/message (sms:/wa.me URLs,
+  default_message override), public helplines. `export.py` (tokens n/a).
+- circle: CircleLink/CareRequest, link GET/POST(revokes old)/PATCH/DELETE,
+  requests CRUD, public AllowAny get/claim/done with explicit `public`
+  throttle (import-time binding makes override_settings unable to test the
+  global default — worth knowing), revoked → 404, claim/done → `notify()`,
+  export without tokens. Public payload via allowlist builder (no notes).
+- journal: SmallWin/VisitQuestion (EncryptedTextField, at-rest encryption
+  tested via raw SQL), wins CRUD + /wins/random, visit-questions CRUD,
+  /reports/visit?weeks=2|4|6 aggregating real tracking rows (tracking models
+  are merged — no stubs needed), `selectors.wins_count`, export.
+- seeds: migration `support.0002_seed_catalog` (idempotent, uses historical
+  registry); fixtures converted to loaddata-style so `seed_content` loads
+  them untouched (16 + 4, re-runs create nothing); `seed_demo` guarded
+  blocks verified running (6 sessions, 1 link + 4 requests, 9 wins,
+  3 questions, second run idempotent).
+- code alignment: strategy `breath_478` → `breathing_478` to match the merged
+  onboarding test (was silently skipped as unknown).
+- cross-area fix (flagged in requests/b-care.md): UTC-date bug in
+  tracking/views.py + insights/views.py (red 22:00–00:00 UTC daily) fixed
+  with `localtime`, minimal, marked NOTE.
+- open for b-content: demo sessions use strategy=None so demo ranking never
+  shifts (SPEC §9) — request filed, their call.
+
 ## 2026-10-03 update 3 (frontend checkpoint-0 landed; backend still pending)
 - Main has `80ef1c4 chore(checkpoint-0): frontend skeleton`, but
   `backend/config` and all `__init__.py`/`apps.py` are still missing —

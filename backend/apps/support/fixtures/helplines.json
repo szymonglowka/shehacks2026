@@ -1,1 +1,66 @@
-{"helplines": [{"description_en": "Emergency number — ambulance, police, fire brigade. Free, 24/7.", "description_pl": "Numer alarmowy — pogotowie, policja, straż pożarna. Bezpłatny, całą dobę.", "hours_en": "24/7", "hours_pl": "całą dobę", "is_emergency": true, "name": "Numer alarmowy 112", "order": 1, "phone": "112", "verify": true}, {"description_en": "Free crisis support line for adults in emotional distress.", "description_pl": "Bezpłatna linia wsparcia w kryzysie psychicznym dla dorosłych. Czynna codziennie 14:00–22:00.", "hours_en": "daily 14:00–22:00", "hours_pl": "codziennie 14:00–22:00", "is_emergency": false, "name": "Telefon Zaufania dla Osób Dorosłych w Kryzysie Emocjonalnym", "order": 2, "phone": "116 123", "verify": true}, {"description_en": "Free, round-the-clock support centre for people in mental crisis and their loved ones.", "description_pl": "Bezpłatne, całodobowe centrum wsparcia dla osób w kryzysie psychicznym i ich bliskich.", "hours_en": "24/7", "hours_pl": "całą dobę", "is_emergency": false, "name": "Centrum Wsparcia dla Osób w Kryzysie Psychicznym", "order": 3, "phone": "800 70 2222", "verify": true}, {"description_en": "Support line for depression and low mood, run by the ITAKA Foundation.", "description_pl": "Linia wsparcia przy depresji i obniżonym nastroju, prowadzona przez Fundację ITAKA.", "hours_en": "Mon–Fri 15:00–20:00", "hours_pl": "pon–pt 15:00–20:00", "is_emergency": false, "name": "Antydepresyjny Telefon Zaufania", "order": 4, "phone": "22 484 88 01", "verify": true}]}
+[
+  {
+    "model": "support.helpline",
+    "pk": 1,
+    "fields": {
+      "description_en": "Emergency number — ambulance, police, fire brigade. Free, 24/7.",
+      "description_pl": "Numer alarmowy — pogotowie, policja, straż pożarna. Bezpłatny, całą dobę.",
+      "hours_en": "24/7",
+      "hours_pl": "całą dobę",
+      "is_emergency": true,
+      "name": "Numer alarmowy 112",
+      "order": 1,
+      "phone": "112",
+      "is_verified": false
+    },
+    "verify": true
+  },
+  {
+    "model": "support.helpline",
+    "pk": 2,
+    "fields": {
+      "description_en": "Free crisis support line for adults in emotional distress.",
+      "description_pl": "Bezpłatna linia wsparcia w kryzysie psychicznym dla dorosłych. Czynna codziennie 14:00–22:00.",
+      "hours_en": "daily 14:00–22:00",
+      "hours_pl": "codziennie 14:00–22:00",
+      "is_emergency": false,
+      "name": "Telefon Zaufania dla Osób Dorosłych w Kryzysie Emocjonalnym",
+      "order": 2,
+      "phone": "116 123",
+      "is_verified": false
+    },
+    "verify": true
+  },
+  {
+    "model": "support.helpline",
+    "pk": 3,
+    "fields": {
+      "description_en": "Free, round-the-clock support centre for people in mental crisis and their loved ones.",
+      "description_pl": "Bezpłatne, całodobowe centrum wsparcia dla osób w kryzysie psychicznym i ich bliskich.",
+      "hours_en": "24/7",
+      "hours_pl": "całą dobę",
+      "is_emergency": false,
+      "name": "Centrum Wsparcia dla Osób w Kryzysie Psychicznym",
+      "order": 3,
+      "phone": "800 70 2222",
+      "is_verified": false
+    },
+    "verify": true
+  },
+  {
+    "model": "support.helpline",
+    "pk": 4,
+    "fields": {
+      "description_en": "Support line for depression and low mood, run by the ITAKA Foundation.",
+      "description_pl": "Linia wsparcia przy depresji i obniżonym nastroju, prowadzona przez Fundację ITAKA.",
+      "hours_en": "Mon–Fri 15:00–20:00",
+      "hours_pl": "pon–pt 15:00–20:00",
+      "is_emergency": false,
+      "name": "Antydepresyjny Telefon Zaufania",
+      "order": 4,
+      "phone": "22 484 88 01",
+      "is_verified": false
+    },
+    "verify": true
+  }
+]
