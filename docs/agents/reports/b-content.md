@@ -55,3 +55,31 @@
   missing and `origin/agent/platform` does not exist yet. Models, migrations,
   API views and seed commands therefore remain blocked by protocol.
 - Rebase clean, suite re-run: **15 passed**. Nothing else changed.
+
+## Update (post-checkpoint-0 backend — models, API, seeds done)
+- `Article` + `Specialist` models with `migrations/0001_initial.py`
+  (`makemigrations --check` clean).
+- `GET /articles` (filters `category`, `mode`; paginated, page size 20),
+  `GET /articles/{slug}` (404 otherwise), `GET /specialists` (filters
+  `specialty`, `city`, `online`); localized via `Accept-Language` with
+  profile fallback, same pattern as goals serializers.
+- `selectors.article_of_the_day(user, lang)` (mode + postpartum week via
+  profile, deterministic per day through `picking.py`; `None` when empty).
+- `export.py` returns `{}` (catalogue is shared, not user data).
+- `seed_content`: idempotent `update_or_create` by pk for
+  content articles/specialists + goals templates; support fixtures skipped
+  with a note (custom shape, models missing).
+- `seed_demo` (SPEC §9, `DEMO_PASSWORD` from settings): Marta day 39,
+  C-section, breastfeeding, 5 goals + logs; Kasia cycle user; 12 night
+  background users. Tracking/support/circle/journal blocks guarded and
+  skipped until those models merge (see `docs/agents/requests/b-content.md`).
+- Tests: `tests/test_content_api.py` (auth, pagination, filters, EN
+  localization, detail/404, read-only shared catalogue, selector, export) +
+  `tests/test_seed_commands.py` (both commands twice, no duplicates).
+- Verification (docker daemon unreachable from this worktree, so local run:
+  in-memory SQLite per `config.settings.test`, Django 6.1 vs pinned 5.1,
+  uncommitted `/tmp/stubs` for celery/drf-spectacular/pywebpush):
+  content suite **27 passed**; whole backend **197 passed + 1 xfailed**
+  (2 modules uncollectable locally — they import `freezegun`, not
+  installed; green on docker main per integrator). `ruff check` clean
+  (format not a repo gate).
