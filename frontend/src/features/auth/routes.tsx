@@ -1,17 +1,7 @@
 import type { RouteObject } from 'react-router-dom';
-import { Placeholder } from '@/components/Placeholder';
-
-function WelcomePage() {
-  return <Placeholder title="Welcome" eyebrow="Otula" description="Placeholder — owner agent builds this screen." />;
-}
-
-function LoginPage() {
-  return <Placeholder title="Login" eyebrow="Otula" description="Placeholder — owner agent builds this screen." />;
-}
-
-function RegisterPage() {
-  return <Placeholder title="Register" eyebrow="Otula" description="Placeholder — owner agent builds this screen." />;
-}
+import { WelcomePage } from './Welcome';
+import { LoginPage } from './Login';
+import { RegisterPage } from './Register';
 
 export const routes: RouteObject[] = [
   { path: '/welcome', element: <WelcomePage />, handle: { public: true } },

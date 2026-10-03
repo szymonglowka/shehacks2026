@@ -1,0 +1,193 @@
+/* Shared motion + decoration for the Otula design system. */
+
+@keyframes otula-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes otula-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes otula-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.28);
+  }
+}
+
+@keyframes otula-petals-close {
+  0% {
+    transform: scale(0.7) rotate(-8deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.04) rotate(2deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes otula-toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes otula-shimmer {
+  from {
+    opacity: 0.55;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.otula-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: var(--backdrop);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  animation: otula-fade 0.2s ease;
+}
+
+.otula-modal {
+  position: relative;
+  width: min(580px, 100%);
+  max-height: min(90vh, 860px);
+  overflow-y: auto;
+  background: var(--paper);
+  border-radius: 28px;
+  padding: 42px;
+  box-shadow: var(--modal-shadow);
+  animation: otula-rise 0.3s ease;
+}
+
+@media (max-width: 620px) {
+  .otula-backdrop {
+    padding: 0;
+    place-items: stretch;
+  }
+
+  .otula-modal {
+    width: 100%;
+    max-height: none;
+    min-height: 100dvh;
+    border-radius: 0;
+    padding: 64px 22px 40px;
+  }
+}
+
+/* Forest hero petal art (from Figma .checkin-art). */
+.otula-hero-art {
+  position: absolute;
+  top: -15px;
+  right: -30px;
+  width: 360px;
+  height: 330px;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.otula-petal {
+  position: absolute;
+  top: -50px;
+  left: 115px;
+  width: 135px;
+  height: 205px;
+  transform-origin: bottom;
+  background: #ffffff14;
+  border: 1px solid #ffffff1f;
+  border-radius: 70% 30% 65% 35%;
+}
+
+.otula-petal-two {
+  top: 96px;
+  left: 155px;
+  transform: rotate(120deg);
+}
+
+.otula-petal-three {
+  top: 75px;
+  left: 5px;
+  transform: rotate(240deg);
+}
+
+.otula-center-dot {
+  position: absolute;
+  top: 135px;
+  left: 158px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #e9b9a080;
+}
+
+.otula-breath-orb {
+  display: grid;
+  place-items: center;
+  width: 120px;
+  height: 120px;
+  margin: 2px auto 24px;
+  border-radius: 50%;
+  background: var(--sage-light);
+}
+
+.otula-breath-orb > span {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--sage);
+  animation: otula-breathe 5s ease-in-out infinite;
+}
+
+.otula-petals-close {
+  animation: otula-petals-close 1.2s ease;
+}
+
+.otula-toast {
+  animation: otula-toast-in 0.25s ease;
+}
+
+.otula-skeleton {
+  min-height: 20px;
+  animation: otula-shimmer 1.2s ease-in-out infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .otula-backdrop,
+  .otula-modal,
+  .otula-breath-orb > span,
+  .otula-petals-close,
+  .otula-toast,
+  .otula-skeleton {
+    animation: none;
+  }
+}

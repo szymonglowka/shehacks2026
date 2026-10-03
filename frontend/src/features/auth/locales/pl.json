@@ -1,1 +1,24 @@
-{}
+{
+  "welcome_title": "Troska o mamę. Nie tylko o dziecko.",
+  "welcome_sub": "Codzienny check-in, wsparcie w gorszy dzień i plan powrotu do siebie. W Twoim tempie.",
+  "welcome_start": "Zaczynam",
+  "welcome_login": "Mam już konto",
+  "welcome_quote": "„Nie musisz dziś niczego naprawiać.”",
+  "welcome_crisis": "Potrzebujesz pomocy teraz?",
+  "welcome_crisis_link": "Telefony wsparcia",
+  "login_eyebrow": "Logowanie",
+  "login_title": "Dobrze Cię widzieć",
+  "login_submit": "Zaloguj się",
+  "register_eyebrow": "Rejestracja",
+  "register_title": "Poznajmy się",
+  "register_submit": "Utwórz konto",
+  "display_name": "Jak mamy się do Ciebie zwracać?",
+  "email": "E-mail",
+  "password": "Hasło",
+  "health_consent": "Wyrażam zgodę na przetwarzanie moich danych o zdrowiu (nastrój, sen, objawy) w celu działania aplikacji. Mogę wycofać zgodę, usuwając konto.",
+  "consent_required": "Żeby założyć konto, zaznacz zgodę na przetwarzanie danych o zdrowiu.",
+  "no_account": "Nie masz jeszcze konta?",
+  "have_account": "Masz już konto?",
+  "loading": "Chwileczkę…",
+  "generic_error": "Coś poszło nie tak. Spróbuj jeszcze raz."
+}
