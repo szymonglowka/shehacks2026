@@ -1,0 +1,16 @@
+{
+  "jarTitle": "Jar of small wins",
+  "jarSubtitle": "Today I managed to…",
+  "jarCount": "{{count}}",
+  "addWin": "Add a win",
+  "addTitle": "What did you manage today?",
+  "addPh": "e.g. I took a shower without rushing.",
+  "addHint": "Small counts. Especially small.",
+  "save": "Put it in the jar",
+  "cancel": "Cancel",
+  "empty": "The jar is waiting for its first petal. Maybe a glass of water in the morning?",
+  "randomTitle": "Remember?",
+  "another": "Draw another",
+  "noWins": "Add something to the jar first.",
+  "loading": "Peeking into the jar…"
+}

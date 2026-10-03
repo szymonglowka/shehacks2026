@@ -1,0 +1,13 @@
+{
+  "title": "You are not alone in this.",
+  "subtitle": "Help with no login and no waiting. This page always works.",
+  "emergency": "Life-threatening emergency",
+  "emergencyText": "If you are in danger, call 112 or go to the nearest emergency department.",
+  "call112": "Call 112",
+  "linesTitle": "Support lines",
+  "call": "Call",
+  "hours": "Hours: {{hours}}",
+  "trustedTitle": "Someone who knows you",
+  "trustedText": "Sometimes calling someone close is easier than calling a helpline.",
+  "backToApp": "Back to Otula"
+}

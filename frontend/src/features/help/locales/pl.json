@@ -1,0 +1,13 @@
+{
+  "title": "Nie jesteś z tym sama.",
+  "subtitle": "Pomoc bez logowania i bez czekania. Ta strona działa zawsze.",
+  "emergency": "Zagrożenie życia",
+  "emergencyText": "Jeśli jesteś w niebezpieczeństwie, zadzwoń pod 112 albo jedź na najbliższy SOR.",
+  "call112": "Zadzwoń 112",
+  "linesTitle": "Telefony wsparcia",
+  "call": "Zadzwoń",
+  "hours": "Godziny: {{hours}}",
+  "trustedTitle": "Ktoś, kto Cię zna",
+  "trustedText": "Czasem łatwiej zadzwonić do kogoś bliskiego niż na infolinię.",
+  "backToApp": "Wróć do Otuli"
+}
