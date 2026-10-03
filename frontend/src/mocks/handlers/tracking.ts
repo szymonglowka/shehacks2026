@@ -269,7 +269,9 @@ export const handlers = [
 
   http.get(`${API}/checkins/:date`, ({ params }) => {
     const found = martaCheckins.find((c) => c.date === params.date);
-    return HttpResponse.json(found ?? null);
+    // Real API returns 404 for a day without a check-in (fetchCheckin maps it to null).
+    if (!found) return new HttpResponse('Not found.', { status: 404 });
+    return HttpResponse.json(found);
   }),
 
   http.put(`${API}/checkins/:date`, async ({ params, request }) => {
@@ -362,7 +364,8 @@ export const handlers = [
   http.get(`${API}/epds/questions`, ({ request }) => {
     const lang = (request.headers.get('Accept-Language') ?? 'pl').toLowerCase();
     const set = lang.startsWith('en') ? EPDS_EN : EPDS_PL;
-    return HttpResponse.json(set.map((q, i) => ({ index: i + 1, ...q })));
+    // Real API field name is `number` (1-based), not `index`.
+    return HttpResponse.json(set.map((q, i) => ({ number: i + 1, ...q })));
   }),
 
   http.get(`${API}/epds`, () => HttpResponse.json(martaEpds)),

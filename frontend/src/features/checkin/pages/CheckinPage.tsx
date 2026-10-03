@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, ArrowRight, Mic, Phone } from 'lucide-react';
-import { riskActionTarget, useUpsertCheckin, type RiskResult } from '../../../api/tracking';
+import { riskActionTarget, useCheckin, useUpsertCheckin, type CheckIn, type RiskResult } from '../../../api/tracking';
+import { useAddVisitQuestion } from '../../../api/visit';
 
 export const MOOD_COLORS = ['#c98b6b', '#dfb48f', '#e8d9b5', '#bcd3c2', '#7fa891'];
 
@@ -21,6 +22,38 @@ const SYMPTOMS = ['lack_of_sleep', 'back_pain', 'headache', 'breast_pain', 'anxi
 
 function todayISO() {
   return new Date().toISOString().slice(0, 10);
+}
+
+export interface CheckinDraft {
+  mood: number | null;
+  energy: number;
+  anxiety: number;
+  sleepHours: number;
+  sleepQuality: number;
+  pain: number;
+  bleeding: string;
+  symptoms: string[];
+  redFlags: string[];
+  emotions: string[];
+  note: string;
+}
+
+/** Merge an existing check-in (edit mode) over blank defaults. Pure, unit-tested. */
+export function draftFromCheckin(c: CheckIn | null | undefined): CheckinDraft | null {
+  if (!c) return null;
+  return {
+    mood: c.mood,
+    energy: c.energy ?? 3,
+    anxiety: c.anxiety ?? 2,
+    sleepHours: c.sleep_hours ?? 5,
+    sleepQuality: c.sleep_quality ?? 3,
+    pain: c.pain ?? 0,
+    bleeding: c.bleeding ?? 'none',
+    symptoms: c.symptoms ?? [],
+    redFlags: c.red_flags ?? [],
+    emotions: c.emotions ?? [],
+    note: c.note ?? '',
+  };
 }
 
 function useSpeechDictation(lang: string, onText: (text: string) => void) {
@@ -114,6 +147,28 @@ export default function CheckinPage() {
   const speech = useSpeechDictation(i18n.language, (text) =>
     setNote((n) => (n ? `${n} ${text}` : text)),
   );
+  // Edit mode: prefill from today's existing check-in (404 → null → blank form).
+  const date = todayISO();
+  const { data: existing } = useCheckin(date);
+  const prefilledRef = useRef(false);
+  const addVisitQuestion = useAddVisitQuestion();
+  useEffect(() => {
+    if (prefilledRef.current) return;
+    const draft = draftFromCheckin(existing);
+    if (!draft) return;
+    prefilledRef.current = true;
+    setMood(draft.mood);
+    setEnergy(draft.energy);
+    setAnxiety(draft.anxiety);
+    setSleepHours(draft.sleepHours);
+    setSleepQuality(draft.sleepQuality);
+    setPain(draft.pain);
+    setBleeding(draft.bleeding);
+    setSymptoms(draft.symptoms);
+    setRedFlags(draft.redFlags);
+    setEmotions(draft.emotions);
+    setNote(draft.note);
+  }, [existing]);
 
   const toggleIn = (list: string[], v: string, set: (l: string[]) => void) =>
     set(list.includes(v) ? list.filter((x) => x !== v) : [...list, v]);
@@ -123,7 +178,7 @@ export default function CheckinPage() {
   const save = () => {
     upsert.mutate(
       {
-        date: todayISO(),
+        date,
         mood, energy, anxiety,
         sleep_hours: sleepHours, sleep_quality: sleepQuality,
         pain, emotions, bleeding: bleeding as 'none',
@@ -138,13 +193,7 @@ export default function CheckinPage() {
             return;
           }
           if (saveAsQuestion && note.trim()) {
-            // NOTE(f-daily): /visit-questions belongs to f-plan (api/visit).
-            // Fire-and-forget via fetch until their hook lands.
-            fetch('/api/v1/visit-questions', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ text: note.trim() }),
-            }).catch(() => undefined);
+            addVisitQuestion.mutate(note.trim());
           }
         },
       },
