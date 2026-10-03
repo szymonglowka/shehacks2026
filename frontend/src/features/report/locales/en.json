@@ -1,0 +1,50 @@
+{
+  "title": "Visit report",
+  "subtitle": "Everything evaporates from your head in the office. Take this along.",
+  "weeks": "Last {{count}} weeks",
+  "sections": "What goes into the report",
+  "section": {
+    "basics": "Basics",
+    "moodSleep": "Mood & sleep",
+    "epds": "EPDS results",
+    "symptoms": "Symptoms",
+    "redFlags": "Warning signs",
+    "questions": "My questions"
+  },
+  "basics": {
+    "postpartumDay": "Day {{day}} postpartum (week {{week}})",
+    "delivery": "Birth",
+    "deliveryTypes": {
+      "vaginal": "vaginal",
+      "cesarean": "C-section",
+      "undisclosed": "—"
+    },
+    "feeding": "Feeding",
+    "feedingTypes": {
+      "breast": "breastfeeding",
+      "mixed": "mixed",
+      "formula": "formula",
+      "na": "n/a"
+    },
+    "range": "Report period: {{from}} – {{to}}"
+  },
+  "moodTitle": "Mood & sleep",
+  "moodEmpty": "Not enough check-ins in this period to draw a chart.",
+  "epdsTitle": "EPDS — wellbeing screening",
+  "epdsEmpty": "No EPDS results in this period.",
+  "epdsDate": "Score",
+  "epdsNote": "A score of 13 or more suggests talking to a specialist.",
+  "symptomsTitle": "Symptoms & frequency",
+  "symptomsEmpty": "No recorded symptoms. May it stay that way.",
+  "times": "{{count}} ×",
+  "redFlagsTitle": "Warning signs",
+  "redFlagsEmpty": "No warning signs in this period. Good.",
+  "questionsTitle": "My questions",
+  "questionsEmpty": "No questions yet. Add them before you forget.",
+  "addQuestion": "Add a question",
+  "questionPlaceholder": "e.g. Is this bleeding still normal?",
+  "takeToVisit": "Take to the visit",
+  "print": "Print / save PDF",
+  "disclaimer": "A self-observation journal report, not a medical record. It does not diagnose — it helps the conversation with your midwife or doctor.",
+  "forPerson": "Prepared for {{name}}"
+}

@@ -1,0 +1,28 @@
+/* Visit report print: clean A4-like output, ink on white. */
+@media print {
+  body {
+    background: #fff !important;
+  }
+
+  .report-no-print {
+    display: none !important;
+  }
+
+  .report-sheet {
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .report-page {
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+
+  main {
+    padding: 0 !important;
+  }
+}

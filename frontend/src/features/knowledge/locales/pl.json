@@ -1,0 +1,43 @@
+{
+  "title": "Wiedza bez straszenia",
+  "subtitle": "Konkretne teksty na Twój czas — do poczytania między drzemkami.",
+  "tabs": {
+    "articles": "Artykuły",
+    "specialists": "Specjaliści",
+    "helplines": "Telefony"
+  },
+  "featuredForYou": "Polecane w Twoim tygodniu",
+  "allArticles": "Wszystkie teksty",
+  "minRead": "{{count}} min czytania",
+  "filterAll": "Wszystkie",
+  "categories": {
+    "postpartum_recovery": "Połóg i ciało",
+    "mental_health": "Głowa",
+    "cycle": "Cykl",
+    "movement": "Ruch",
+    "sleep": "Sen",
+    "nutrition": "Jedzenie",
+    "relationships": "Bliscy",
+    "breastfeeding": "Karmienie"
+  },
+  "sources": "Źródła",
+  "saveAsQuestion": "Zapisz pytanie na wizytę",
+  "questionSaved": "Zapisane. Znajdziesz je w raporcie na wizytę.",
+  "questionPlaceholder": "O co chcesz zapytać położną lub lekarza?",
+  "sampleBadge": "dane przykładowe",
+  "sampleNote": "To są przykładowe wpisy — prawdziwy katalog dopiero powstaje.",
+  "online": "Online",
+  "call": "Zadzwoń",
+  "specialtyFilter": "Specjalizacja",
+  "specialties": {
+    "midwife": "Położna",
+    "physiotherapist": "Fizjoterapeutka uroginekologiczna",
+    "psychologist": "Psycholożka",
+    "psychiatrist": "Psychiatra",
+    "lactation": "Doradczyni laktacyjna"
+  },
+  "emptyArticles": "Nic tu jeszcze nie ma. Zajrzyj później — dopisujemy teksty.",
+  "emptySpecialists": "Brak wyników dla tych filtrów. Poluzuj je trochę.",
+  "back": "Wróć",
+  "exerciseNote": "Ćwiczenia w połogu — zawsze po konsultacji z lekarzem lub fizjoterapeutką."
+}

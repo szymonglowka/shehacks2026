@@ -1,0 +1,50 @@
+{
+  "title": "Raport na wizytę",
+  "subtitle": "W gabinecie wszystko ulatuje z głowy. Zabierz to ze sobą.",
+  "weeks": "Ostatnie {{count}} tygodnie",
+  "sections": "Co ma się znaleźć w raporcie",
+  "section": {
+    "basics": "Dane podstawowe",
+    "moodSleep": "Nastrój i sen",
+    "epds": "Wyniki EPDS",
+    "symptoms": "Objawy",
+    "redFlags": "Objawy alarmowe",
+    "questions": "Moje pytania"
+  },
+  "basics": {
+    "postpartumDay": "Dzień {{day}} po porodzie ({{week}}. tydzień)",
+    "delivery": "Poród",
+    "deliveryTypes": {
+      "vaginal": "naturalny",
+      "cesarean": "cesarskie cięcie",
+      "undisclosed": "—"
+    },
+    "feeding": "Karmienie",
+    "feedingTypes": {
+      "breast": "piersią",
+      "mixed": "mieszane",
+      "formula": "butelką",
+      "na": "nie dotyczy"
+    },
+    "range": "Okres raportu: {{from}} – {{to}}"
+  },
+  "moodTitle": "Nastrój i sen",
+  "moodEmpty": "Za mało check-inów w tym okresie, żeby narysować wykres.",
+  "epdsTitle": "EPDS — przesiew samopoczucia",
+  "epdsEmpty": "Brak wyników EPDS w tym okresie.",
+  "epdsDate": "Wynik",
+  "epdsNote": "Wynik ≥ 13 sugeruje, że warto porozmawiać ze specjalistą.",
+  "symptomsTitle": "Objawy i ich częstotliwość",
+  "symptomsEmpty": "Żadnych zapisanych objawów. Oby tak dalej.",
+  "times": "{{count}} ×",
+  "redFlagsTitle": "Objawy alarmowe",
+  "redFlagsEmpty": "Brak objawów alarmowych w tym okresie. Dobrze.",
+  "questionsTitle": "Moje pytania",
+  "questionsEmpty": "Nie masz jeszcze pytań. Dopisz je, zanim zapomnisz.",
+  "addQuestion": "Dodaj pytanie",
+  "questionPlaceholder": "np. Czy to krwawienie jest jeszcze w normie?",
+  "takeToVisit": "Weź na wizytę",
+  "print": "Drukuj / zapisz PDF",
+  "disclaimer": "Raport z dzienniczka samoobserwacji, nie dokumentacja medyczna. Nie stawia diagnozy — ma pomóc w rozmowie z położną lub lekarzem.",
+  "forPerson": "Przygotowane dla {{name}}"
+}

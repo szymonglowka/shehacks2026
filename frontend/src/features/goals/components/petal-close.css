@@ -1,0 +1,15 @@
+@keyframes petal-close {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.25) rotate(-8deg); }
+  100% { transform: scale(1); }
+}
+
+.animate-petal-close {
+  animation: petal-close 0.6s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-petal-close {
+    animation: none;
+  }
+}

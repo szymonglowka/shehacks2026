@@ -1,0 +1,16 @@
+{
+  "title": "Notifications",
+  "today": "Today",
+  "earlier": "Earlier",
+  "empty": "Silence. Sometimes that is the best news.",
+  "markAllRead": "Mark all as read",
+  "open": "Open",
+  "done": "Done",
+  "kinds": {
+    "goal_reminder": "Goal",
+    "checkin_reminder": "Check-in",
+    "epds_due": "Survey",
+    "gentle_nudge": "Nudge",
+    "system": "Otula"
+  }
+}

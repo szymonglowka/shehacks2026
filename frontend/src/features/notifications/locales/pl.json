@@ -1,0 +1,16 @@
+{
+  "title": "Powiadomienia",
+  "today": "Dziś",
+  "earlier": "Wcześniej",
+  "empty": "Cisza. Czasem to najlepsza wiadomość.",
+  "markAllRead": "Oznacz wszystkie jako przeczytane",
+  "open": "Otwórz",
+  "done": "Zrobione",
+  "kinds": {
+    "goal_reminder": "Cel",
+    "checkin_reminder": "Check-in",
+    "epds_due": "Ankieta",
+    "gentle_nudge": "Szturchnięcie",
+    "system": "Otula"
+  }
+}
