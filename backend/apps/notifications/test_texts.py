@@ -3,7 +3,13 @@
 import pytest
 
 try:  # project convention after checkpoint-0 (backend/ on sys.path)
-    from apps.notifications.texts import KINDS, LANGS, NOTIFICATION_COPY, TONES, get_copy
+    from apps.notifications.texts import (
+        KINDS,
+        LANGS,
+        NOTIFICATION_COPY,
+        TONES,
+        get_copy,
+    )
 except ImportError:  # before checkpoint-0: namespace packages from repo root
     from backend.apps.notifications.texts import (
         KINDS,

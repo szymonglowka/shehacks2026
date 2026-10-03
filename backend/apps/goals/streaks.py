@@ -19,8 +19,8 @@ Conventions (also used by the API fields ``current_streak``, ``done_today``,
 
 from __future__ import annotations
 
+from collections.abc import Iterable
 from datetime import date, timedelta
-from typing import Iterable
 
 DAILY = "daily"
 WEEKLY = "weekly"
