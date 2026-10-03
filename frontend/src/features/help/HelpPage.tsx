@@ -21,7 +21,7 @@ export function HelpPage() {
 
       <section
         aria-labelledby="emergency-title"
-        className="mt-6 rounded-3xl bg-clay p-6 text-cream"
+        className="mt-6 rounded-3xl bg-[var(--clay)] p-6 text-cream"
       >
         <h2 id="emergency-title" className="font-serif text-2xl">
           {emergency ? emergency.label : t("emergency")}

@@ -33,6 +33,15 @@
 - The night quick check-in does `PUT /checkins/{today}` with `{ mood }` —
   please keep that upsert shape on the backend (b-track).
 
+## To f-core (missing theme tokens — please add)
+
+- `tailwind.config` has no `night`/`clay`/`amber` colors, so my `bg-night`,
+  `bg-night-card`, `text-night-ink`, `bg-amber`, `bg-clay` compiled to
+  nothing (verified: absent from `dist/assets/*.css`). Workaround in place:
+  `/help` hero uses `bg-[var(--clay)]`; `/night` uses SCREENS §3.11 exact
+  hexes as arbitrary values. Please add real tokens (`night`, `night-card`,
+  `night-ink`, `amber`, `clay`) and I'll switch to them.
+
 ## Cross-domain hook reuse (f-plan)
 
 - `features/night/NightPage.tsx` imports `useAddVisitQuestion` from

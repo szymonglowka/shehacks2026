@@ -95,3 +95,27 @@ Open: no browser on this machine — 1440/820/375, night theme, PL/EN
 visual pass and real incognito /c/:token click-through NOT done; needs
 someone with `docker compose up` + a browser. Backend seed gaps logged in
 requests/f-care.md (flat Marta ranking, missing Tomek contact).
+
+## Polish follow-up (2026-10-04, second pass)
+
+Docker still unavailable (daemon socket dead, no alt runtime) and socket
+binds blocked, so again no live servers and no browser — same method as
+before: real backend in-process (25/25 green, re-run), frontend gates
+re-run: `typecheck` ✓, `vitest` 33/33 ✓ (added `/help` smoke: 112 hero
+once, Tomek tel: link), `build` ✓, eslint clean on owned files.
+
+New find this pass — **undefined Tailwind utilities**: `bg-night`,
+`bg-night-card`, `text-night-ink`, `bg-amber` (bare), `bg-clay` are not in
+the theme, so the whole /night palette and the /help 112 hero compiled to
+nothing (confirmed absent from dist CSS). Fixed with `bg-[var(--clay)]`
+and SCREENS §3.11 exact hexes as arbitrary values; verified present in
+compiled CSS. Token request logged for f-core.
+
+Also audited: locale-key coverage for all 6 features PL+EN (all resolve;
+CircleSection correctly uses the `support` namespace), zero hardcoded UI
+strings (only the `otula` wordmark), touch targets ≥44px, single-column
+max-w layouts (375-safe), new 429 test.
+
+Still NOT verifiable here: live-server click-through, 1440/820/375 visual
+screenshots, night-theme toggle in a real browser, incognito /c/:token.
+Needs a machine with working Docker + browser.
