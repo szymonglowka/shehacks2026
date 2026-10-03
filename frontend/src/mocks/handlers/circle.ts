@@ -74,7 +74,7 @@ const wins = [
   { id: 9, text: "Powiedziałam Tomkowi, że jest ciężko.", created_at: "2026-06-01" },
 ];
 
-const winsEn = [
+export const winsEn = [
   "I took a shower without rushing.",
   "Our first walk, just the two of us.",
   "I asked my mum for help. No guilt.",
@@ -86,7 +86,7 @@ const winsEn = [
   "I told Tomek that it's been hard.",
 ];
 
-let winSeq = wins.length;
+export let winSeq = wins.length;
 
 export const circleHandlers = [
   http.get(`${API}/circle/link`, () => {

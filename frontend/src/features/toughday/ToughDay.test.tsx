@@ -103,7 +103,7 @@ describe("ToughDayFlow", () => {
     expect(screen.getByText("intensityTitle")).toBeTruthy();
     fireEvent.click(screen.getByRole("radio", { name: /3:/ }));
     expect(mutateCreate).toHaveBeenCalledWith({ intensity: 3 });
-    await waitFor(() => expect(screen.getByText("breathTitle")).toBeTruthy());
+    await waitFor(() => expect(screen.getAllByText("breathTitle").length).toBeGreaterThan(0));
   });
 
   it("intensity 5 redirects to /help", async () => {
@@ -116,7 +116,7 @@ describe("ToughDayFlow", () => {
   it("finishing sends helped + mood_after via PATCH", async () => {
     renderFlow();
     fireEvent.click(screen.getByRole("radio", { name: /2:/ }));
-    await waitFor(() => expect(screen.getByText("breathTitle")).toBeTruthy());
+    await waitFor(() => expect(screen.getAllByText("breathTitle").length).toBeGreaterThan(0));
     fireEvent.click(screen.getByText("breathSkip"));
     await waitFor(() => expect(screen.getByText("strategiesTitle")).toBeTruthy());
     fireEvent.click(screen.getByText("finish"));

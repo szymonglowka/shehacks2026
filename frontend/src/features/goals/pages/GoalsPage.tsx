@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Check, Plus } from "lucide-react";
 import type { Goal } from "@/api/goals";
 import { useGoals, useLogGoal, useRecommendedGoals } from "@/api/goals";
-import { GoalRow } from "./components/GoalRow";
-import { GoalSheet } from "./components/GoalSheet";
-import { RecommendedCarousel } from "./components/RecommendedCarousel";
+import { GoalRow } from "../components/GoalRow";
+import { GoalSheet } from "../components/GoalSheet";
+import { RecommendedCarousel } from "../components/RecommendedCarousel";
 
 export default function GoalsPage() {
   const { t } = useTranslation("goals");

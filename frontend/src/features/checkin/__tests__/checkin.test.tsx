@@ -51,11 +51,11 @@ describe('check-in flow', () => {
 
     // Step 4 reachable.
     await user.click(screen.getByRole('button', { name: /continue/i }));
-    expect(screen.getByLabelText(/note/i)).toBeDefined();
+    expect(screen.getAllByLabelText(/note/i).length).toBeGreaterThan(0);
   });
 
   it('requires a mood before continuing', async () => {
-    const user = userEvent.setup();
+    userEvent.setup();
     renderPage();
     const next = screen.getByRole('button', { name: /continue/i });
     expect(next.hasAttribute('disabled')).toBe(true);

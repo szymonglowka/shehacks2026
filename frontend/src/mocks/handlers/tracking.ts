@@ -255,7 +255,7 @@ export const martaEpds = [
   },
 ];
 
-let periods = [{ id: 1, start_date: isoDay(60), end_date: isoDay(55) }];
+let periods: { id: number; start_date: string; end_date: string | null }[] = [{ id: 1, start_date: isoDay(60), end_date: isoDay(55) }];
 
 export const handlers = [
   http.get(`${API}/checkins`, ({ request }) => {

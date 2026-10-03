@@ -169,7 +169,7 @@ export function CircleSection() {
           <button
             type="button"
             className="min-h-[44px] rounded-full border border-forest px-5 py-2 text-forest"
-            onClick={() => void share(link.data.url)}
+            onClick={() => link.data && void share(link.data.url)}
           >
             {t("shareList")}
           </button>

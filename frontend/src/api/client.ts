@@ -91,3 +91,33 @@ export async function api<T>(path: string, options: ApiOptions = {}): Promise<T>
   if (res.status === 204) return undefined as T;
   return (await res.json()) as T;
 }
+
+/** Alias used by feature modules: same as api<T>() (path relative to VITE_API_URL). */
+export interface ApiFetchOptions extends Omit<ApiOptions, 'body'> {
+  /** Plain objects are JSON-encoded; strings/FormData/Blob pass through. */
+  body?: unknown;
+}
+
+export function apiFetch<T = unknown>(path: string, options: ApiFetchOptions = {}): Promise<T> {
+  const { body, ...rest } = options;
+  const encoded =
+    body === undefined || body === null || typeof body === 'string' || body instanceof FormData || body instanceof Blob
+      ? (body as BodyInit | null | undefined)
+      : JSON.stringify(body);
+  return api<T>(path, { ...rest, body: encoded });
+}
+
+function withBody(method: string, body: unknown, options: ApiOptions): ApiOptions {
+  return { ...options, method, body: body === undefined ? undefined : JSON.stringify(body) };
+}
+
+export const apiGet = <T = unknown>(path: string, options: ApiOptions = {}) =>
+  api<T>(path, { ...options, method: 'GET' });
+export const apiPost = <T = unknown>(path: string, body?: unknown, options: ApiOptions = {}) =>
+  api<T>(path, withBody('POST', body, options));
+export const apiPut = <T = unknown>(path: string, body?: unknown, options: ApiOptions = {}) =>
+  api<T>(path, withBody('PUT', body, options));
+export const apiPatch = <T = unknown>(path: string, body?: unknown, options: ApiOptions = {}) =>
+  api<T>(path, withBody('PATCH', body, options));
+export const apiDelete = <T = void>(path: string, options: ApiOptions = {}) =>
+  api<T>(path, { ...options, method: 'DELETE' });

@@ -127,7 +127,7 @@ export function useDeleteGoal(id: number) {
 export function useLogGoal(id: number) {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (completed = true) =>
+    mutationFn: (completed: boolean = true) =>
       apiFetch(`/goals/${id}/log`, {
         method: "POST",
         body: JSON.stringify({ completed }),

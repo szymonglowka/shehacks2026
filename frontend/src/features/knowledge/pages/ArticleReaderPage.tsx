@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useParams } from "react-router-dom";
-import { ArrowLeft, Clock3, MessageCircleQuestionMark } from "lucide-react";
+import { ArrowLeft, Clock3, MessageCircleQuestion } from "lucide-react";
 import { useArticle, useSaveVisitQuestion } from "@/api/content";
 
 export default function ArticleReaderPage() {
@@ -90,7 +90,7 @@ export default function ArticleReaderPage() {
 
       <section aria-label={t("saveAsQuestion")} className="mt-8 rounded-[20px] bg-paper p-5 shadow-[var(--shadow)]">
         <h2 className="flex items-center gap-2 font-serif text-[21px] text-ink">
-          <MessageCircleQuestionMark size={20} strokeWidth={1.8} /> {t("saveAsQuestion")}
+          <MessageCircleQuestion size={20} strokeWidth={1.8} /> {t("saveAsQuestion")}
         </h2>
         <div className="mt-2 flex flex-col gap-2 sm:flex-row">
           <input

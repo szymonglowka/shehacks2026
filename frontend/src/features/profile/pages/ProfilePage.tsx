@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { BellRing, CircleHelp, Download, Globe, LogOut, MoonStar, Trash2 } from "lucide-react";
 import { useSendTestPush } from "@/api/notifications";
-import { downloadJson, useDeleteAccount, useExportData, useProfile, useUpdateProfile } from "./hooks";
+import { downloadJson, useDeleteAccount, useExportData, useProfile, useUpdateProfile } from "../hooks";
 
 function Row({
   icon,

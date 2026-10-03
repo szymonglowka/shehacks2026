@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Plus, Printer } from "lucide-react";
 import type { VisitReport } from "@/api/visit";
 import { useAddVisitQuestion, useToggleVisitQuestion, useVisitReport } from "@/api/visit";
-import "./print.css";
+import "../print.css";
 
 type Weeks = 2 | 4 | 6;
 

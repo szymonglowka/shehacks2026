@@ -16,6 +16,15 @@ except ImportError:
     HAS_GOALS = False
 
 
+@pytest.fixture(autouse=True)
+def goal_templates(db):
+    """Options read templates from the DB once apps.goals is installed; seed them like seed_content does."""
+    if HAS_GOALS:
+        from django.core.management import call_command
+
+        call_command("loaddata", "goal_templates", verbosity=0)
+
+
 def test_options_returns_all_sections(auth_client):
     res = auth_client.get("/api/v1/onboarding/options")
     assert res.status_code == 200

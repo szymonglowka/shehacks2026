@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Clock3, MapPin, Phone } from "lucide-react";
 import { useArticles, useSpecialists } from "@/api/content";
-import { useHelplines } from "./hooks";
+import { useHelplines } from "../hooks";
 
 const CATEGORIES = [
   "postpartum_recovery",
