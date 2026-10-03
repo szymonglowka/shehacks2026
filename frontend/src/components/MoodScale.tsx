@@ -35,15 +35,23 @@ export function MoodScale({ value, onChange, labels = MOOD_LABELS_PL, legend, na
             aria-checked={checked}
             name={name}
             onClick={() => onChange(mood)}
-            className="min-h-[76px] min-w-0 rounded-[15px] border px-1 pb-2.5 pt-3 transition-colors"
+            className="mood-tile min-h-[76px] min-w-0 rounded-[15px] border px-1 pb-2.5 pt-3 transition-colors"
             style={
               checked
-                ? { borderColor: 'var(--forest)', backgroundColor: MOOD_COLORS[index] }
-                : { borderColor: 'var(--line)', backgroundColor: 'var(--cream)' }
+                ? {
+                    borderColor: 'var(--forest)',
+                    backgroundColor: MOOD_COLORS[index],
+                    color: 'var(--ink)',
+                  }
+                : {
+                    borderColor: 'var(--line)',
+                    backgroundColor: 'var(--cream)',
+                    color: 'var(--muted)',
+                  }
             }
           >
-            <span className="block font-serif text-[23px] font-semibold text-ink">{mood}</span>
-            <small className="mt-1.5 block text-[11px] leading-tight text-ink">{label}</small>
+            <span className="block font-serif text-[23px] font-semibold">{mood}</span>
+            <small className="mt-1.5 block text-[11px] leading-tight">{label}</small>
           </button>
         );
       })}

@@ -105,6 +105,72 @@
   }
 }
 
+/* Forest hero card: day = deep green, night = calm dark card (SCREENS §3.11). */
+.otula-hero-body {
+  color: rgb(255 255 255 / 0.78);
+}
+
+[data-theme='night'] .otula-hero {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+[data-theme='night'] .otula-hero-body {
+  color: var(--muted);
+}
+
+[data-theme='night'] .otula-hero-eyebrow {
+  color: var(--forest);
+}
+
+[data-theme='night'] .otula-hero .otula-petal {
+  background: #e0a46b14;
+  border-color: #e0a46b30;
+}
+
+[data-theme='night'] .otula-hero .otula-center-dot {
+  background: #e0a46b55;
+}
+
+/* Welcome side panel follows the same night treatment as the hero. */
+.welcome-quote {
+  color: rgb(255 255 255 / 0.9);
+}
+
+[data-theme='night'] .welcome-panel {
+  background: var(--paper);
+}
+
+[data-theme='night'] .welcome-panel .otula-petal {
+  background: #e0a46b14;
+  border-color: #e0a46b30;
+}
+
+[data-theme='night'] .welcome-panel .otula-center-dot {
+  background: #e0a46b55;
+}
+
+[data-theme='night'] .welcome-quote {
+  color: var(--ink);
+}
+
+/* Inline error box (forms): danger token in both themes. */
+.danger-box {
+  border: 1px solid var(--danger);
+  background: color-mix(in srgb, var(--danger) 10%, transparent);
+  color: var(--danger);
+  border-radius: 14px;
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Mood tiles: selected tile keeps the mood-scale color; in night mode the
+   label turns near-black so it passes AA on every mood color. */
+[data-theme='night'] .mood-tile[aria-checked='true'] {
+  color: #1b1a17;
+}
+
 /* Forest hero petal art (from Figma .checkin-art). */
 .otula-hero-art {
   position: absolute;

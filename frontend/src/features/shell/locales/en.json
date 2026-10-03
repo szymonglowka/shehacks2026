@@ -27,5 +27,10 @@
     "question_hint": "Write it down before it slips away",
     "period_title": "Period started",
     "period_hint": "Log day one in the calendar"
-  }
+  },
+  "error_eyebrow": "Otula",
+  "error_title": "Something went wrong.",
+  "error_body": "Try going back to Today. Your saved data is safe.",
+  "error_today": "Back to Today",
+  "error_help": "Support lines"
 }

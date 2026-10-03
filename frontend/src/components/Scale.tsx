@@ -32,7 +32,7 @@ export function Scale({ min, max, value, onChange, legend, lowLabel, highLabel }
                 compact ? 'h-11 w-11 rounded-[12px] text-[13px]' : 'h-[52px] min-w-[52px] rounded-[15px] px-2 font-serif text-[20px]'
               } ${
                 checked
-                  ? 'bg-forest text-white'
+                  ? 'bg-forest text-onforest'
                   : 'border border-line bg-cream text-muted hover:border-forest hover:text-forest'
               }`}
             >

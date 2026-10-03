@@ -88,12 +88,12 @@ export function RegisterPage() {
             type="checkbox"
             checked={consent}
             onChange={(e) => setConsent(e.target.checked)}
-            className="mt-0.5 h-5 w-5 flex-none accent-[#3f6959]"
+            className="mt-0.5 h-5 w-5 flex-none accent-forest"
           />
           <span>{t('health_consent')}</span>
         </label>
         {error && (
-          <p role="alert" className="rounded-[14px] border border-[#b4533c] bg-[#b4533c]/10 px-4 py-3 text-[13px] font-semibold text-[#b4533c]">
+          <p role="alert" className="danger-box">
             {error}
           </p>
         )}

@@ -60,7 +60,7 @@ export function LoginPage() {
           />
         </label>
         {error && (
-          <p role="alert" className="rounded-[14px] border border-[#b4533c] bg-[#b4533c]/10 px-4 py-3 text-[13px] font-semibold text-[#b4533c]">
+          <p role="alert" className="danger-box">
             {error}
           </p>
         )}

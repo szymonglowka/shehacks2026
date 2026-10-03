@@ -18,7 +18,7 @@ export function WelcomePage() {
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link to="/register" className="inline-flex">
-              <span className="inline-flex min-h-[46px] items-center rounded-[14px] bg-forest px-5 text-[13px] font-bold text-white hover:bg-forest-deep">
+              <span className="inline-flex min-h-[46px] items-center rounded-[14px] bg-forest px-5 text-[13px] font-bold text-onforest hover:bg-forest-deep">
                 {t('welcome_start')}
               </span>
             </Link>
@@ -35,7 +35,7 @@ export function WelcomePage() {
         </div>
         <div
           aria-hidden="true"
-          className="relative hidden min-h-[420px] overflow-hidden rounded-[28px] bg-forest min-[821px]:block"
+          className="welcome-panel relative hidden min-h-[420px] overflow-hidden rounded-[28px] bg-forest min-[821px]:block"
         >
           <div className="otula-hero-art" style={{ transform: 'scale(1.6)', top: '60px', right: '40px' }}>
             <div className="otula-petal otula-petal-one" />
@@ -43,7 +43,7 @@ export function WelcomePage() {
             <div className="otula-petal otula-petal-three" />
             <div className="otula-center-dot" />
           </div>
-          <p className="absolute bottom-8 left-8 right-8 font-serif text-[24px] italic leading-snug text-white/90">
+          <p className="welcome-quote absolute bottom-8 left-8 right-8 font-serif text-[24px] italic leading-snug">
             {t('welcome_quote')}
           </p>
         </div>

@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useState } from 'react';
 import './i18n';
 import { ToastProvider } from '../components/Toast';
+import { ErrorBoundary } from '../components/ErrorBoundary';
 import { AppRouter } from './router';
 
 export function Providers() {
@@ -16,7 +17,9 @@ export function Providers() {
   return (
     <QueryClientProvider client={queryClient}>
       <ToastProvider>
-        <AppRouter />
+        <ErrorBoundary>
+          <AppRouter />
+        </ErrorBoundary>
       </ToastProvider>
     </QueryClientProvider>
   );

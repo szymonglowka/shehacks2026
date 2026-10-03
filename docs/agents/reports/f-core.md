@@ -60,3 +60,55 @@
   instead of data-router `RouteObject` nesting (auto-registration contract unchanged).
 - `src/sw.ts` excluded from `tsc` (no webworker lib in app config); bundled by
   vite-plugin-pwa injectManifest.
+
+## Polish round (2026-10-04)
+Setup: rebased on main, `.env` completed from `.env.example` (own ports/project,
+`VITE_USE_MOCKS=false`), `docker compose up -d db redis backend` + migrate +
+`seed_content` + `seed_demo` green. Real API verified: login 200 as
+`demo@otula.app`, `/cycle/status` → postpartum day 39 week 6.
+
+1. **Night contrast** — computed WCAG ratios for every token pair my components
+   use (script `/tmp/contrast.py`, kept out of repo). Before: day `muted`
+   3.8–4.1 (fail), `bg-clay` class didn't exist at all (emergency block had no
+   background in EITHER theme). After: 0 failures. Changes (`styles/tokens.css`,
+   `tailwind.config.js`, components, `components.css`):
+   - day `--muted` `#718079`→`#5d6f67` (4.9–5.3:1 on cream/paper; deviation from
+     Figma hex, required for AA), day `--clay` `#c98b6b`→`#9c5636` (5.1:1 with
+     cream text; the old value never rendered since the class didn't exist).
+   - New semantic tokens, AA in both themes: `--on-forest` (fff / #1b1a17),
+     `--peach-ink` (#684b3d / cream), `--danger` (#b4533c / #d08a70),
+     `--warm` (#85614f / amber), `--card-sage-bg/border`, `--card-lav-bg/border`.
+     Tailwind: `bg-clay(/-deep)`, `text-onforest/peachink/danger/warm`.
+   - Button/Scale/Segmented/bottom-nav [+] use `text-onforest`; Card sage/lavender
+     use card tokens; `ForestHeroCard` becomes a calm dark card in night mode
+     (amber eyebrow, muted body, amber-tinted petal art); MoodScale selected tile
+     turns near-black text in night (only combo passing on all 5 mood colors);
+     auth error boxes use `.danger-box`; ToughDay pill uses `text-warm`+`border-line`.
+   - /help 112 block fixed with zero owner changes (`bg-clay` now resolves).
+   - Owner leftovers logged in `docs/agents/requests/f-core.md` (hardcoded `#fff`
+     on forest → `var(--on-forest)`; `#f1eff5` → `var(--card-lav-bg)`), per file/line.
+2. **Public layout** — `Shell` renders `PublicShell` (logo + "Telefony wsparcia",
+   no sidebar/bottom nav/topbar) when logged out; covers /welcome, /login,
+   /register, /help, /c/:token. Test: logged-out render has no `<nav>` and no
+   tough-day pill.
+3. **Error boundary** — `components/ErrorBoundary.tsx` wired in providers:
+   "Coś poszło nie tak." + Back-to-/today + support-lines link (PL/EN). Tested.
+4. **QuickAdd vs real API** — all four land correctly: /checkin ← PUT
+   `/checkins/{date}` → `{checkin, risk}` 200; win ← POST+DELETE `/wins` (204,
+   count back to seed 9); question ← POST+DELETE `/visit-questions` (204);
+   period ← `/calendar` (GET `/periods` → `[]` for postpartum Marta; POST not
+   fired — it would flip her to cycle mode). One self-inflicted overwrite of
+   Marta's today check-in was restored to seed-distribution values via the same
+   endpoint. Routes /checkin, /support, /report, /calendar all registered.
+
+Gates: `tsc` ✓, `vitest` 33/33 ✓, `vite build` ✓ (night CSS confirmed in bundle),
+owned-files eslint ✓ (repo-wide eslint still fails on other agents' files:
+`no-invalid-void-type` in api/{circle,goals,notifications,support,tracking,visit,wins}.ts,
+unused vars in mocks/handlers/{circle,content,goals,notifications}.ts + GoalSheet —
+not mine, not touched).
+
+NOT verified: real browser rendering (no usable browser in this sandbox — Chrome
+aborts on launch; no listening sockets allowed, so the app was served from an
+nginx container on :8002 for nothing). The 1440/820/375 × day/night × PL/EN walk
+was replaced by computed contrast + jsdom tests + API checks. Please eyeball
+/today, /help and /c/:token in night mode before the demo.

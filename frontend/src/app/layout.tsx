@@ -128,10 +128,10 @@ function ToughDayButton({ compact }: { compact?: boolean }) {
     <Link
       to="/tough-day"
       state={{ background: location.pathname }}
-      className={`flex items-center gap-2 font-semibold text-[#85614f] ${
+      className={`flex items-center gap-2 font-semibold text-warm ${
         compact
-          ? 'h-10 w-10 place-content-center rounded-full border border-[#e4d6cf] bg-paper'
-          : 'rounded-full border border-[#e4d6cf] bg-paper px-[15px] py-2.5 text-[13px]'
+          ? 'h-10 w-10 place-content-center rounded-full border border-line bg-paper'
+          : 'rounded-full border border-line bg-paper px-[15px] py-2.5 text-[13px]'
       }`}
     >
       <Heart size={compact ? 20 : 17} strokeWidth={1.8} />
@@ -291,7 +291,7 @@ function BottomNav() {
           type="button"
           onClick={() => navigate('/quick-add', { state: { background: location.pathname } })}
           aria-label={t('quick_add_label')}
-          className="grid h-[52px] w-[52px] place-items-center rounded-full bg-forest text-white shadow-card"
+          className="grid h-[52px] w-[52px] place-items-center rounded-full bg-forest text-onforest shadow-card"
         >
           <Plus size={24} strokeWidth={1.8} />
         </button>
@@ -314,8 +314,34 @@ function BottomNav() {
   );
 }
 
+/**
+ * Minimal public header for logged-out pages (welcome, login, register,
+ * /help, /c/:token): logo + support lines, no sidebar/bottom nav, no
+ * logged-in topbar actions — the page looks standalone (SCREENS §3.12).
+ */
+function PublicShell() {
+  const { t } = useTranslation('shell');
+  return (
+    <div className="min-h-screen bg-cream text-ink">
+      <header className="flex h-[72px] items-center justify-between px-6 min-[821px]:px-10">
+        <Link to="/welcome" aria-label="Otula">
+          <Brand compact />
+        </Link>
+        <Link
+          to="/help"
+          className="inline-flex min-h-[44px] items-center text-[13px] font-bold text-forest hover:underline underline-offset-4"
+        >
+          {t('support_phones')}
+        </Link>
+      </header>
+      <Outlet />
+    </div>
+  );
+}
+
 export function Shell() {
   useNightMode();
+  if (getAccessToken() === null) return <PublicShell />;
   return (
     <div className="min-h-screen bg-cream text-ink">
       <Sidebar />

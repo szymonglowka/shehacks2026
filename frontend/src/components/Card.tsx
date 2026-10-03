@@ -4,9 +4,9 @@ export type CardTone = 'paper' | 'sage' | 'lavender' | 'forest';
 
 const tones: Record<CardTone, string> = {
   paper: 'bg-paper border-line',
-  sage: 'bg-[#f0f4ef] border-[#d9e4db]',
-  lavender: 'bg-[#f1eff5] border-[#e3dfe9]',
-  forest: 'bg-forest border-transparent text-white',
+  sage: 'bg-[var(--card-sage-bg)] border-[var(--card-sage-border)]',
+  lavender: 'bg-[var(--card-lav-bg)] border-[var(--card-lav-border)]',
+  forest: 'bg-forest border-transparent text-onforest',
 };
 
 interface CardProps {
@@ -37,7 +37,7 @@ interface HeroCardProps {
 /** Forest hero card with petal art (Figma check-in card). */
 export function ForestHeroCard({ eyebrow, title, body, duration, action }: HeroCardProps) {
   return (
-    <section className="otula-hero relative flex min-h-[290px] items-center overflow-hidden rounded-[28px] bg-forest p-[clamp(32px,5vw,52px)] text-white shadow-card">
+    <section className="otula-hero relative flex min-h-[290px] items-center overflow-hidden rounded-[28px] bg-forest p-[clamp(32px,5vw,52px)] text-onforest shadow-card">
       <div className="otula-hero-art" aria-hidden="true">
         <div className="otula-petal otula-petal-one" />
         <div className="otula-petal otula-petal-two" />
@@ -53,14 +53,14 @@ export function ForestHeroCard({ eyebrow, title, body, duration, action }: HeroC
           </p>
         ) : null}
         {eyebrow ? (
-          <p className="text-[11px] font-bold uppercase tracking-[1.5px] text-peach-soft">
+          <p className="otula-hero-eyebrow text-[11px] font-bold uppercase tracking-[1.5px] text-peach-soft">
             {eyebrow}
           </p>
         ) : null}
         <h2 className="-tracking-[0.4px] mt-[18px] font-serif text-[clamp(29px,3vw,40px)] font-semibold leading-[1.08]">
           {title}
         </h2>
-        {body ? <p className="mb-[26px] mt-3 max-w-[470px] text-sm leading-[1.65] text-white/75">{body}</p> : null}
+        {body ? <p className="otula-hero-body mb-[26px] mt-3 max-w-[470px] text-sm leading-[1.65]">{body}</p> : null}
         <div className="mt-[26px]">{action}</div>
       </div>
     </section>
