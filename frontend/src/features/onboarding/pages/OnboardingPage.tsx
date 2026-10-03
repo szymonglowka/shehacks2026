@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
-import { useCompleteOnboarding, useOnboardingOptions } from '../../../api/onboarding';
+import { useCompleteOnboarding, useFinishOnboarding, useOnboardingOptions } from '../../../api/onboarding';
 import { usePushSubscription } from '../../../api/push';
 
 function PetalBar({ step, total }: { step: number; total: number }) {
@@ -74,6 +74,7 @@ export default function OnboardingPage() {
   // f-core hook: permission + VAPID subscribe + POST /push/subscriptions.
   const push = usePushSubscription();
   const complete = useCompleteOnboarding();
+  const finishOnboarding = useFinishOnboarding();
 
   const week = useMemo(() => {
     if (!birthDate) return 6;
@@ -134,7 +135,7 @@ export default function OnboardingPage() {
           </svg>
           <h1 style={h1}>{t('doneTitle', { name: name || 'Marta' })}</h1>
           <p style={body}>{t('doneBody')}</p>
-          <button type="button" onClick={() => navigate('/today')} style={primary}>
+          <button type="button" onClick={() => void finishOnboarding().then(() => navigate("/today"))} style={primary}>
             {t('doneCta')}
           </button>
         </div>

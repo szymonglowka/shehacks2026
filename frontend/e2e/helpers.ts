@@ -5,11 +5,8 @@ import {
   type Page,
 } from '@playwright/test';
 
-/** Root of the REAL backend REST API (no trailing slash handling needed). */
-export const API_URL = (process.env.E2E_API_URL ?? 'http://localhost:8110/api/v1').replace(
-  /\/$/,
-  '',
-);
+/** Root of the REAL backend REST API, with a trailing slash so relative paths ('auth/login') keep /api/v1. */
+export const API_URL = `${(process.env.E2E_API_URL ?? 'http://localhost:8110/api/v1').replace(/\/$/, '')}/`;
 export const DEMO_EMAIL = process.env.E2E_DEMO_EMAIL ?? 'demo@otula.app';
 export const DEMO_PASSWORD = process.env.E2E_DEMO_PASSWORD ?? 'otula-demo-1234';
 
@@ -31,7 +28,7 @@ export async function registerViaApi(
   api: APIRequestContext,
   input: { email: string; password: string; display_name: string },
 ): Promise<TokenPair> {
-  const res = await api.post('/auth/register', {
+  const res = await api.post('auth/register', {
     data: { ...input, language: 'pl', health_data_consent: true },
   });
   expect(res.ok(), `register ${res.status()} ${await res.text()}`).toBeTruthy();

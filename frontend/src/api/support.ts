@@ -9,6 +9,7 @@ import {
   type UseQueryOptions,
 } from "@tanstack/react-query";
 import { apiFetch } from "./client";
+import { getAccessToken } from "./token-storage";
 
 export type Helped = "yes" | "partly" | "no";
 
@@ -193,6 +194,8 @@ export function useContacts() {
   return useQuery<TrustedContact[]>({
     queryKey: ["support", "contacts"],
     queryFn: () => apiFetch<TrustedContact[]>("/support/contacts"),
+    // /help is public: only ask for the trusted contact when someone is logged in
+    enabled: Boolean(getAccessToken()),
   });
 }
 

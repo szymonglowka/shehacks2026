@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import type { ReactNode } from 'react';
-import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import type { WithTranslation } from 'react-i18next';
 import { Brand } from './Brand';
@@ -48,19 +47,20 @@ class RawErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState>
               defaultValue: 'Spróbuj wrócić do Dzisiaj. Twoje zapisane dane są bezpieczne.',
             })}
           </p>
+          {/* plain <a>: this boundary can sit outside the Router, where <Link> itself throws */}
           <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              to="/today"
+            <a
+              href="/today"
               className="inline-flex min-h-[46px] items-center rounded-[14px] bg-forest px-5 text-[13px] font-bold text-onforest hover:bg-forest-deep"
             >
               {t('shell:error_today', { defaultValue: 'Wróć do Dzisiaj' })}
-            </Link>
-            <Link
-              to="/help"
+            </a>
+            <a
+              href="/help"
               className="inline-flex min-h-[44px] items-center text-[13px] font-bold text-forest hover:underline underline-offset-4"
             >
               {t('shell:error_help', { defaultValue: 'Telefony wsparcia' })}
-            </Link>
+            </a>
           </div>
         </div>
       </main>

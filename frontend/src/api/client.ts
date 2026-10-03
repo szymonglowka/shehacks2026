@@ -70,7 +70,9 @@ export async function api<T>(path: string, options: ApiOptions = {}): Promise<T>
   const doFetch = (h: Headers) => fetch(`${BASE_URL}${path}`, { ...init, headers: h });
 
   let res = await doFetch(headers);
-  if (res.status === 401 && auth) {
+  // Only treat 401 as "session expired" when there was a session: anonymous visitors on public
+  // pages (/help, /c/:token) must never be bounced to /welcome by an optional authed query.
+  if (res.status === 401 && auth && getAccessToken()) {
     const fresh = await refreshAccessToken();
     if (fresh) {
       headers.set('Authorization', `Bearer ${fresh}`);

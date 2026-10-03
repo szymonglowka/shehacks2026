@@ -91,13 +91,13 @@ test.describe.serial('demo script (Marta, postpartum)', () => {
     if ((await goalToggles.count()) === 0) {
       // Marta has no goals in this DB — create one via the real API, then log it.
       const api = await apiContext();
-      const login = await api.post('/auth/login', {
+      const login = await api.post('auth/login', {
         data: { email: DEMO_EMAIL, password: DEMO_PASSWORD },
       });
       expect(login.ok()).toBeTruthy();
       const { access } = (await login.json()) as { access: string };
       const authed = await authApi(access);
-      const created = await authed.post('/goals', {
+      const created = await authed.post('goals', {
         data: { title: 'E2E: krótki spacer' },
       });
       expect(created.ok(), await created.text()).toBeTruthy();
@@ -140,22 +140,22 @@ test.describe.serial('demo script (Marta, postpartum)', () => {
 
     // 8. Public circle page logged out → claim.
     const api = await apiContext();
-    const login = await api.post('/auth/login', {
+    const login = await api.post('auth/login', {
       data: { email: DEMO_EMAIL, password: DEMO_PASSWORD },
     });
     expect(login.ok()).toBeTruthy();
     const { access } = (await login.json()) as { access: string };
     const authed = await authApi(access);
-    let link = await authed.get('/circle/link');
+    let link = await authed.get('circle/link');
     let token: string;
     if (link.status() === 404) {
-      const created = await authed.post('/circle/link', { data: {} });
+      const created = await authed.post('circle/link', { data: {} });
       expect(created.ok(), await created.text()).toBeTruthy();
       token = ((await created.json()) as { token: string }).token;
     } else {
       token = ((await link.json()) as { token: string }).token;
     }
-    const need = await authed.post('/circle/requests', {
+    const need = await authed.post('circle/requests', {
       data: { title: 'E2E: ciepły obiad', category: 'meal', when_label: 'jutro' },
     });
     expect(need.ok(), await need.text()).toBeTruthy();
@@ -165,9 +165,15 @@ test.describe.serial('demo script (Marta, postpartum)', () => {
     await logoutClientSide(page);
     await page.goto(`/c/${token}`);
     await expect(page.locator('main')).toContainText(/E2E: ciepły obiad/);
+    // The name field appears after "Biorę to" on the request's card.
+    const card = page
+      .getByText('E2E: ciepły obiad')
+      .last()
+      .locator('xpath=ancestor::*[.//button][1]');
+    await card.getByRole('button', { name: /Biorę to/i }).click();
     const claimForm = page.locator('form').first();
     await claimForm.locator('input').fill('E2E Babcia');
-    await claimForm.getByRole('button').last().click();
+    await claimForm.getByRole('button', { name: /Potwierdź|Confirm/i }).click();
     await expect(page.locator('main')).toContainText(/E2E Babcia/);
 
     // 9. Help page works logged out (crisis numbers reachable).

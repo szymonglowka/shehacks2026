@@ -1,5 +1,5 @@
 import i18n from 'i18next';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { apiGet, apiPost } from './client';
 
 export interface CopingStrategyOption {
@@ -122,4 +122,14 @@ export function useCompleteOnboarding() {
     mutationFn: (body: CompleteOnboardingInput) =>
       apiPost<CompleteOnboardingResult>('/onboarding/complete', body),
   });
+}
+
+/**
+ * Leave the finale screen: the route guard reads onboarding_completed from the cached /me, so
+ * refresh it first, otherwise the user is bounced back to /onboarding. (Refreshing right after
+ * the mutation would skip the finale animation because the guard redirects immediately.)
+ */
+export function useFinishOnboarding() {
+  const qc = useQueryClient();
+  return () => qc.invalidateQueries();
 }

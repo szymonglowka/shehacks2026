@@ -1,4 +1,4 @@
-.PHONY: up down logs migrate makemigrations seed demo-night test lint schema shell build
+.PHONY: up down logs migrate makemigrations seed demo-night demo-reset test lint schema shell build
 
 up:
 	docker compose up --build
@@ -21,6 +21,11 @@ makemigrations:
 seed:
 	-docker compose run --rm backend python manage.py seed_content
 	-docker compose run --rm backend python manage.py seed_demo
+
+demo-reset:  ## wipe the DB (e.g. after E2E runs) and reseed the demo story
+	docker compose down -v
+	docker compose up -d db redis backend
+	docker compose run --rm backend sh -c "python manage.py migrate && python manage.py seed_content && python manage.py seed_demo && python manage.py demo_night"
 
 demo-night:
 	docker compose run --rm backend python manage.py demo_night
