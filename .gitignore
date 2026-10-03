@@ -13,3 +13,5 @@ coverage/
 .DS_Store
 .claude/
 .venv-qa/
+test-results/
+playwright-report/
