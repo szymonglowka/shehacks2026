@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, ArrowRight, Mic, Phone } from 'lucide-react';
 import { riskActionTarget, useUpsertCheckin, type RiskResult } from '../../../api/tracking';
+import { useAddVisitQuestion } from '../../../api/visit';
 
 export const MOOD_COLORS = ['#c98b6b', '#dfb48f', '#e8d9b5', '#bcd3c2', '#7fa891'];
 
@@ -19,8 +20,31 @@ export const RED_FLAGS = [
 const EMOTIONS = ['calm', 'tired', 'overwhelmed', 'grateful', 'lonely', 'irritable', 'tender', 'anxious'];
 const SYMPTOMS = ['lack_of_sleep', 'back_pain', 'headache', 'breast_pain', 'anxiety_attack'];
 
+const SYMPTOM_LABELS: Record<string, string> = {
+  lack_of_sleep: 'symLackOfSleep',
+  back_pain: 'symBackPain',
+  headache: 'symHeadache',
+  breast_pain: 'symBreastPain',
+  anxiety_attack: 'symAnxietyAttack',
+};
+
+const RED_FLAG_LABELS: Record<string, string> = {
+  heavy_bleeding: 'flagHeavyBleeding',
+  fever: 'flagFever',
+  severe_headache_vision: 'flagSevereHeadacheVision',
+  chest_pain_breathing: 'flagChestPainBreathing',
+  leg_swelling_pain: 'flagLegSwellingPain',
+  wound_redness_discharge: 'flagWoundRednessDischarge',
+  thoughts_of_harm: 'flagThoughtsOfHarm',
+};
+
 function todayISO() {
-  return new Date().toISOString().slice(0, 10);
+  // Local calendar day: toISOString() is UTC and stamps the wrong date
+  // between 00:00 and 02:00 CEST.
+  const d = new Date();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${d.getFullYear()}-${m}-${day}`;
 }
 
 function useSpeechDictation(lang: string, onText: (text: string) => void) {
@@ -96,6 +120,7 @@ export default function CheckinPage() {
   const { t, i18n } = useTranslation('checkin');
   const navigate = useNavigate();
   const upsert = useUpsertCheckin();
+  const addQuestion = useAddVisitQuestion();
   const [step, setStep] = useState(0);
   const [mood, setMood] = useState<number | null>(null);
   const [energy, setEnergy] = useState(3);
@@ -138,13 +163,9 @@ export default function CheckinPage() {
             return;
           }
           if (saveAsQuestion && note.trim()) {
-            // NOTE(f-daily): /visit-questions belongs to f-plan (api/visit).
-            // Fire-and-forget via fetch until their hook lands.
-            fetch('/api/v1/visit-questions', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ text: note.trim() }),
-            }).catch(() => undefined);
+            // Authenticated via the api client (relative fetch had no JWT
+            // and ignored VITE_API_URL, so the question never persisted).
+            addQuestion.mutate(note.trim());
           }
         },
       },
@@ -246,7 +267,7 @@ export default function CheckinPage() {
                 <div style={pills}>
                   {SYMPTOMS.map((s) => (
                     <button key={s} type="button" onClick={() => toggleIn(symptoms, s, setSymptoms)} aria-pressed={symptoms.includes(s)} style={symptoms.includes(s) ? pillOn : pill}>
-                      {s}
+                      {t(SYMPTOM_LABELS[s] ?? s)}
                     </button>
                   ))}
                 </div>
@@ -255,7 +276,7 @@ export default function CheckinPage() {
                 <div style={pills}>
                   {RED_FLAGS.map((f) => (
                     <button key={f} type="button" onClick={() => toggleIn(redFlags, f, setRedFlags)} aria-pressed={redFlags.includes(f)} style={redFlags.includes(f) ? flagOn : flagOff}>
-                      {f}
+                      {t(RED_FLAG_LABELS[f] ?? f)}
                     </button>
                   ))}
                 </div>

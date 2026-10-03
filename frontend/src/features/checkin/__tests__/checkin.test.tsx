@@ -60,4 +60,16 @@ describe('check-in flow', () => {
     const next = screen.getByRole('button', { name: /continue/i });
     expect(next.hasAttribute('disabled')).toBe(true);
   });
+
+  it('renders translated symptom and red-flag labels, not raw codes', async () => {
+    const user = userEvent.setup();
+    renderPage();
+    await user.click(screen.getByRole('radio', { name: /mixed/i }));
+    await user.click(screen.getByRole('button', { name: /continue/i }));
+    await user.click(screen.getByRole('button', { name: /continue/i }));
+    expect(screen.getByRole('button', { name: 'lack of sleep' })).toBeDefined();
+    expect(screen.queryByRole('button', { name: 'lack_of_sleep' })).toBeNull();
+    expect(screen.getByRole('button', { name: 'fever' })).toBeDefined();
+    expect(screen.queryByRole('button', { name: 'thoughts_of_harm' })).toBeNull();
+  });
 });

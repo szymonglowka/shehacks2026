@@ -19,7 +19,7 @@
     "paths": { "@/*": ["src/*"] },
     "types": ["vite/client", "vitest/globals"]
   },
-  "include": ["src", "tsconfig.paths.js"],
+  "include": ["src", "tsconfig.paths.js", "e2e", "playwright.config.ts"],
   "exclude": ["src/sw.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
