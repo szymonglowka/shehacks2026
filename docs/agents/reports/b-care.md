@@ -48,6 +48,19 @@ waiting for checkpoint-0.
   `export.py`, endpoint-level tests (throttling, isolation). No skeleton
   files created.
 
+## 2026-10-03 update 2 (rebased on latest main; checkpoint-0 still pending)
+- Integrator merged `0e0386e` (old relative-import test versions); my branch
+  now carries the try/except fixes + `circle/public.py` on top of latest main
+  (duplicate commit dropped by rebase). 31 passed with real pytest.
+- Read merged `tracking/risk.py` (`evaluate_risk(RiskContext)` →
+  `{level, reasons, actions}`): my future `POST /support/sessions` with
+  intensity=5 will return the same shape with
+  `{level: urgent, actions: [show_crisis]}` — no tracking-models dependency.
+- Post-checkpoint dependencies (all via try-import per shared names, no
+  request file needed): platform skeleton, `tracking.selectors.mood_today`
+  (circle public `share_mood`), `notifications.services.notify`
+  (circle claim/done).
+
 ## Missing (post-checkpoint-0)
 Full models/views/URLs per SPEC §7 for support, circle, journal + export.py
 files + endpoint tests. Will rebase on main once checkpoint-0 lands.
