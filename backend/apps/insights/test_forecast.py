@@ -3,9 +3,7 @@ from .forecast import ForecastContext, forecast_tomorrow
 
 
 def fc(**kw):
-    base = dict(mode="cycle")
-    base.update(kw)
-    return ForecastContext(**base)
+    return ForecastContext(**{"mode": "cycle", **kw})
 
 
 def test_clear_day_is_sunny():

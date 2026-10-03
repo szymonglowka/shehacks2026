@@ -9,7 +9,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import date, timedelta
 
-
 MIN_POINTS = 7
 SLEEP_GOOD_HOURS = 6.0
 EFFECT_THRESHOLD = 0.5  # minimal mood difference worth reporting

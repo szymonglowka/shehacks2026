@@ -1,20 +1,20 @@
 """Unit tests for tracking/risk.py — one case per rule plus combinations."""
-from . import risk
 from .risk import RiskContext, evaluate_risk
 
 
 def ctx(**kw):
-    base = dict(
-        red_flags=(),
-        recent_moods=(),
-        mode="postpartum",
-        postpartum_day=30,
-        anxiety_today=2,
-        epds_total=None,
-        epds_self_harm=None,
+    return RiskContext(
+        **{
+            "red_flags": (),
+            "recent_moods": (),
+            "mode": "postpartum",
+            "postpartum_day": 30,
+            "anxiety_today": 2,
+            "epds_total": None,
+            "epds_self_harm": None,
+            **kw,
+        }
     )
-    base.update(kw)
-    return RiskContext(**base)
 
 
 def test_all_clear_is_none():

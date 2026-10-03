@@ -25,3 +25,28 @@ branch pushed, ready for integrator merge. Full-tree check: 93 passed
 (b-track 65 + b-goals 28); only failure is b-care's known pre-existing
 `test_ranking.py` relative-import collection error (integrator's shim covers
 it, not my files). Phase 2 (models/endpoints) still blocked on checkpoint-0.
+
+## 2026-10-04 — phase 2 done (post-checkpoint-0, rebased on `c3a0199`)
+- Models `DailyCheckIn` (`note` = `EncryptedTextField`), `Period`, `EPDSAssessment`
+  per SPEC §5 + `tracking/migrations/0001_initial.py` (only my apps).
+- Endpoints, all per SPEC §7: `GET /checkins?from&to`, `GET/PUT /checkins/{date}`
+  (upsert → `{checkin, risk}`), `GET /cycle/status`, `GET/POST /periods`,
+  `PATCH/DELETE /periods/{id}`, `POST /profile/period-returned` (→ cycle mode),
+  `GET /epds/questions` (Accept-Language), `GET/POST /epds` (→ `{assessment, risk}`),
+  `GET /epds/due`, `GET /insights?range=7|30`, `GET /forecast/tomorrow`,
+  `GET /night/now` (`null` when < 5), `GET /dashboard` (7 keys per §7).
+- `tracking/selectors.py`: `latest_checkins(user, days)`, `mood_today(user)`,
+  `cycle_status_for(user)`; `tracking/export.py` (check-ins incl. notes, periods,
+  EPDS). Dashboard try-imports `goals.today_goals`, `content.article_of_the_day`,
+  `notifications.Notification`, falling back to empty values.
+- Risk wiring: check-in upsert evaluates R1–R8 with fresh (≤14 d) EPDS; EPDS submit
+  evaluates with today's check-in signals. Notes never logged (no logging of
+  contents anywhere; admin excludes `note` from list view).
+- Tests: 42 new endpoint/isolation tests; my suites 107 passed in docker
+  (`pytest apps/tracking apps/insights`); full backend 242 passed + 1 xfailed,
+  1 failed = b-goals' stale `..._degrade_without_tracking_models` test whose
+  premise (tracking models missing) expired with this merge — logged in
+  `docs/agents/requests/b-track.md` for b-goals (their file, not edited).
+- `ruff check apps/tracking apps/insights` clean; `docker compose up` boots,
+  health OK, migration applied; live smoke test on Postgres (register → check-in
+  → dashboard) green.

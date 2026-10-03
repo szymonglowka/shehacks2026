@@ -103,8 +103,7 @@ def forecast_tomorrow(ctx: ForecastContext) -> Forecast:
     if negatives:
         strongest = max(weights[f] for f in negatives)
         candidates = [f for f in negatives if weights[f] == strongest]
-        tip = _TIP_BY_FACTOR[sorted(candidates,
-                                    key=_FACTOR_PRIORITY.index)[0]]
+        tip = _TIP_BY_FACTOR[min(candidates, key=_FACTOR_PRIORITY.index)]
     elif "goal_streak" in factors:
         tip = "keep_going"
     else:
