@@ -71,17 +71,30 @@ export function reminderSentence(
   return template.replace("{days}", days).replace("{time}", values.reminder_time);
 }
 
+/** API returns progress_this_week as {done, target, remaining}; components render it as one slot per target. */
+type ApiProgress = boolean[] | { done: number; target: number; remaining?: number };
+type ApiGoal = Omit<Goal, "progress_this_week"> & { progress_this_week: ApiProgress };
+
+export function normalizeGoal(goal: ApiGoal): Goal {
+  const p = goal.progress_this_week;
+  if (Array.isArray(p)) return goal as Goal;
+  const target = Math.max(p.target || 0, p.done || 0, 1);
+  return { ...goal, progress_this_week: Array.from({ length: target }, (_, i) => i < (p.done || 0)) };
+}
+
+const fetchGoals = (path: string) => apiFetch<ApiGoal[]>(path).then((goals) => goals.map(normalizeGoal));
+
 export function useGoals() {
   return useQuery({
     queryKey: ["goals"],
-    queryFn: () => apiFetch<Goal[]>("/goals"),
+    queryFn: () => fetchGoals("/goals"),
   });
 }
 
 export function useTodayGoals() {
   return useQuery({
     queryKey: ["goals", "today"],
-    queryFn: () => apiFetch<Goal[]>("/goals/today"),
+    queryFn: () => fetchGoals("/goals/today"),
   });
 }
 

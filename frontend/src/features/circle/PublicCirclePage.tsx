@@ -110,7 +110,7 @@ export function PublicCirclePage() {
             className="inline-block h-4 w-4 rounded-full"
             style={{ backgroundColor: moodColor }}
           />
-          {t("moodToday", { name: momName })} {moodWord}
+          {t("moodToday", { name: momName })} {moodWord ? t(`moodWord.${moodWord}`, { defaultValue: moodWord }) : null}
         </p>
       )}
 

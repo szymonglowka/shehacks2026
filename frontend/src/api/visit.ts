@@ -71,9 +71,53 @@ export function useDeleteVisitQuestion(id: number) {
   });
 }
 
+interface ApiVisitReport {
+  profile: VisitReport["profile"];
+  weeks: number;
+  since?: string;
+  range?: VisitReport["range"];
+  questions: VisitQuestion[];
+  symptoms?: { symptom: string; count: number }[];
+  red_flags?: { date: string; red_flags: string[] }[] | VisitReport["red_flags"];
+  epds?: { history: { date: string; total: number }[] };
+  epds_history?: VisitReport["epds_history"];
+  mood_sleep_series?: VisitReport["mood_sleep_series"];
+  symptom_frequency?: VisitReport["symptom_frequency"];
+}
+
+/** Adapts /reports/visit to the report screen; the daily mood/sleep series comes from /insights. */
+async function fetchVisitReport(weeks: 2 | 4 | 6): Promise<VisitReport> {
+  const [r, insights] = await Promise.all([
+    apiFetch<ApiVisitReport>(`/reports/visit?weeks=${weeks}`),
+    apiFetch<{ series: { date: string; mood: number | null; sleep_hours: number | null }[] }>(
+      `/insights?range=30`,
+    ).catch(() => ({ series: [] })),
+  ]);
+  const today = new Date().toISOString().slice(0, 10);
+  const from = r.range?.from ?? r.since ?? today;
+  const redFlags = (r.red_flags ?? []).flatMap((f) =>
+    "red_flags" in f ? f.red_flags.map((code) => ({ date: f.date, code })) : [f],
+  );
+  return {
+    profile: r.profile,
+    weeks: r.weeks,
+    range: r.range ?? { from, to: today },
+    mood_sleep_series:
+      r.mood_sleep_series ??
+      insights.series
+        .filter((p) => p.date >= from)
+        .map((p) => ({ date: p.date, mood: p.mood, sleep_hours: p.sleep_hours })),
+    epds_history: r.epds_history ?? r.epds?.history ?? [],
+    symptom_frequency:
+      r.symptom_frequency ?? (r.symptoms ?? []).map((s) => ({ code: s.symptom, count: s.count })),
+    red_flags: redFlags,
+    questions: r.questions,
+  };
+}
+
 export function useVisitReport(weeks: 2 | 4 | 6) {
   return useQuery({
     queryKey: ["reports", "visit", weeks],
-    queryFn: () => apiFetch<VisitReport>(`/reports/visit?weeks=${weeks}`),
+    queryFn: () => fetchVisitReport(weeks),
   });
 }

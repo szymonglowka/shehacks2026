@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { apiFetch } from "./client";
+import { apiFetch, apiList } from "./client";
 
 export interface Article {
   slug: string;
@@ -31,7 +31,7 @@ export function useArticles(params?: { category?: string; mode?: string }) {
   const qs = search.toString();
   return useQuery({
     queryKey: ["articles", params?.category ?? null, params?.mode ?? null],
-    queryFn: () => apiFetch<Article[]>(`/articles${qs ? `?${qs}` : ""}`),
+    queryFn: () => apiList<Article>(`/articles${qs ? `?${qs}` : ""}`),
   });
 }
 
@@ -51,7 +51,7 @@ export function useSpecialists(params?: { specialty?: string; city?: string; onl
   const qs = search.toString();
   return useQuery({
     queryKey: ["specialists", params?.specialty ?? null, params?.city ?? null, params?.online ?? null],
-    queryFn: () => apiFetch<Specialist[]>(`/specialists${qs ? `?${qs}` : ""}`),
+    queryFn: () => apiList<Specialist>(`/specialists${qs ? `?${qs}` : ""}`),
   });
 }
 

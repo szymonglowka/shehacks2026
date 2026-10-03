@@ -1,3 +1,4 @@
+import i18n from 'i18next';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { apiGet, apiPost } from './client';
 
@@ -54,6 +55,43 @@ export interface CompleteOnboardingInput {
   custom_goals: Array<{ title: string; category: string; frequency: 'daily' | 'weekly'; target_count: number }>;
 }
 
+// The API returns bilingual *_pl/*_en fields and {code,label_*} worsening factors.
+type Bilingual = Record<string, unknown>;
+interface ApiOnboardingOptions {
+  coping_strategies: Bilingual[];
+  worsening_factors: (string | Bilingual)[];
+  goal_templates: Bilingual[];
+}
+
+function pick(o: Bilingual, field: string): string {
+  const lang = i18n.language?.startsWith('en') ? 'en' : 'pl';
+  return String(o[field] ?? o[`${field}_${lang}`] ?? o[`${field}_pl`] ?? '');
+}
+
+function localizeOptions(d: ApiOnboardingOptions): OnboardingOptions {
+  return {
+    coping_strategies: d.coping_strategies.map((s) => ({
+      code: String(s.code),
+      name: pick(s, 'name'),
+      description: pick(s, 'description'),
+      category: String(s.category),
+      duration_min: Number(s.duration_min ?? 0),
+      icon: String(s.icon ?? ''),
+    })),
+    // screens translate factor codes themselves
+    worsening_factors: d.worsening_factors.map((f) => (typeof f === 'string' ? f : String(f.code))),
+    goal_templates: d.goal_templates.map((g) => ({
+      id: Number(g.id),
+      title: pick(g, 'title'),
+      description: pick(g, 'description'),
+      category: String(g.category),
+      frequency: g.frequency as 'daily' | 'weekly',
+      target_count: Number(g.target_count ?? 1),
+      safety_note: pick(g, 'safety_note') || null,
+    })),
+  };
+}
+
 export function useOnboardingOptions(params: {
   mode?: string;
   week?: number;
@@ -66,7 +104,8 @@ export function useOnboardingOptions(params: {
   const qs = search.toString();
   return useQuery({
     queryKey: ['onboarding-options', params.mode, params.week, params.delivery_type],
-    queryFn: () => apiGet<OnboardingOptions>(`/onboarding/options${qs ? `?${qs}` : ''}`),
+    queryFn: () =>
+      apiGet<ApiOnboardingOptions>(`/onboarding/options${qs ? `?${qs}` : ''}`).then(localizeOptions),
   });
 }
 

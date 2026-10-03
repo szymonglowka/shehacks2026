@@ -13,7 +13,8 @@ export interface Forecast {
 export interface InsightCardData {
   code: 'sleep_mood' | 'goals_mood' | 'phase_mood' | 'trend' | 'streak' | 'toolkit_top';
   params: Record<string, number | string>;
-  strength: 'weak' | 'moderate' | 'strong';
+  /** API sends a 0..1 float; older mocks used labels */
+  strength: number | 'weak' | 'moderate' | 'strong';
 }
 
 export interface InsightPoint {
@@ -29,7 +30,7 @@ export interface InsightsResponse {
   phase_mood: Record<string, number> | null;
   epds_history: EpdsAssessment[];
   cards: InsightCardData[];
-  streaks: { checkins: number; goals: number };
+  streaks: Record<string, number>;
 }
 
 export interface DashboardGoal {
@@ -43,6 +44,7 @@ export interface Dashboard {
   today_checkin: CheckIn | null;
   today_goals: DashboardGoal[];
   insight: InsightCardData | null;
+  /** API returns {due, last_at}; normalized to a boolean in useDashboard */
   epds_due: boolean;
   article_of_day: {
     slug: string;
@@ -63,7 +65,15 @@ export const insightsKeys = {
 export function useInsights(range: 7 | 30 = 30) {
   return useQuery({
     queryKey: insightsKeys.insights(range),
-    queryFn: () => apiGet<InsightsResponse>(`/insights?range=${range}`),
+    queryFn: () =>
+      apiGet<InsightsResponse>(`/insights?range=${range}`).then((d) => ({
+        ...d,
+        // API history items are {date, total, risk_level}; screens read created_at
+        epds_history: (d.epds_history ?? []).map((e) => {
+          const item = e as EpdsAssessment & { date?: string };
+          return { ...item, created_at: item.created_at ?? item.date ?? '' };
+        }),
+      })),
   });
 }
 
@@ -78,6 +88,12 @@ export function useForecastTomorrow() {
 export function useDashboard() {
   return useQuery({
     queryKey: insightsKeys.dashboard,
-    queryFn: () => apiGet<Dashboard>('/dashboard'),
+    queryFn: () =>
+      apiGet<Omit<Dashboard, 'epds_due'> & { epds_due: boolean | { due: boolean } }>('/dashboard').then(
+        (d) => ({
+          ...d,
+          epds_due: typeof d.epds_due === 'object' && d.epds_due !== null ? d.epds_due.due : Boolean(d.epds_due),
+        }),
+      ),
   });
 }

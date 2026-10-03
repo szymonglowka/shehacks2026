@@ -18,5 +18,12 @@
   "invalidText": "Mum may have revoked it or created a new one. Ask her for a fresh link.",
   "loading": "Checking the list…",
   "claim": "Confirm",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "moodWord": {
+    "very_low": "very hard",
+    "low": "hard",
+    "ok": "so-so",
+    "good": "good",
+    "great": "very good"
+  }
 }

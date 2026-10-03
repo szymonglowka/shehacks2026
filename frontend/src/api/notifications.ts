@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { apiFetch } from "./client";
+import { apiFetch, apiList } from "./client";
 
 export interface AppNotification {
   id: number;
@@ -14,7 +14,7 @@ export interface AppNotification {
 export function useNotifications() {
   return useQuery({
     queryKey: ["notifications"],
-    queryFn: () => apiFetch<AppNotification[]>("/notifications"),
+    queryFn: () => apiList<AppNotification>("/notifications"),
   });
 }
 

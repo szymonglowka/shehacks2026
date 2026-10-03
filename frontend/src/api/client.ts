@@ -121,3 +121,9 @@ export const apiPatch = <T = unknown>(path: string, body?: unknown, options: Api
   api<T>(path, withBody('PATCH', body, options));
 export const apiDelete = <T = void>(path: string, options: ApiOptions = {}) =>
   api<T>(path, { ...options, method: 'DELETE' });
+
+/** Unwraps DRF pagination ({count, results}) so list screens always get an array. */
+export async function apiList<T>(path: string, options: ApiFetchOptions = {}): Promise<T[]> {
+  const data = await apiFetch<T[] | { results: T[] }>(path, options);
+  return Array.isArray(data) ? data : (data?.results ?? []);
+}

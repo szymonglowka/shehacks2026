@@ -1,4 +1,4 @@
-.PHONY: up down logs migrate makemigrations seed test lint schema shell build
+.PHONY: up down logs migrate makemigrations seed demo-night test lint schema shell build
 
 up:
 	docker compose up --build
@@ -21,6 +21,9 @@ makemigrations:
 seed:
 	-docker compose run --rm backend python manage.py seed_content
 	-docker compose run --rm backend python manage.py seed_demo
+
+demo-night:
+	docker compose run --rm backend python manage.py demo_night
 
 test:
 	docker compose run --rm backend pytest

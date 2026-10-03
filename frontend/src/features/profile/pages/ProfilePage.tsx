@@ -1,3 +1,4 @@
+import { useCycleStatus } from "@/api/tracking";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
@@ -73,10 +74,14 @@ export default function ProfilePage() {
     });
   };
 
+  // day/week numbers live in /cycle/status, not in /me
+  const cycle = useCycleStatus().data;
   const stage =
-    profile?.mode === "postpartum" && profile.postpartum_day !== null
-      ? t("stagePostpartum", { day: profile.postpartum_day, week: profile.postpartum_week })
-      : t("stageCycle", { day: profile?.cycle_day ?? "–" });
+    cycle?.mode === "postpartum"
+      ? t("stagePostpartum", { day: cycle.days_since_birth, week: cycle.postpartum_week })
+      : cycle?.mode === "cycle"
+        ? t("stageCycle", { day: cycle.cycle_day })
+        : t("stageCycle", { day: "–" });
 
   return (
     <main className="mx-auto max-w-[720px] px-4 pb-24">

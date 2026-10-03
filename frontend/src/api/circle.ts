@@ -25,7 +25,12 @@ export interface CareRequest {
   when_label: string;
   status: CareRequestStatus;
   claimed_by?: string | null;
+  /** API field name */
+  claimed_by_name?: string | null;
 }
+
+/** API sends claimed_by_name; screens read claimed_by. */
+export const withClaimedBy = (r: CareRequest): CareRequest => ({ ...r, claimed_by: r.claimed_by ?? (r.claimed_by_name || null) });
 
 export interface PublicCircle {
   mom_name: string;
@@ -74,7 +79,7 @@ export function useMutateCircleLink() {
 export function useCareRequests() {
   return useQuery<CareRequest[]>({
     queryKey: ["circle", "requests"],
-    queryFn: () => apiFetch<CareRequest[]>("/circle/requests"),
+    queryFn: () => apiFetch<CareRequest[]>("/circle/requests").then((rs) => rs.map(withClaimedBy)),
   });
 }
 
@@ -105,7 +110,7 @@ export function usePublicCircle(
   return useQuery<PublicCircle>({
     queryKey: ["circle", "public", token],
     queryFn: () =>
-      apiFetch<PublicCircle>(`/circle/public/${token}`, { auth: false }),
+      apiFetch<PublicCircle & { mood?: { color: string; label: string } | null }>(`/circle/public/${token}`, { auth: false }).then((c) => ({ ...c, mood_color: c.mood_color ?? c.mood?.color ?? null, mood_word: c.mood_word ?? c.mood?.label ?? null, requests: c.requests.map(withClaimedBy) })),
     enabled: token != null && token.length > 0,
     retry: false,
     ...options,

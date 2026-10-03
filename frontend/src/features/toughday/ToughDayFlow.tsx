@@ -421,12 +421,21 @@ export function ToughDayFlow() {
     }
   };
 
+  const close = () => (window.history.length > 1 ? navigate(-1) : navigate("/today"));
+
   return (
+    <div
+      className="otula-backdrop"
+      role="presentation"
+      onMouseDown={close}
+      onKeyDown={(e) => e.key === "Escape" && close()}
+    >
     <div
       role="dialog"
       aria-modal="true"
       aria-labelledby="toughday-title"
-      className="mx-auto w-full max-w-xl px-4 pb-24 pt-6"
+      className="otula-modal text-ink"
+      onMouseDown={(e) => e.stopPropagation()}
     >
       <div className="text-xs uppercase tracking-widest opacity-60">
         {t("eyebrow")}
@@ -575,6 +584,7 @@ export function ToughDayFlow() {
             </button>
           </section>
         ))}
+    </div>
     </div>
   );
 }

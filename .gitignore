@@ -11,3 +11,4 @@ dist/
 .vite/
 coverage/
 .DS_Store
+.claude/

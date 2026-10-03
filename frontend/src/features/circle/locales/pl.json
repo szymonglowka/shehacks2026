@@ -18,5 +18,12 @@
   "invalidText": "Mama mogła go unieważnić albo utworzyć nowy. Zapytaj ją o świeży link.",
   "loading": "Sprawdzam listę…",
   "claim": "Potwierdź",
-  "cancel": "Anuluj"
+  "cancel": "Anuluj",
+  "moodWord": {
+    "very_low": "bardzo ciężko",
+    "low": "ciężko",
+    "ok": "różnie",
+    "good": "dobrze",
+    "great": "bardzo dobrze"
+  }
 }

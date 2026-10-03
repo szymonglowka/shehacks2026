@@ -39,7 +39,11 @@ export function ForecastCard({ data }: { data?: Forecast }) {
 }
 
 function cap(s: string) {
-  return s.charAt(0).toUpperCase() + s.slice(1);
+  // rest_more -> RestMore (locale keys are camelCase)
+  return s
+    .split('_')
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join('');
 }
 
 const card: React.CSSProperties = {
