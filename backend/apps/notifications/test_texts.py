@@ -1,11 +1,11 @@
-"""Unit tests for notifications.copy (pure, no Django/DB). Run: pytest backend/apps/notifications/test_copy.py."""
+"""Unit tests for notifications.texts (pure, no Django/DB). Run: pytest backend/apps/notifications/test_texts.py."""
 
 import pytest
 
 try:  # project convention after checkpoint-0 (backend/ on sys.path)
-    from apps.notifications.copy import KINDS, LANGS, NOTIFICATION_COPY, TONES, get_copy
+    from apps.notifications.texts import KINDS, LANGS, NOTIFICATION_COPY, TONES, get_copy
 except ImportError:  # before checkpoint-0: namespace packages from repo root
-    from backend.apps.notifications.copy import (
+    from backend.apps.notifications.texts import (
         KINDS,
         LANGS,
         NOTIFICATION_COPY,

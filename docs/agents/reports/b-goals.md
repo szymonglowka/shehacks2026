@@ -16,7 +16,8 @@
   week ranges incl. C-section variants (pk 7, 24) vs vaginal variants (pk 6, 23),
   safety notes ("po konsultacji z lekarzem/fizjoterapeutką") on every
   postpartum movement/recovery template. Validated by script (fields, ranges, notes).
-- `backend/apps/notifications/copy.py` + `test_copy.py` — copy for all 5 kinds
+- `backend/apps/notifications/texts.py` + `test_texts.py` (renamed from `copy.py`:
+  local `copy.py` shadowed stdlib `copy` under pytest rootdir — integrator note) — copy for all 5 kinds
   (goal_reminder, checkin_reminder, epds_due, gentle_nudge, system) × 2 tones
   × PL/EN, `get_copy(kind, tone, lang, name)` with gentle/pl fallback and
   `ValueError` on unknown kind. Tests assert full matrix, non-diagnostic wording,
