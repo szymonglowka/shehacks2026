@@ -1,0 +1,502 @@
+[
+  {
+    "model": "goals.goaltemplate",
+    "pk": 1,
+    "fields": {
+      "title_pl": "Szklanka wody po karmieniu",
+      "title_en": "A glass of water after each feed",
+      "description_pl": "Połóż szklankę tam, gdzie karmisz. Mały nawyk, który robi różnicę przy karmieniu piersią.",
+      "description_en": "Keep a glass where you feed. A tiny habit that matters a lot while breastfeeding.",
+      "category": "nutrition",
+      "mode": "postpartum",
+      "min_week": 1,
+      "max_week": 12,
+      "delivery_types": [],
+      "frequency": "daily",
+      "target_count": 1,
+      "default_reminder_time": "09:00:00",
+      "safety_note_pl": "",
+      "safety_note_en": ""
+    }
+  },
+  {
+    "model": "goals.goaltemplate",
+    "pk": 2,
+    "fields": {
+      "title_pl": "Chwila światła dziennego",
+      "title_en": "A moment of daylight",
+      "description_pl": "Stań przy oknie albo wyjdź na balkon na kilka minut. Światło dzienne pomaga uregulować sen.",
+      "description_en": "Stand by the window or step onto the balcony for a few minutes. Daylight helps regulate sleep.",
+      "category": "rest",
+      "mode": "both",
+      "min_week": null,
+      "max_week": null,
+      "delivery_types": [],
+      "frequency": "daily",
+      "target_count": 1,
+      "default_reminder_time": "11:00:00",
+      "safety_note_pl": "",
+      "safety_note_en": ""
+    }
+  },
+  {
+    "model": "goals.goaltemplate",
+    "pk": 3,
+    "fields": {
+      "title_pl": "Krótki odpoczynek w ciągu dnia",
+      "title_en": "A short rest during the day",
+      "description_pl": "Połóż się na 15–20 minut, kiedy maluch śpi. Nie musisz zasnąć — wystarczy, że odpuścisz.",
+      "description_en": "Lie down for 15–20 minutes while the baby sleeps. You don't have to fall asleep — just let go.",
+      "category": "rest",
+      "mode": "postpartum",
+      "min_week": 1,
+      "max_week": 6,
+      "delivery_types": [],
+      "frequency": "daily",
+      "target_count": 1,
+      "default_reminder_time": "13:00:00",
+      "safety_note_pl": "",
+      "safety_note_en": ""
+    }
+  },
+  {
+    "model": "goals.goaltemplate",
+    "pk": 4,
+    "fields": {
+      "title_pl": "5 spokojnych oddechów",
+      "title_en": "5 calm breaths",
+      "description_pl": "Wdech nosem na 4, wydech ustami na 6. Rób to przy przewijaku, w kolejce, w korku.",
+      "description_en": "In through the nose for 4, out through the mouth for 6. Do it at the changing table, in a queue, in traffic.",
+      "category": "mind",
+      "mode": "both",
+      "min_week": null,
+      "max_week": null,
+      "delivery_types": [],
+      "frequency": "daily",
+      "target_count": 1,
+      "default_reminder_time": "08:00:00",
+      "safety_note_pl": "",
+      "safety_note_en": ""
+    }
+  },
+  {
+    "model": "goals.goaltemplate",
+    "pk": 5,
+    "fields": {
+      "title_pl": "Poproś o jedną rzecz",
+      "title_en": "Ask for one thing",
+      "description_pl": "Raz dziennie poproś kogoś o coś konkretnego: zakupy, godzinę snu, ciepły obiad.",
+      "description_en": "Once a day, ask someone for one concrete thing: groceries, an hour of sleep, a warm dinner.",
+      "category": "social",
+      "mode": "both",
+      "min_week": null,
+      "max_week": null,
+      "delivery_types": [],
+      "frequency": "daily",
+      "target_count": 1,
+      "default_reminder_time": "10:00:00",
+      "safety_note_pl": "",
+      "safety_note_en": ""
+    }
+  },
+  {
+    "model": "goals.goaltemplate",
+    "pk": 6,
+    "fields": {
+      "title_pl": "10-minutowy spacer",
+      "title_en": "A 10-minute walk",
+      "description_pl": "Krótki spacer w Twoim tempie, najlepiej w świetle dziennym. Bez zadyszki i bez celu sportowego.",
+      "description_en": "A short walk at your pace, ideally in daylight. No panting, no fitness goals.",
+      "category": "movement",
+      "mode": "postpartum",
+      "min_week": 2,
+      "max_week": 12,
+      "delivery_types": ["vaginal", "undisclosed"],
+      "frequency": "daily",
+      "target_count": 1,
+      "default_reminder_time": "15:00:00",
+      "safety_note_pl": "Po konsultacji z lekarzem lub fizjoterapeutką. Przerwij przy bólu, zawrotach głowy albo nasilonym krwawieniu.",
+      "safety_note_en": "After checking with your doctor or physiotherapist. Stop if you feel pain, dizziness or heavier bleeding."
+    }
+  },
+  {
+    "model": "goals.goaltemplate",
+    "pk": 7,
+    "fields": {
+      "title_pl": "Delikatny spacer po cesarskim cięciu",
+      "title_en": "A gentle walk after a C-section",
+      "description_pl": "Krótki, płaski spacer od 3. tygodnia — najpierw kilka minut wokół domu. Rana ma się goić, nie trenować.",
+      "description_en": "A short, flat walk from week 3 — start with a few minutes around the house. The wound needs healing, not training.",
+      "category": "movement",
+      "mode": "postpartum",
+      "min_week": 3,
+      "max_week": 12,
+      "delivery_types": ["cesarean"],
+      "frequency": "daily",
+      "target_count": 1,
+      "default_reminder_time": "15:00:00",
+      "safety_note_pl": "Dopiero po zgodzie lekarza. Nie dźwigaj, unikaj schodów. Niepokojące objawy z rany zgłoś od razu lekarzowi.",
+      "safety_note_en": "Only with your doctor's approval. Don't lift, avoid stairs. Report any worrying wound symptoms to your doctor right away."
+    }
+  },
+  {
+    "model": "goals.goaltemplate",
+    "pk": 8,
+    "fields": {
+      "title_pl": "Dno miednicy — podstawy",
+      "title_en": "Pelvic floor — the basics",
+      "description_pl": "Delikatne napinanie mięśni dna miednicy: 5 sekund napięcia, 10 sekund luzu, 8 powtórzeń.",
+      "description_en": "Gentle pelvic floor squeezes: 5 seconds on, 10 seconds off, 8 repetitions.",
+      "category": "recovery",
+      "mode": "postpartum",
+      "min_week": 3,
+      "max_week": 52,
+      "delivery_types": [],
+      "frequency": "daily",
+      "target_count": 1,
+      "default_reminder_time": "18:00:00",
+      "safety_note_pl": "Po konsultacji z fizjoterapeutką uroginekologiczną. Po cesarskim cięciu zwykle od 4.–6. tygodnia.",
+      "safety_note_en": "After checking with a pelvic health physiotherapist. After a C-section usually from week 4–6."
+    }
+  },
+  {
+    "model": "goals.goaltemplate",
+    "pk": 9,
+    "fields": {
+      "title_pl": "5 minut rozciągania",
+      "title_en": "5 minutes of stretching",
+      "description_pl": "Kark, barki, plecy — to, co najbardziej czuje noszenie i karmienie. Trzy razy w tygodniu wystarczy.",
+      "description_en": "Neck, shoulders, back — whatever carrying and feeding strain most. Three times a week is enough.",
+      "category": "movement",
+      "mode": "both",
+      "min_week": 4,
+      "max_week": 52,
+      "delivery_types": [],
+      "frequency": "weekly",
+      "target_count": 3,
+      "default_reminder_time": "19:00:00",
+      "safety_note_pl": "Po konsultacji z lekarzem lub fizjoterapeutką, jeśli jesteś w połogu. Ćwicz bez bólu.",
+      "safety_note_en": "After checking with your doctor or physiotherapist if you are postpartum. Exercise without pain."
+    }
+  },
+  {
+    "model": "goals.goaltemplate",
+    "pk": 10,
+    "fields": {
+      "title_pl": "Wieczorny rytuał wyciszenia",
+      "title_en": "An evening wind-down ritual",
+      "description_pl": "10 minut bez ekranu przed snem: herbata, prysznic, kartka. Sygnał dla głowy, że dzień się kończy.",
+      "description_en": "10 screen-free minutes before sleep: tea, a shower, a few pages. A signal to your mind that the day is over.",
+      "category": "rest",
+      "mode": "both",
+      "min_week": null,
+      "max_week": null,
+      "delivery_types": [],
+      "frequency": "daily",
+      "target_count": 1,
+      "default_reminder_time": "21:30:00",
+      "safety_note_pl": "",
+      "safety_note_en": ""
+    }
+  },
+  {
+    "model": "goals.goaltemplate",
+    "pk": 11,
+    "fields": {
+      "title_pl": "20-minutowy spacer",
+      "title_en": "A 20-minute walk",
+      "description_pl": "Od 6. tygodnia wydłuż spacery. Cztery razy w tygodniu to już solidna baza powrotu do formy.",
+      "description_en": "From week 6, make your walks longer. Four times a week is a solid base for getting back in shape.",
+      "category": "movement",
+      "mode": "postpartum",
+      "min_week": 6,
+      "max_week": 52,
+      "delivery_types": [],
+      "frequency": "weekly",
+      "target_count": 4,
+      "default_reminder_time": "15:00:00",
+      "safety_note_pl": "Po kontrolnej wizycie lekarskiej i zgodzie lekarza. Przerwij przy bólu lub krwawieniu.",
+      "safety_note_en": "After your check-up visit and your doctor's approval. Stop if you feel pain or bleeding."
+    }
+  },
+  {
+    "model": "goals.goaltemplate",
+    "pk": 12,
+    "fields": {
+      "title_pl": "Delikatne wzmacnianie",
+      "title_en": "Gentle strengthening",
+      "description_pl": "Krótkie ćwiczenia z masą ciała 2 razy w tygodniu: pośladki, plecy, brzuch — spokojnie i dokładnie.",
+      "description_en": "Short bodyweight sessions twice a week: glutes, back, core — slow and precise.",
+      "category": "movement",
+      "mode": "postpartum",
+      "min_week": 8,
+      "max_week": 52,
+      "delivery_types": [],
+      "frequency": "weekly",
+      "target_count": 2,
+      "default_reminder_time": "18:00:00",
+      "safety_note_pl": "Tylko po zgodzie lekarza i najlepiej po konsultacji z fizjoterapeutką. Przy rozejściu kresy białej — program pod okiem specjalistki.",
+      "safety_note_en": "Only with your doctor's approval, ideally after seeing a physiotherapist. With diastasis recti, follow a specialist-led programme."
+    }
+  },
+  {
+    "model": "goals.goaltemplate",
+    "pk": 13,
+    "fields": {
+      "title_pl": "Ruch, który lubisz",
+      "title_en": "Movement you enjoy",
+      "description_pl": "Taniec w kuchni, rower, joga — cokolwiek sprawia Ci frajdę. Dwa razy w tygodniu po 20 minut.",
+      "description_en": "Dancing in the kitchen, cycling, yoga — whatever you find fun. Twice a week, 20 minutes.",
+      "category": "movement",
+      "mode": "cycle",
+      "min_week": null,
+      "max_week": null,
+      "delivery_types": [],
+      "frequency": "weekly",
+      "target_count": 2,
+      "default_reminder_time": "18:00:00",
+      "safety_note_pl": "",
+      "safety_note_en": ""
+    }
+  },
+  {
+    "model": "goals.goaltemplate",
+    "pk": 14,
+    "fields": {
+      "title_pl": "Wieczorny reset w drugiej połowie cyklu",
+      "title_en": "An evening reset in the second half of your cycle",
+      "description_pl": "Gdy zbliża się okres, odpuść jedną rzecz z listy i zrób coś tylko dla siebie.",
+      "description_en": "As your period approaches, drop one thing from your list and do something just for yourself.",
+      "category": "selfcare",
+      "mode": "cycle",
+      "min_week": null,
+      "max_week": null,
+      "delivery_types": [],
+      "frequency": "daily",
+      "target_count": 1,
+      "default_reminder_time": "20:00:00",
+      "safety_note_pl": "",
+      "safety_note_en": ""
+    }
+  },
+  {
+    "model": "goals.goaltemplate",
+    "pk": 15,
+    "fields": {
+      "title_pl": "Pełnowartościowy posiłek w czasie okresu",
+      "title_en": "A nourishing meal during your period",
+      "description_pl": "Ciepły posiłek z żelazem i białkiem: soczewica, jajka, kasza, kakao. Bez liczenia kalorii.",
+      "description_en": "A warm meal with iron and protein: lentils, eggs, buckwheat, cocoa. No calorie counting.",
+      "category": "nutrition",
+      "mode": "cycle",
+      "min_week": null,
+      "max_week": null,
+      "delivery_types": [],
+      "frequency": "daily",
+      "target_count": 1,
+      "default_reminder_time": "12:00:00",
+      "safety_note_pl": "",
+      "safety_note_en": ""
+    }
+  },
+  {
+    "model": "goals.goaltemplate",
+    "pk": 16,
+    "fields": {
+      "title_pl": "Plan na trudniejsze dni",
+      "title_en": "A plan for harder days",
+      "description_pl": "Zapisz z wyprzedzeniem 3 rzeczy, które pomagają przy PMS: herbata, spacer, wcześniejsze spanie.",
+      "description_en": "Write down in advance 3 things that help with PMS: tea, a walk, an earlier bedtime.",
+      "category": "mind",
+      "mode": "cycle",
+      "min_week": null,
+      "max_week": null,
+      "delivery_types": [],
+      "frequency": "weekly",
+      "target_count": 1,
+      "default_reminder_time": "19:00:00",
+      "safety_note_pl": "",
+      "safety_note_en": ""
+    }
+  },
+  {
+    "model": "goals.goaltemplate",
+    "pk": 17,
+    "fields": {
+      "title_pl": "Zapisz jedną dobrą chwilę",
+      "title_en": "Write down one good moment",
+      "description_pl": "Jedno zdanie dziennie o czymś, co się udało albo ucieszyło. Wraca do Ciebie w gorszy dzień.",
+      "description_en": "One sentence a day about something that worked or made you smile. It comes back to you on a harder day.",
+      "category": "mind",
+      "mode": "both",
+      "min_week": null,
+      "max_week": null,
+      "delivery_types": [],
+      "frequency": "daily",
+      "target_count": 1,
+      "default_reminder_time": "21:00:00",
+      "safety_note_pl": "",
+      "safety_note_en": ""
+    }
+  },
+  {
+    "model": "goals.goaltemplate",
+    "pk": 18,
+    "fields": {
+      "title_pl": "Telefon do bliskiej osoby",
+      "title_en": "A call to someone close",
+      "description_pl": "Raz w tygodniu zadzwoń do kogoś, przy kim możesz być sobą. 10 minut wystarczy.",
+      "description_en": "Once a week, call someone you can be yourself around. 10 minutes is enough.",
+      "category": "social",
+      "mode": "both",
+      "min_week": null,
+      "max_week": null,
+      "delivery_types": [],
+      "frequency": "weekly",
+      "target_count": 1,
+      "default_reminder_time": "17:00:00",
+      "safety_note_pl": "",
+      "safety_note_en": ""
+    }
+  },
+  {
+    "model": "goals.goaltemplate",
+    "pk": 19,
+    "fields": {
+      "title_pl": "Warzywa w jednym posiłku",
+      "title_en": "Vegetables in one meal",
+      "description_pl": "Do jednego posiłku dziennie dorzuć garść warzyw — mrożonki też się liczą.",
+      "description_en": "Add a handful of vegetables to one meal a day — frozen ones count too.",
+      "category": "nutrition",
+      "mode": "both",
+      "min_week": null,
+      "max_week": null,
+      "delivery_types": [],
+      "frequency": "daily",
+      "target_count": 1,
+      "default_reminder_time": "12:00:00",
+      "safety_note_pl": "",
+      "safety_note_en": ""
+    }
+  },
+  {
+    "model": "goals.goaltemplate",
+    "pk": 20,
+    "fields": {
+      "title_pl": "10 minut tylko dla siebie",
+      "title_en": "10 minutes just for you",
+      "description_pl": "Kawa wypita na ciepło, rozdział książki, siedzenie bez telefonu. Codziennie, bez wyrzutów.",
+      "description_en": "Coffee drunk hot, a chapter of a book, sitting without your phone. Every day, no guilt.",
+      "category": "selfcare",
+      "mode": "both",
+      "min_week": null,
+      "max_week": null,
+      "delivery_types": [],
+      "frequency": "daily",
+      "target_count": 1,
+      "default_reminder_time": "16:00:00",
+      "safety_note_pl": "",
+      "safety_note_en": ""
+    }
+  },
+  {
+    "model": "goals.goaltemplate",
+    "pk": 21,
+    "fields": {
+      "title_pl": "Pauza bez wyrzutów",
+      "title_en": "A guilt-free pause",
+      "description_pl": "Krótka drzemka albo leżenie z zamkniętymi oczami, kiedy maluch śpi. Odpoczynek to też zadanie.",
+      "description_en": "A short nap or lying with your eyes closed while the baby sleeps. Rest counts as a task too.",
+      "category": "rest",
+      "mode": "postpartum",
+      "min_week": 1,
+      "max_week": 12,
+      "delivery_types": [],
+      "frequency": "daily",
+      "target_count": 1,
+      "default_reminder_time": "14:00:00",
+      "safety_note_pl": "",
+      "safety_note_en": ""
+    }
+  },
+  {
+    "model": "goals.goaltemplate",
+    "pk": 22,
+    "fields": {
+      "title_pl": "Jedna szczera rozmowa w tygodniu",
+      "title_en": "One honest conversation a week",
+      "description_pl": "Powiedz komuś bliskiemu, jak Ci naprawdę minął tydzień. Bez filtrów i bez „wszystko dobrze”.",
+      "description_en": "Tell someone close how your week really went. No filters, no “everything's fine”.",
+      "category": "social",
+      "mode": "both",
+      "min_week": null,
+      "max_week": null,
+      "delivery_types": [],
+      "frequency": "weekly",
+      "target_count": 1,
+      "default_reminder_time": "19:30:00",
+      "safety_note_pl": "",
+      "safety_note_en": ""
+    }
+  },
+  {
+    "model": "goals.goaltemplate",
+    "pk": 23,
+    "fields": {
+      "title_pl": "Regeneracja po porodzie naturalnym",
+      "title_en": "Recovery after a vaginal birth",
+      "description_pl": "Spokojne ćwiczenia mięśni brzucha i postawy od 6. tygodnia. Zacznij od 5 minut.",
+      "description_en": "Calm abdominal and posture exercises from week 6. Start with 5 minutes.",
+      "category": "recovery",
+      "mode": "postpartum",
+      "min_week": 6,
+      "max_week": 52,
+      "delivery_types": ["vaginal", "undisclosed"],
+      "frequency": "weekly",
+      "target_count": 3,
+      "default_reminder_time": "10:00:00",
+      "safety_note_pl": "Po kontrolnej wizycie i zgodzie lekarza. Przy nietrzymaniu moczu lub bólu — najpierw fizjoterapeutka uroginekologiczna.",
+      "safety_note_en": "After your check-up and your doctor's approval. With leaking or pain, see a pelvic health physiotherapist first."
+    }
+  },
+  {
+    "model": "goals.goaltemplate",
+    "pk": 24,
+    "fields": {
+      "title_pl": "Mobilność blizny po cesarskim cięciu",
+      "title_en": "C-section scar mobility",
+      "description_pl": "Delikatna praca z blizną i oddech przeponowy — według wskazówek fizjoterapeutki.",
+      "description_en": "Gentle scar work and diaphragmatic breathing — as instructed by your physiotherapist.",
+      "category": "recovery",
+      "mode": "postpartum",
+      "min_week": 6,
+      "max_week": 52,
+      "delivery_types": ["cesarean"],
+      "frequency": "weekly",
+      "target_count": 3,
+      "default_reminder_time": "10:00:00",
+      "safety_note_pl": "Tylko po zgodzie lekarza i instruktażu fizjoterapeutki. Zaczerwienienie, wyciek albo ból zgłoś lekarzowi.",
+      "safety_note_en": "Only with your doctor's approval and a physiotherapist's guidance. Report redness, discharge or pain to your doctor."
+    }
+  },
+  {
+    "model": "goals.goaltemplate",
+    "pk": 25,
+    "fields": {
+      "title_pl": "Śniadanie przed telefonem",
+      "title_en": "Breakfast before the phone",
+      "description_pl": "Zjedz śniadanie, zanim sięgniesz po telefon. Małe zwycięstwo nad porannym chaosem.",
+      "description_en": "Eat breakfast before reaching for your phone. A small win over morning chaos.",
+      "category": "nutrition",
+      "mode": "both",
+      "min_week": null,
+      "max_week": null,
+      "delivery_types": [],
+      "frequency": "daily",
+      "target_count": 1,
+      "default_reminder_time": "07:30:00",
+      "safety_note_pl": "",
+      "safety_note_en": ""
+    }
+  }
+]
