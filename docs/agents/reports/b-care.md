@@ -61,6 +61,16 @@ waiting for checkpoint-0.
   (circle public `share_mood`), `notifications.services.notify`
   (circle claim/done).
 
+## 2026-10-03 update 3 (frontend checkpoint-0 landed; backend still pending)
+- Main has `80ef1c4 chore(checkpoint-0): frontend skeleton`, but
+  `backend/config` and all `__init__.py`/`apps.py` are still missing —
+  backend implementation stays blocked on `platform`.
+- Synced branch with main via merge (rebase hit add/add conflicts on
+  already-upstream blobs; merge was clean). 31 passed, pushed `agent/b-care`.
+- Note for integrator: main still carries my pre-fix test files
+  (relative imports); this branch supersedes them (try/except pattern +
+  `circle/public.py` + `test_public.py`).
+
 ## Missing (post-checkpoint-0)
 Full models/views/URLs per SPEC §7 for support, circle, journal + export.py
 files + endpoint tests. Will rebase on main once checkpoint-0 lands.
