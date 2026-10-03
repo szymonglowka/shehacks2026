@@ -2,14 +2,24 @@
 
 from datetime import date, timedelta
 
-from .summary import (
-    CheckInPoint,
-    EpdsPoint,
-    epds_trend,
-    mood_sleep_summary,
-    red_flags_seen,
-    symptom_frequency,
-)
+try:  # project convention after checkpoint-0 (backend/ on sys.path)
+    from apps.journal.summary import (
+        CheckInPoint,
+        EpdsPoint,
+        epds_trend,
+        mood_sleep_summary,
+        red_flags_seen,
+        symptom_frequency,
+    )
+except ImportError:  # before checkpoint-0: namespace packages from repo root
+    from backend.apps.journal.summary import (
+        CheckInPoint,
+        EpdsPoint,
+        epds_trend,
+        mood_sleep_summary,
+        red_flags_seen,
+        symptom_frequency,
+    )
 
 DAY = timedelta(days=1)
 D0 = date(2026, 9, 1)
