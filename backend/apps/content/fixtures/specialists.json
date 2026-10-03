@@ -1,0 +1,152 @@
+[
+  {
+    "model": "content.specialist",
+    "pk": 1,
+    "fields": {
+      "name": "Anna Przykładowa",
+      "specialty": "midwife",
+      "city": "Warszawa",
+      "online": true,
+      "phone": "+48 600 100 001",
+      "website": "https://example.com/polozna-anna",
+      "description_pl": "Położna z 10-letnim doświadczeniem w opiece poporodowej. Wizyty domowe i konsultacje online. (Dane przykładowe — wpis demonstracyjny.)",
+      "description_en": "Midwife with 10 years of postpartum care experience. Home visits and online consultations. (Sample data — demo entry.)",
+      "is_sample": true
+    }
+  },
+  {
+    "model": "content.specialist",
+    "pk": 2,
+    "fields": {
+      "name": "Katarzyna Fikcyjna",
+      "specialty": "pelvic_physio",
+      "city": "Kraków",
+      "online": false,
+      "phone": "+48 600 100 002",
+      "website": "https://example.com/fizjo-katarzyna",
+      "description_pl": "Fizjoterapeutka uroginekologiczna. Prowadzi rehabilitację dna miednicy i rozejścia mięśni prostych brzucha po porodzie. (Dane przykładowe — wpis demonstracyjny.)",
+      "description_en": "Pelvic-health physiotherapist. Postpartum pelvic floor and diastasis recti rehabilitation. (Sample data — demo entry.)",
+      "is_sample": true
+    }
+  },
+  {
+    "model": "content.specialist",
+    "pk": 3,
+    "fields": {
+      "name": "Maria Testowa",
+      "specialty": "psychologist",
+      "city": "Gdańsk",
+      "online": true,
+      "phone": "+48 600 100 003",
+      "website": "https://example.com/psycholog-maria",
+      "description_pl": "Psycholożka okołoporodowa, nurt poznawczo-behawioralny. Pracuje z obniżonym nastrojem, lękiem i natrętnymi myślami po porodzie. (Dane przykładowe — wpis demonstracyjny.)",
+      "description_en": "Perinatal psychologist, cognitive-behavioural approach. Works with low mood, anxiety and intrusive thoughts after birth. (Sample data — demo entry.)",
+      "is_sample": true
+    }
+  },
+  {
+    "model": "content.specialist",
+    "pk": 4,
+    "fields": {
+      "name": "Agnieszka Wzorcowa",
+      "specialty": "psychiatrist",
+      "city": "Warszawa",
+      "online": true,
+      "phone": "+48 600 100 004",
+      "website": "https://example.com/psychiatra-agnieszka",
+      "description_pl": "Psychiatra, specjalizacja w zdrowiu psychicznym matek, doświadczenie w leczeniu zgodnym z karmieniem piersią. (Dane przykładowe — wpis demonstracyjny.)",
+      "description_en": "Psychiatrist specialising in maternal mental health, experienced in breastfeeding-compatible treatment. (Sample data — demo entry.)",
+      "is_sample": true
+    }
+  },
+  {
+    "model": "content.specialist",
+    "pk": 5,
+    "fields": {
+      "name": "Ewa Demonstracyjna",
+      "specialty": "lactation",
+      "city": "Wrocław",
+      "online": true,
+      "phone": "+48 600 100 005",
+      "website": "https://example.com/laktacja-ewa",
+      "description_pl": "Doradczyni laktacyjna. Pomoc z przystawianiem, nawałem, zastojami i powrotem do karmienia po cesarskim cięciu. (Dane przykładowe — wpis demonstracyjny.)",
+      "description_en": "Lactation consultant. Help with latch, engorgement, blocked ducts and feeding after C-section. (Sample data — demo entry.)",
+      "is_sample": true
+    }
+  },
+  {
+    "model": "content.specialist",
+    "pk": 6,
+    "fields": {
+      "name": "Zofia Modelowa",
+      "specialty": "midwife",
+      "city": "Poznań",
+      "online": false,
+      "phone": "+48 600 100 006",
+      "website": "https://example.com/polozna-zofia",
+      "description_pl": "Położna środowiskowa, patronaże noworodkowe i wsparcie w pierwszych tygodniach po porodzie. (Dane przykładowe — wpis demonstracyjny.)",
+      "description_en": "Community midwife, newborn home visits and first-weeks postpartum support. (Sample data — demo entry.)",
+      "is_sample": true
+    }
+  },
+  {
+    "model": "content.specialist",
+    "pk": 7,
+    "fields": {
+      "name": "Magdalena Próbna",
+      "specialty": "psychologist",
+      "city": "Online",
+      "online": true,
+      "phone": "+48 600 100 007",
+      "website": "https://example.com/psycholog-magdalena",
+      "description_pl": "Psycholożka, terapia online dla mam w połogu i kobiet z PMS/PMDD. Sesje wieczorne. (Dane przykładowe — wpis demonstracyjny.)",
+      "description_en": "Psychologist, online therapy for postpartum mothers and women with PMS/PMDD. Evening sessions. (Sample data — demo entry.)",
+      "is_sample": true
+    }
+  },
+  {
+    "model": "content.specialist",
+    "pk": 8,
+    "fields": {
+      "name": "Joanna Ćwiczebna",
+      "specialty": "pelvic_physio",
+      "city": "Warszawa",
+      "online": true,
+      "phone": "+48 600 100 008",
+      "website": "https://example.com/fizjo-joanna",
+      "description_pl": "Fizjoterapeutka uroginekologiczna, konsultacje stacjonarne i online. Blizna po cesarskim cięciu, powrót do sportu. (Dane przykładowe — wpis demonstracyjny.)",
+      "description_en": "Pelvic-health physiotherapist, in-person and online. C-section scar care, return to sport. (Sample data — demo entry.)",
+      "is_sample": true
+    }
+  },
+  {
+    "model": "content.specialist",
+    "pk": 9,
+    "fields": {
+      "name": "Natalia Poglądowa",
+      "specialty": "lactation",
+      "city": "Kraków",
+      "online": false,
+      "phone": "+48 600 100 009",
+      "website": "https://example.com/laktacja-natalia",
+      "description_pl": "Doradczyni laktacyjna, wizyty domowe. Odciąganie, bank mleka, rozszerzanie diety. (Dane przykładowe — wpis demonstracyjny.)",
+      "description_en": "Lactation consultant, home visits. Pumping, milk bank, starting solids. (Sample data — demo entry.)",
+      "is_sample": true
+    }
+  },
+  {
+    "model": "content.specialist",
+    "pk": 10,
+    "fields": {
+      "name": "Paulina Ilustracyjna",
+      "specialty": "psychiatrist",
+      "city": "Online",
+      "online": true,
+      "phone": "+48 600 100 010",
+      "website": "https://example.com/psychiatra-paulina",
+      "description_pl": "Psychiatra dziecięco-młodzieżowa i okołoporodowa, konsultacje online w całej Polsce. (Dane przykładowe — wpis demonstracyjny.)",
+      "description_en": "Perinatal psychiatrist, online consultations across Poland. (Sample data — demo entry.)",
+      "is_sample": true
+    }
+  }
+]
