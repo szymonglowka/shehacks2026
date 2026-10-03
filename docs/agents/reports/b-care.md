@@ -34,6 +34,20 @@ waiting for checkpoint-0.
   is a thin queryset→dataclass translation layer. 5 tests in `test_summary.py`.
 - 26 pure-logic tests total, all passing (stdlib harness, pytest absent here).
 
+## 2026-10-03 update (main merged 1st commit; checkpoint-0 still pending)
+- Rebased onto `origin/main` (integrator merged `5383418`).
+- All 3 test files now use the try/except import pattern
+  (`apps.<app>...` → `backend.apps.<app>...` fallback, per integrator note);
+  **31 passed with real pytest 8.3.5, no shim needed**.
+- New: `backend/apps/circle/public.py` + `test_public.py` — pure
+  allowlist builder for `GET /circle/public/{token}` (SPEC §6.8): only
+  `{id, title, category, when_label, status, claimed_by_name}` per request,
+  cancelled hidden, `mood_color` only when `share_mood`; tests prove
+  notes/symptoms/EPDS-shaped extras never leak.
+- Still blocked on checkpoint-0: Django models, endpoints, selectors,
+  `export.py`, endpoint-level tests (throttling, isolation). No skeleton
+  files created.
+
 ## Missing (post-checkpoint-0)
 Full models/views/URLs per SPEC §7 for support, circle, journal + export.py
 files + endpoint tests. Will rebase on main once checkpoint-0 lands.

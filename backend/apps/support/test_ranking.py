@@ -4,13 +4,22 @@ import math
 
 import pytest
 
-from .ranking import (
-    RankedStrategy,
-    apply_feedback,
-    feedback_value,
-    rank_strategies,
-    strategy_score,
-)
+try:  # project convention after checkpoint-0 (backend/ on sys.path)
+    from apps.support.ranking import (
+        RankedStrategy,
+        apply_feedback,
+        feedback_value,
+        rank_strategies,
+        strategy_score,
+    )
+except ImportError:  # before checkpoint-0: namespace packages from repo root
+    from backend.apps.support.ranking import (
+        RankedStrategy,
+        apply_feedback,
+        feedback_value,
+        rank_strategies,
+        strategy_score,
+    )
 
 
 def test_prior_only_order_follows_survey():

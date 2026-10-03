@@ -3,12 +3,20 @@
 import json
 from pathlib import Path
 
-from .messages import (
-    build_contact_message,
-    normalize_phone_for_whatsapp,
-    pick_template,
-    render_text,
-)
+try:  # project convention after checkpoint-0 (backend/ on sys.path)
+    from apps.circle.messages import (
+        build_contact_message,
+        normalize_phone_for_whatsapp,
+        pick_template,
+        render_text,
+    )
+except ImportError:  # before checkpoint-0: namespace packages from repo root
+    from backend.apps.circle.messages import (
+        build_contact_message,
+        normalize_phone_for_whatsapp,
+        pick_template,
+        render_text,
+    )
 
 FIXTURE = json.loads(
     (Path(__file__).parent / "fixtures" / "message_templates.json").read_text()
