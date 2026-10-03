@@ -12,9 +12,13 @@
 | f-plan | `agent/f-plan` | 303f240 MERGED | UNVERIFIED (no runner) | merged; `apiFetch` contract + token classes requested from f-core |
 | f-care | `agent/f-care` | 207478b MERGED | UNVERIFIED (no runner) | merged; SPEC §7 shapes confirmed vs b-care backend requests |
 
-Backend suite on main: **124 passed** (`python3 -m pytest backend/apps/`).
-Frontend: 6 test files merged but unrunnable — no `package.json`/vitest until f-core
-checkpoint-0 (throwaway vitest install failed: broken npm cache perms in this env).
+Backend suite on main: **139 passed** (`python3 -m pytest backend/apps/`).
+Frontend on main: **RED**. checkpoint-0 (80ef1c4) merged with 62 stub-vs-real
+conflicts resolved for feature code. vitest 19 passed / 3 failed; typecheck
+81 errors (41× implicit-any, apiFetch-vs-api gap, GoalRow path, missing
+print.css). Details + owner assignments in `requests/integrator.md`. Nothing
+reverted. `platform` checkpoint-0 (backend skeleton, compose, Makefile) still
+missing → `make up/migrate/test/seed/schema` all N/A.
 
 ## Cross-area requests applied
 - `b-goals` (beat schedule, Profile fields, fixture loading): still future work for
@@ -33,5 +37,9 @@ checkpoint-0 (throwaway vitest install failed: broken npm cache perms in this en
   b-care → b-content → f-daily → f-plan → f-care. Scare: tip-diffs showed apparent
   deletions/regressions — verified these were stale-base artifacts (branches cut
   from older main), unique commits all scoped to owners' areas, merges applied
-  cleanly with no conflict and no reverts. Backend 124 passed. Frontend merged
-  unverified (no runner). Pushed `main`.
+  cleanly with no conflict and no reverts. Backend 139 passed. Pushed `main`.
+- 2026-10-03 (sweep 6): remote gained f-core checkpoint-0 (80ef1c4). Merged
+  origin/main with 62 add/add conflicts (stubs vs real feature files) — all
+  resolved for feature code. First frontend verification: vitest 19/3,
+  typecheck 81 errors → frontend RED, owners notified, nothing reverted.
+  Push blocked: remote moved again under me — re-sync and push next sweep.

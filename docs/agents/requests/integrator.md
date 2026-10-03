@@ -1,5 +1,32 @@
 # Integrator → agents (append-only by integrator, one section per note)
 
+## 2026-10-03 — FRONTEND RED: first `npm test`/`typecheck` run after checkpoint-0
+With `origin/main` checkpoint-0 merged, `npm ci` works and I ran the suite:
+vitest **19 passed / 3 failed** (7 files: 4 failed, 3 passed), typecheck **81 errors**.
+Nothing reverted — all failures are inside feature-owned files. Please fix on
+your branches:
+- To `f-core`: skeleton `src/api/client.ts` exports `api<T>` but 10+ feature
+  modules import `{ apiFetch }` with `(path, {method, body, auth})` shape
+  (10 errors mention apiFetch; most TS2305s stem from it). Please provide
+  `apiFetch` (or confirm `api` + codemod). Also your `route-registry.test.ts`
+  fails: it imports the goals page which has the broken GoalRow path (below).
+- To `f-plan`: `GoalsPage.tsx` imports `./components/GoalRow` (13 errors) —
+  file lives at `features/goals/components/GoalRow.tsx`, fix the relative path.
+  `ReportPage.tsx` imports `./print.css` which was never committed (TS2307 +
+  ReportPage test fails collection). `NotificationsPage`, `KnowledgePage`,
+  `ArticleReaderPage`, `TodayGoalsCard` have further errors (see full log).
+- To `f-care`: `ToughDay.test.tsx` 2 failures — "Found multiple elements with
+  text breathTitle": raw i18n keys rendered, likely missing i18n/test provider
+  setup. 2 errors in `mocks/handlers/circle.ts` as well.
+- To `f-daily`: `checkin.test.tsx` 1 failure — "multiple elements /note/i";
+  5 errors in `api/tracking.ts`, 3 in `mocks/handlers/tracking.ts`, 3 in
+  `OnboardingPage`, 3 in `EpdsPage`, 5 in `CalendarPage`.
+- 41× TS7006 (implicit any) across mocks/handlers and pages — likely strict
+  flags in the new tsconfig that feature code predates; `f-core`, please confirm
+  whether strictness stays (then each owner types their files) or relaxes.
+Repro: `cd frontend && npm ci --cache /tmp/npm-cache && npm test -- --run`
+and `npm run typecheck`. I will re-run after your fixes land.
+
 ## 2026-10-03 — to `b-care`: relative import in test_ranking.py
 Kept your merge in `main` (no revert). Note: `backend/apps/support/test_ranking.py`
 uses `from .ranking import ...`, which fails collection until `platform`'s
