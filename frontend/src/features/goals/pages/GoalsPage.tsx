@@ -27,7 +27,7 @@ export default function GoalsPage() {
   return (
     <main className="mx-auto max-w-[1080px] px-4 pb-24">
       <header className="pt-6">
-        <p className="text-[11px] font-bold uppercase tracking-[1.5px] text-forest">{t("title")}</p>
+        <p className="text-[11px] font-bold uppercase tracking-[1.5px] text-forest">{t("eyebrow")}</p>
         <h1 className="font-serif text-[clamp(38px,4vw,53px)] leading-[1.06] tracking-[-1.2px] text-ink">
           {t("title")}
         </h1>
@@ -36,6 +36,7 @@ export default function GoalsPage() {
             {t("weekCount", { done: weekDone, total: weekTotal })}
           </p>
         )}
+        {weekTotal > 0 && <p className="mt-1 text-[13px] text-muted">{t("weekHint")}</p>}
       </header>
 
       {isLoading && (

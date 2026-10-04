@@ -1,11 +1,14 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ArrowRight, Check } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useDashboard } from '../../../api/insights';
 import { useCycleStatus } from '../../../api/tracking';
 import { ForecastCard } from '../../insights/components/ForecastCard';
 import { InsightCard } from '../../insights/components/InsightCard';
 import { EpdsDueCard } from '../../epds/components/EpdsDueCard';
+import { TodayGoalsCard } from '../../goals';
+import { WinsJarCard } from '../../wins';
+import { TopStrategiesCards } from '../../support';
 
 /**
  * NOTE(f-daily): TopStrategiesCards (features/support), TodayGoalsCard
@@ -14,77 +17,8 @@ import { EpdsDueCard } from '../../epds/components/EpdsDueCard';
  * /dashboard data; the integrator swaps them for the real widgets.
  * Logged in docs/agents/requests/f-daily.md.
  */
-function GoalsFallback({ goals }: { goals: Array<{ id: number; title: string; done_today: boolean }> }) {
-  const { t } = useTranslation('today');
-  const done = goals.filter((g) => g.done_today).length;
-  return (
-    <section aria-label="today-goals" style={sideCard}>
-      <div style={sideHead}>
-        <h2 style={sideTitle}>{t('goalsToday')}</h2>
-        <span style={muted}>{t('goalsDoneOf', { done, total: goals.length })}</span>
-      </div>
-      <div style={{ display: 'grid', gap: 8 }}>
-        {goals.map((g) => (
-          <div key={g.id} style={goalRow}>
-            <span style={g.done_today ? checkDone : checkTodo}>
-              {g.done_today && <Check size={15} strokeWidth={2.2} />}
-            </span>
-            <strong style={{ fontSize: 14 }}>{g.title}</strong>
-          </div>
-        ))}
-      </div>
-      <div style={bar}>
-        <span style={{ width: goals.length ? `${(done / goals.length) * 100}%` : 0 }} />
-      </div>
-      <Link to="/goals" style={link}>
-        {t('seeAll')} <ArrowRight size={16} strokeWidth={1.8} />
-      </Link>
-    </section>
-  );
-}
 
-function WinsFallback() {
-  const { t } = useTranslation('today');
-  return (
-    <section aria-label="wins" style={sideCard}>
-      <h2 style={sideTitle}>Słoik wygranych</h2>
-      <p style={muted}>Drobne rzeczy też się liczą.</p>
-      <Link to="/support" style={link}>
-        {t('winsAdd')} <ArrowRight size={16} strokeWidth={1.8} />
-      </Link>
-    </section>
-  );
-}
 
-function StrategiesFallback() {
-  const { t } = useTranslation('today');
-  return (
-    <div style={recGrid}>
-      <article style={{ ...recCard, borderColor: 'var(--forest, #3f6959)' }}>
-        <p style={eyebrow}>{t('bestMatch')}</p>
-        <h3 style={recTitle}>10 minut odpoczynku bez telefonu</h3>
-        <p style={recBody}>Ta strategia pomagała Ci w 4 z 5 trudniejszych dni.</p>
-        <div style={recFoot}>
-          <span style={muted}>10 min</span>
-          <Link to="/support" aria-label="open" style={roundBtn}>
-            <ArrowRight size={18} strokeWidth={1.8} />
-          </Link>
-        </div>
-      </article>
-      <article style={recCard}>
-        <p style={eyebrow}>Delikatny ruch</p>
-        <h3 style={recTitle}>Krótki spacer w Twoim tempie</h3>
-        <p style={recBody}>Świeże powietrze może pomóc rozluźnić ciało i myśli.</p>
-        <div style={recFoot}>
-          <span style={muted}>5–15 min</span>
-          <Link to="/support" aria-label="open" style={roundBtn}>
-            <ArrowRight size={18} strokeWidth={1.8} />
-          </Link>
-        </div>
-      </article>
-    </div>
-  );
-}
 
 function greetingKey(hour: number) {
   if (hour < 12) return 'greetingMorning';
@@ -196,16 +130,16 @@ export default function TodayPage() {
                 {t('seeAll')} <ArrowRight size={16} strokeWidth={1.8} />
               </Link>
             </div>
-            <StrategiesFallback />
+            <TopStrategiesCards />
           </section>
 
           <InsightCard data={d?.insight} />
         </div>
 
         <aside style={{ display: 'grid', gap: 16, alignContent: 'start' }}>
-          <GoalsFallback goals={d?.today_goals ?? []} />
+          <TodayGoalsCard />
           <EpdsDueCard />
-          <WinsFallback />
+          <WinsJarCard />
           {d?.article_of_day && (
             <section style={sideCard}>
               <p style={muted}>{t('minRead', { n: d.article_of_day.reading_minutes })}</p>
@@ -234,7 +168,7 @@ const eyebrow: React.CSSProperties = {
   fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1.5,
   color: 'var(--forest, #3f6959)', margin: 0,
 };
-const eyebrowLight: React.CSSProperties = { ...eyebrow, color: 'var(--peach-soft, #f5e1d6)' };
+const eyebrowLight: React.CSSProperties = { ...eyebrow, color: 'var(--hero-eyebrow)' };
 const muted: React.CSSProperties = { fontSize: 13, color: 'var(--muted, #718079)', margin: 0 };
 const stagePill: React.CSSProperties = {
   display: 'flex', gap: 10, alignItems: 'center', background: 'var(--paper, #fffdf9)',
@@ -252,16 +186,16 @@ const stageNum: React.CSSProperties = {
   display: 'grid', placeItems: 'center', color: 'var(--forest-deep, #315648)',
 };
 const hero: React.CSSProperties = {
-  background: 'var(--forest, #3f6959)', color: '#fff', borderRadius: 28,
+  background: 'var(--hero-bg)', color: 'var(--hero-ink)', border: '1px solid var(--line)', borderRadius: 28,
   padding: 28, boxShadow: '0 18px 50px #374c4214',
 };
-const heroDone: React.CSSProperties = { ...hero, background: 'var(--forest-deep, #315648)' };
+const heroDone: React.CSSProperties = { ...hero, background: 'var(--hero-bg-done)' };
 const duration: React.CSSProperties = { fontSize: 12, opacity: 0.85, margin: '0 0 8px' };
 const heroTitle: React.CSSProperties = { fontFamily: 'Newsreader, serif', fontSize: 27, margin: '0 0 8px' };
 const heroBody: React.CSSProperties = { fontSize: 14, lineHeight: 1.55, margin: '0 0 16px', opacity: 0.95 };
 const primaryLink: React.CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 8, minHeight: 46,
-  background: 'var(--peach-soft, #f5e1d6)', color: '#684b3d', fontWeight: 700,
+  background: 'var(--hero-btn-bg)', color: 'var(--hero-btn-ink)', fontWeight: 700,
   borderRadius: 14, padding: '0 22px', textDecoration: 'none', fontSize: 15,
 };
 const peachLink: React.CSSProperties = { ...primaryLink, marginTop: 8 };
@@ -270,32 +204,8 @@ const link: React.CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 14,
   fontWeight: 600, color: 'var(--forest, #3f6959)',
 };
-const recGrid: React.CSSProperties = { display: 'grid', gap: 12, gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))' };
-const recCard: React.CSSProperties = {
-  background: 'var(--paper, #fffdf9)', border: '1px solid var(--line, #e5e7df)',
-  borderRadius: 20, padding: 18,
-};
 const recTitle: React.CSSProperties = { fontFamily: 'Newsreader, serif', fontSize: 21, margin: '4px 0', color: 'var(--ink, #25342f)' };
-const recBody: React.CSSProperties = { fontSize: 13, color: 'var(--ink, #25342f)', margin: '0 0 12px' };
-const recFoot: React.CSSProperties = { display: 'flex', justifyContent: 'space-between', alignItems: 'center' };
-const roundBtn: React.CSSProperties = {
-  display: 'grid', placeItems: 'center', width: 44, height: 44, borderRadius: '50%',
-  background: 'var(--forest, #3f6959)', color: '#fff', textDecoration: 'none',
-};
 const sideCard: React.CSSProperties = {
   background: 'var(--paper, #fffdf9)', border: '1px solid var(--line, #e5e7df)',
   borderRadius: 20, padding: 18,
-};
-const sideHead: React.CSSProperties = { display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 10 };
-const sideTitle: React.CSSProperties = { fontFamily: 'Newsreader, serif', fontSize: 21, margin: 0, color: 'var(--ink, #25342f)' };
-const goalRow: React.CSSProperties = { display: 'flex', gap: 10, alignItems: 'center' };
-const checkDone: React.CSSProperties = {
-  display: 'grid', placeItems: 'center', width: 28, height: 28, borderRadius: '50%',
-  background: 'var(--forest, #3f6959)', color: '#fff',
-};
-const checkTodo: React.CSSProperties = {
-  width: 28, height: 28, borderRadius: '50%', border: '2px solid var(--line, #e5e7df)',
-};
-const bar: React.CSSProperties = {
-  height: 8, borderRadius: 999, background: 'var(--sage-light, #f1f5f0)', marginTop: 12, overflow: 'hidden',
 };

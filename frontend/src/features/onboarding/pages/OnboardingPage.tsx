@@ -262,7 +262,7 @@ export default function OnboardingPage() {
                     aria-pressed={worsening.includes(f)}
                     style={worsening.includes(f) ? pillOn : pill}
                   >
-                    {f}
+                    {options?.worsening_labels?.[f] ?? f}
                   </button>
                 ))}
               </div>

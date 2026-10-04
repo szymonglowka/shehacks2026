@@ -262,10 +262,10 @@ function BottomNav() {
   const location = useLocation();
   const navigate = useNavigate();
   const items = [
-    { to: '/today', key: 'today' },
-    { to: '/calendar', key: 'calendar' },
-    { to: '/goals', key: 'goals' },
-    { to: '/support', key: 'support' },
+    { to: '/today', key: 'today', icon: 'home' },
+    { to: '/calendar', key: 'calendar', icon: 'calendar' },
+    { to: '/goals', key: 'goals', icon: 'target' },
+    { to: '/support', key: 'support', icon: 'heart' },
   ];
   return (
     <nav
@@ -282,7 +282,7 @@ function BottomNav() {
             }`
           }
         >
-          <NavIcon icon={item.key === 'today' ? 'home' : item.key} size={21} />
+          <NavIcon icon={item.icon} size={21} />
           <span>{t(`nav.${item.key}`)}</span>
         </NavLink>
       ))}
@@ -306,7 +306,7 @@ function BottomNav() {
             }`
           }
         >
-          <NavIcon icon={item.key} size={21} />
+          <NavIcon icon={item.icon} size={21} />
           <span>{t(`nav.${item.key}`)}</span>
         </NavLink>
       ))}

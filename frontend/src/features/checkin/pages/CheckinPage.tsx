@@ -456,7 +456,7 @@ const pill: React.CSSProperties = {
   background: 'var(--paper, #fffdf9)', fontSize: 14, cursor: 'pointer', color: 'var(--ink, #25342f)',
 };
 const pillSm: React.CSSProperties = { ...pill, minWidth: 44, padding: 0 };
-const pillOn: React.CSSProperties = { ...pill, background: 'var(--forest, #3f6959)', borderColor: 'var(--forest, #3f6959)', color: '#fff', fontWeight: 600 };
+const pillOn: React.CSSProperties = { ...pill, background: 'var(--forest, #3f6959)', borderColor: 'var(--forest, #3f6959)', color: 'var(--on-forest)', fontWeight: 600 };
 const painGrid: React.CSSProperties = { display: 'flex', gap: 6, flexWrap: 'wrap' };
 const flagOff: React.CSSProperties = { ...pill, borderColor: '#e0c4b8' };
 const flagOn: React.CSSProperties = { ...pillOn, background: '#b4533c', borderColor: '#b4533c' };
@@ -489,7 +489,7 @@ const checkRow: React.CSSProperties = { display: 'flex', gap: 8, alignItems: 'ce
 const nav: React.CSSProperties = { display: 'flex', gap: 10, justifyContent: 'flex-end', marginTop: 20 };
 const primary: React.CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 8, minHeight: 46, padding: '0 24px',
-  background: 'var(--forest, #3f6959)', color: '#fff', border: 'none', borderRadius: 14,
+  background: 'var(--forest, #3f6959)', color: 'var(--on-forest)', border: 'none', borderRadius: 14,
   fontSize: 15, fontWeight: 600, cursor: 'pointer',
 };
 const ghost: React.CSSProperties = {

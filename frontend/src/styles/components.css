@@ -257,3 +257,11 @@
     animation: none;
   }
 }
+
+/* Horizontal carousels: swipe, no OS scrollbar (Windows shows a bright bar) */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

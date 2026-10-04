@@ -141,7 +141,7 @@ const card: React.CSSProperties = {
 const seg: React.CSSProperties = { display: 'inline-flex', background: 'var(--sage-light, #f1f5f0)', borderRadius: 999, padding: 4, gap: 4 };
 const segOn: React.CSSProperties = {
   border: 'none', borderRadius: 999, padding: '10px 20px', minHeight: 44,
-  background: 'var(--forest, #3f6959)', color: '#fff', fontWeight: 600, cursor: 'pointer',
+  background: 'var(--forest, #3f6959)', color: 'var(--on-forest)', fontWeight: 600, cursor: 'pointer',
 };
 const segOff: React.CSSProperties = {
   border: 'none', borderRadius: 999, padding: '10px 20px', minHeight: 44,
@@ -162,5 +162,5 @@ const barTrack: React.CSSProperties = { height: 10, borderRadius: 999, backgroun
 const barFill: React.CSSProperties = { display: 'block', height: '100%', background: 'var(--forest, #3f6959)', borderRadius: 999 };
 const cta: React.CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 8, minHeight: 46, padding: '0 24px',
-  background: 'var(--forest, #3f6959)', color: '#fff', borderRadius: 14, fontWeight: 600, textDecoration: 'none',
+  background: 'var(--forest, #3f6959)', color: 'var(--on-forest)', borderRadius: 14, fontWeight: 600, textDecoration: 'none',
 };

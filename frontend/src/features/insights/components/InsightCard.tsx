@@ -73,7 +73,7 @@ const wrap: React.CSSProperties = {
   display: 'flex',
   gap: 12,
   alignItems: 'flex-start',
-  background: '#f1eff5',
+  background: 'var(--card-lav-bg)',
   border: '1px solid var(--line, #e5e7df)',
   borderRadius: 20,
   padding: 16,

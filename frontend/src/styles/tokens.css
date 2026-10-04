@@ -31,6 +31,13 @@
   --mood-3: #e8d9b5;
   --mood-4: #bcd3c2;
   --mood-5: #7fa891;
+  /* Hero cards (check-in / tough day): green by day, calm dark card at night (no big amber blocks) */
+  --hero-bg: #3f6959;
+  --hero-bg-done: #315648;
+  --hero-ink: #ffffff;
+  --hero-eyebrow: #f5e1d6;
+  --hero-btn-bg: #f5e1d6;
+  --hero-btn-ink: #684b3d;
 }
 
 [data-theme='night'] {
@@ -59,6 +66,12 @@
   --shadow: 0 18px 50px #00000055;
   --modal-shadow: 0 30px 90px #00000088;
   --backdrop: #000000b8;
+  --hero-bg: #2c2922;
+  --hero-bg-done: #2c2922;
+  --hero-ink: #f3e6d3;
+  --hero-eyebrow: #b8a88f;
+  --hero-btn-bg: #e0a46b;
+  --hero-btn-ink: #1b1a17;
 }
 
 * {

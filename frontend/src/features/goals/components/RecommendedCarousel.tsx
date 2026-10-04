@@ -26,19 +26,19 @@ export function RecommendedCarousel({ items }: { items: GoalTemplate[] }) {
       <h2 id="recommended-heading" className="font-serif text-[27px] text-ink">
         {t("recommendedTitle")}
       </h2>
-      <div className="-mx-4 mt-3 flex snap-x gap-3 overflow-x-auto px-4 pb-2">
+      <div className="-mx-4 mt-3 no-scrollbar flex snap-x gap-3 overflow-x-auto px-4 pb-2">
         {items.map((tpl) => {
           const reason = templateReason(tpl, (key, vars) => t(key, vars));
           return (
             <article
               key={tpl.id}
-              className="flex w-[260px] shrink-0 snap-start flex-col rounded-[20px] bg-[#f1eff5] p-4"
+              className="flex w-[260px] shrink-0 snap-start flex-col rounded-[20px] bg-[var(--card-lav-bg)] p-4"
             >
               <div className="flex h-11 w-11 items-center justify-center rounded-[13px] bg-lavender text-ink">
                 <Sprout size={22} strokeWidth={1.8} />
               </div>
               <h3 className="mt-2 line-clamp-2 font-serif text-[21px] leading-tight text-ink">{tpl.title}</h3>
-              {reason && <p className="mt-1 text-[12px] font-medium text-[#684b3d]">{reason}</p>}
+              {reason && <p className="mt-1 text-[12px] font-medium text-[var(--peach-ink)]">{reason}</p>}
               <p className="mt-1 line-clamp-3 text-[12px] text-muted">{tpl.description}</p>
               {tpl.safety_note && <p className="mt-1 text-[11px] italic text-muted">{tpl.safety_note}</p>}
               <button

@@ -67,7 +67,8 @@ test.describe.serial('demo script (Marta, postpartum)', () => {
     await expect(
       page.getByRole('heading', { name: 'Co teraz może pomóc?' }),
     ).toBeVisible();
-    const strategies = page.locator('ul li button');
+    // scope to the dialog: the Today page underneath has its own list buttons (goals)
+    const strategies = page.getByRole('dialog').locator('ul li button');
     if ((await strategies.count()) > 0) {
       await strategies.first().click();
       await page.getByRole('button', { name: 'Zapisz i zamknij' }).click();

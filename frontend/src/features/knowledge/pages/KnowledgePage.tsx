@@ -157,7 +157,7 @@ function SpecialistsTab({
 
   return (
     <div className="mt-6">
-      <p className="rounded-[14px] bg-[#f5e1d6] px-4 py-3 text-[13px] text-[#684b3d]">{t("sampleNote")}</p>
+      <p className="rounded-[14px] bg-[#f5e1d6] px-4 py-3 text-[13px] text-[var(--peach-ink)]">{t("sampleNote")}</p>
       <div className="mt-3 flex flex-wrap gap-2" aria-label={t("specialtyFilter")}>
         <button
           onClick={() => onSpecialty(null)}
@@ -195,7 +195,7 @@ function SpecialistsTab({
                 </p>
               </div>
               {s.is_sample && (
-                <span className="shrink-0 rounded-full bg-peach-soft px-3 py-1 text-[11px] font-semibold text-[#684b3d]">
+                <span className="shrink-0 rounded-full bg-peach-soft px-3 py-1 text-[11px] font-semibold text-[var(--peach-ink)]">
                   {t("sampleBadge")}
                 </span>
               )}

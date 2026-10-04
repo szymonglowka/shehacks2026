@@ -9,7 +9,7 @@ export function EpdsDueCard() {
   if (isLoading) {
     return (
       <section aria-busy="true" style={wrap}>
-        <div style={{ height: 18, width: '60%', background: '#e7e2f2', borderRadius: 8 }} />
+        <div style={{ height: 18, width: '60%', background: 'var(--lavender)', borderRadius: 8 }} />
       </section>
     );
   }
@@ -31,7 +31,7 @@ export function EpdsDueCard() {
 }
 
 const wrap: React.CSSProperties = {
-  background: '#f1eff5',
+  background: 'var(--card-lav-bg)',
   border: '1px solid var(--line, #e5e7df)',
   borderRadius: 20,
   padding: 18,

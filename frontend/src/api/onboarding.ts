@@ -24,6 +24,8 @@ export interface GoalTemplateOption {
 export interface OnboardingOptions {
   coping_strategies: CopingStrategyOption[];
   worsening_factors: string[];
+  /** code -> label in the current language (from the API's label_pl/label_en) */
+  worsening_labels: Record<string, string>;
   goal_templates: GoalTemplateOption[];
 }
 
@@ -78,8 +80,12 @@ function localizeOptions(d: ApiOnboardingOptions): OnboardingOptions {
       duration_min: Number(s.duration_min ?? 0),
       icon: String(s.icon ?? ''),
     })),
-    // screens translate factor codes themselves
     worsening_factors: d.worsening_factors.map((f) => (typeof f === 'string' ? f : String(f.code))),
+    worsening_labels: Object.fromEntries(
+      d.worsening_factors.map((f) =>
+        typeof f === 'string' ? [f, f] : [String(f.code), pick(f, 'label') || String(f.code)],
+      ),
+    ),
     goal_templates: d.goal_templates.map((g) => ({
       id: Number(g.id),
       title: pick(g, 'title'),

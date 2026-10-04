@@ -1,6 +1,6 @@
 {
   "title": "Małe kroki",
-  "weekCount": "{{done}} z {{total}} w tym tygodniu",
+  "weekCount": "{{done}} z {{total}} zaplanowanych kroków w tym tygodniu",
   "emptyTitle": "Jeden mały cel wystarczy",
   "emptyBody": "Może szklanka wody rano? Małe rzeczy też się liczą.",
   "addGoal": "Nowy cel",
@@ -54,6 +54,16 @@
     "recovery": "Powrót do siebie",
     "selfcare": "Dla siebie"
   },
-  "weekdaysShort": ["pon.", "wt.", "śr.", "czw.", "pt.", "sob.", "niedz."],
-  "safetyNote": "Po konsultacji z lekarzem / fizjoterapeutką"
+  "weekdaysShort": [
+    "pon.",
+    "wt.",
+    "śr.",
+    "czw.",
+    "pt.",
+    "sob.",
+    "niedz."
+  ],
+  "safetyNote": "Po konsultacji z lekarzem / fizjoterapeutką",
+  "eyebrow": "Twoje cele",
+  "weekHint": "Każdy cel jest opcjonalny. Liczymy to, co sama sobie zaplanowałaś, a nie normę do wyrobienia."
 }

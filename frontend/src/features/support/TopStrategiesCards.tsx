@@ -34,7 +34,7 @@ export function TopStrategiesCards() {
           key={s.code}
           className={
             i === 0
-              ? "rounded-3xl bg-forest p-5 text-cream"
+              ? "rounded-3xl border border-[var(--card-sage-border)] bg-[var(--card-sage-bg)] p-5 text-ink"
               : "rounded-3xl bg-paper p-5"
           }
         >
@@ -58,7 +58,7 @@ export function TopStrategiesCards() {
             </span>
             <Link
               to="/tough-day"
-              className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-cream/15 px-4 py-2 text-sm"
+              className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-paper px-4 py-2 text-sm text-forest"
               aria-label={`${t("start")}: ${s.title}`}
             >
               {t("start")} →

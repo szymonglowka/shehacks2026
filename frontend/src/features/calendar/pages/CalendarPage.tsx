@@ -174,7 +174,7 @@ const seg: React.CSSProperties = {
 };
 const segOn: React.CSSProperties = {
   border: 'none', borderRadius: 999, padding: '10px 22px', minHeight: 44,
-  background: 'var(--forest, #3f6959)', color: '#fff', fontWeight: 600, fontSize: 14, cursor: 'pointer',
+  background: 'var(--forest, #3f6959)', color: 'var(--on-forest)', fontWeight: 600, fontSize: 14, cursor: 'pointer',
 };
 const segOff: React.CSSProperties = {
   borderRadius: 999, padding: '10px 22px', color: 'var(--ink, #25342f)',
@@ -185,7 +185,7 @@ const week: React.CSSProperties = {
   width: 32, height: 32, borderRadius: '50%', display: 'grid', placeItems: 'center',
   border: '1px solid var(--line, #e5e7df)', fontSize: 12,
 };
-const weekOn: React.CSSProperties = { ...week, background: 'var(--forest, #3f6959)', color: '#fff', borderColor: 'var(--forest, #3f6959)', fontWeight: 700 };
+const weekOn: React.CSSProperties = { ...week, background: 'var(--forest, #3f6959)', color: 'var(--on-forest)', borderColor: 'var(--forest, #3f6959)', fontWeight: 700 };
 const mile: React.CSSProperties = { fontSize: 11, color: 'var(--muted, #718079)', fontStyle: 'italic' };
 const monthHead: React.CSSProperties = { display: 'flex', alignItems: 'center', gap: 12, margin: '8px 0 12px' };
 const h1: React.CSSProperties = { fontFamily: 'Newsreader, serif', fontSize: 30, margin: 0, textTransform: 'capitalize' };
@@ -208,7 +208,7 @@ const lg: React.CSSProperties = { display: 'inline-block', width: 22, height: 8,
 const actions: React.CSSProperties = { display: 'flex', gap: 10, marginTop: 16, flexWrap: 'wrap' };
 const primary: React.CSSProperties = {
   minHeight: 46, padding: '0 22px', borderRadius: 14, border: 'none',
-  background: 'var(--forest, #3f6959)', color: '#fff', fontWeight: 600, fontSize: 15, cursor: 'pointer',
+  background: 'var(--forest, #3f6959)', color: 'var(--on-forest)', fontWeight: 600, fontSize: 15, cursor: 'pointer',
 };
 const ghost: React.CSSProperties = {
   minHeight: 46, padding: '0 18px', borderRadius: 14, border: '1px solid var(--line, #e5e7df)',

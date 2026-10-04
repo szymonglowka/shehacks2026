@@ -1,6 +1,6 @@
 {
   "title": "Small steps",
-  "weekCount": "{{done}} of {{total}} this week",
+  "weekCount": "{{done}} of {{total}} planned steps this week",
   "emptyTitle": "One small goal is enough",
   "emptyBody": "Maybe a glass of water in the morning? Small things count too.",
   "addGoal": "New goal",
@@ -54,6 +54,16 @@
     "recovery": "Recovery",
     "selfcare": "Self-care"
   },
-  "weekdaysShort": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-  "safetyNote": "After consulting your doctor / physiotherapist"
+  "weekdaysShort": [
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+    "Sun"
+  ],
+  "safetyNote": "After consulting your doctor / physiotherapist",
+  "eyebrow": "Your goals",
+  "weekHint": "Every goal is optional. We count what you planned for yourself, not a quota."
 }
