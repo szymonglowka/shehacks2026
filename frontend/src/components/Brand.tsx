@@ -1,11 +1,11 @@
-import { MARK_PATHS, MARK_VIEWBOX, WORD_PATH, WORD_VIEWBOX } from './brandPaths';
+import { MARK_PATHS, MARK_VIEWBOX, WORD_PATH, WORD_RATIO, WORD_TRANSFORM, WORD_VIEWBOX } from './brandPaths';
 
-/** Logo mark (official Otula petals, fixed brand colours). */
+/** Logo mark (official Otula leaves, fixed brand colours). */
 export function BrandMark({ size = 32 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox={MARK_VIEWBOX} aria-hidden="true">
       {MARK_PATHS.map((p) => (
-        <path key={p.d.slice(0, 24)} fill={p.fill} d={p.d} />
+        <path key={p.d.slice(0, 24)} fill={p.fill} transform={p.transform} fillRule="evenodd" d={p.d} />
       ))}
     </svg>
   );
@@ -16,12 +16,12 @@ export function BrandWord({ height = 20 }: { height?: number }) {
   return (
     <svg
       height={height}
-      width={(height * 259) / 87}
+      width={height * WORD_RATIO}
       viewBox={WORD_VIEWBOX}
       role="img"
       aria-label="otula"
     >
-      <path fill="var(--brand-word)" fillRule="evenodd" d={WORD_PATH} />
+      <path fill="var(--brand-word)" transform={WORD_TRANSFORM} d={WORD_PATH} />
     </svg>
   );
 }
@@ -29,8 +29,8 @@ export function BrandWord({ height = 20 }: { height?: number }) {
 export function Brand({ compact = false }: { compact?: boolean }) {
   return (
     <span className="flex items-center gap-2.5">
-      <BrandMark size={compact ? 30 : 38} />
-      <BrandWord height={compact ? 18 : 22} />
+      <BrandMark size={compact ? 32 : 40} />
+      <BrandWord height={compact ? 20 : 24} />
     </span>
   );
 }
