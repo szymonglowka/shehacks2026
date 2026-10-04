@@ -141,7 +141,7 @@ export function BreathingOrb({
     <div>
       <div className="flex justify-center gap-2">
         <button
-          className={`min-h-[44px] rounded-full px-4 py-2 ${pattern === "478" ? "bg-forest text-cream" : "bg-forest/10"}`}
+          className={`min-h-[44px] rounded-full px-4 py-2 ${pattern === "478" ? "bg-forest text-cream" : "bg-sage-light text-ink"}`}
           onClick={() => {
             setPattern("478");
             setPhase("in");
@@ -151,7 +151,7 @@ export function BreathingOrb({
           {t("breath478")}
         </button>
         <button
-          className={`min-h-[44px] rounded-full px-4 py-2 ${pattern === "box" ? "bg-forest text-cream" : "bg-forest/10"}`}
+          className={`min-h-[44px] rounded-full px-4 py-2 ${pattern === "box" ? "bg-forest text-cream" : "bg-sage-light text-ink"}`}
           onClick={() => {
             setPattern("box");
             setPhase("in");
@@ -162,26 +162,30 @@ export function BreathingOrb({
         </button>
       </div>
 
-      <div className="mt-6 flex flex-col items-center">
+      {/* room for the orb to grow (scale 1.35) without covering the pills or the phase text */}
+      <div className="mt-12 flex flex-col items-center">
         <div
           role="timer"
           aria-label={t("timer")}
           aria-live="off"
-          className="flex h-44 w-44 items-center justify-center rounded-full bg-sage/40"
+          className="flex h-44 w-44 items-center justify-center rounded-full border border-line bg-sage-light"
           style={
             reducedMotion
               ? undefined
               : { transform: `scale(${scale})`, transition: "transform 3.5s ease-in-out" }
           }
         >
-          <div className="flex h-28 w-28 items-center justify-center rounded-full bg-sage/60">
+          <div
+            className="flex h-28 w-28 items-center justify-center rounded-full bg-sage text-forest"
+            style={!running && !reducedMotion ? { animation: "otula-breathe 5s ease-in-out infinite" } : undefined}
+          >
             <span className="font-serif text-3xl tabular-nums">
-              {running ? phaseLeft : "·"}
+              {running ? phaseLeft : ""}
             </span>
           </div>
         </div>
-        <p aria-live="polite" className="mt-3 font-serif text-2xl">
-          {running ? phaseText : t("breathTitle")}
+        <p aria-live="polite" className="mt-12 text-center font-serif text-2xl">
+          {running ? phaseText : t("breathReady")}
         </p>
         <p className="text-sm tabular-nums opacity-60">
           {elapsed}s / {total}s

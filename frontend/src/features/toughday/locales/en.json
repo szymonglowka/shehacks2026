@@ -3,7 +3,13 @@
   "stepIntensity": "Step 1 of 4",
   "intensityTitle": "How hard is it right now?",
   "intensityCopy": "There is no wrong answer. The scale helps me pick the right support.",
-  "intensityLabels": ["Mild", "Meh", "Hard", "Very hard", "I can't cope"],
+  "intensityLabels": [
+    "Mild",
+    "Meh",
+    "Hard",
+    "Very hard",
+    "I can't cope"
+  ],
   "crisisTitle": "You don't have to go through this alone.",
   "crisisCopy": "Since it's this hard, the most important thing now is a kind person or a specialist.",
   "crisisCta": "Show support lines",
@@ -38,5 +44,6 @@
   "finish": "Save and close",
   "closing": "Good that you took care of yourself. I'm here tomorrow too.",
   "timer": "timer",
-  "close": "Close"
+  "close": "Close",
+  "breathReady": "When the orb grows, breathe in. When it shrinks, breathe out."
 }

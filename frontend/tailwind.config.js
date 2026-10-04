@@ -1,35 +1,40 @@
+// Theme colours are CSS variables (day/night). Wrapping them in color-mix with <alpha-value>
+// makes Tailwind opacity modifiers (bg-forest/10, border-ink/15) work; without a modifier
+// alpha is 1 → 100% → the plain variable.
+const c = (v) => `color-mix(in srgb, var(${v}) calc(<alpha-value> * 100%), transparent)`;
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
     extend: {
       colors: {
-        ink: 'var(--ink)',
-        muted: 'var(--muted)',
+        ink: c('--ink'),
+        muted: c('--muted'),
         forest: {
-          DEFAULT: 'var(--forest)',
-          deep: 'var(--forest-deep)',
+          DEFAULT: c('--forest'),
+          deep: c('--forest-deep'),
         },
         sage: {
-          DEFAULT: 'var(--sage)',
-          light: 'var(--sage-light)',
+          DEFAULT: c('--sage'),
+          light: c('--sage-light'),
         },
-        cream: 'var(--cream)',
-        paper: 'var(--paper)',
-        line: 'var(--line)',
+        cream: c('--cream'),
+        paper: c('--paper'),
+        line: c('--line'),
         peach: {
-          DEFAULT: 'var(--peach)',
-          soft: 'var(--peach-soft)',
+          DEFAULT: c('--peach'),
+          soft: c('--peach-soft'),
         },
-        lavender: 'var(--lavender)',
+        lavender: c('--lavender'),
         clay: {
-          DEFAULT: 'var(--clay)',
-          deep: 'var(--clay-deep)',
+          DEFAULT: c('--clay'),
+          deep: c('--clay-deep'),
         },
-        onforest: 'var(--on-forest)',
-        peachink: 'var(--peach-ink)',
-        danger: 'var(--danger)',
-        warm: 'var(--warm)',
+        onforest: c('--on-forest'),
+        peachink: c('--peach-ink'),
+        danger: c('--danger'),
+        warm: c('--warm'),
       },
       fontFamily: {
         serif: ['Newsreader', 'Georgia', 'serif'],
@@ -40,8 +45,8 @@ export default {
         hero: '28px',
       },
       boxShadow: {
-        card: 'var(--shadow)',
-        modal: 'var(--modal-shadow)',
+        card: c('--shadow'),
+        modal: c('--modal-shadow'),
       },
     },
   },

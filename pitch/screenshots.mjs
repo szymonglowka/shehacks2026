@@ -50,9 +50,9 @@ const mobile = { width: 390, height: 844 };
   });
   await shot(page, '/tough-day', 'mobile-toughday-breath', {
     wait: 2500,
-    before: async (p) => { await p.getByRole('button', { name: /^3/ }).first().click(); },
+    before: async (p) => { await p.getByRole('radio', { name: /^3:/ }).click(); },
   });
-  await page.getByRole('button', { name: /Pomiń|Dalej|Wybierz inną|Co teraz/i }).first().click().catch(() => {});
+  await page.getByRole('button', { name: 'Wybierz inną formę wsparcia' }).click();
   await page.waitForTimeout(1500);
   await page.screenshot({ path: 'shots/mobile-toughday-strategies.png' });
   console.log('saved mobile-toughday-strategies');
@@ -63,6 +63,7 @@ const mobile = { width: 390, height: 844 };
 { // night, mobile
   const { ctx, page } = await session(mobile, 'night');
   await shot(page, '/night', 'mobile-night');
+  await shot(page, '/today', 'mobile-today-night');
   await ctx.close();
 }
 { // public circle, logged out, day

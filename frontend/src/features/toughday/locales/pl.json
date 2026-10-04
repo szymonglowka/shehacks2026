@@ -3,7 +3,13 @@
   "stepIntensity": "Krok 1 z 4",
   "intensityTitle": "Jak bardzo jest ciężko?",
   "intensityCopy": "Nie ma złej odpowiedzi. Skala pomoże mi dobrać wsparcie.",
-  "intensityLabels": ["Lekko", "Jakoś", "Ciężko", "Bardzo ciężko", "Nie daję rady"],
+  "intensityLabels": [
+    "Lekko",
+    "Jakoś",
+    "Ciężko",
+    "Bardzo ciężko",
+    "Nie daję rady"
+  ],
   "crisisTitle": "Nie musisz przez to przechodzić sama.",
   "crisisCopy": "Skoro jest aż tak ciężko, najważniejsza jest teraz życzliwa osoba albo specjalista.",
   "crisisCta": "Pokaż telefony wsparcia",
@@ -38,5 +44,6 @@
   "finish": "Zapisz i zamknij",
   "closing": "Dobrze, że o siebie zadbałaś. Jestem tu też jutro.",
   "timer": "minutnik",
-  "close": "Zamknij"
+  "close": "Zamknij",
+  "breathReady": "Gdy kula rośnie — wdech. Gdy maleje — wydech."
 }
