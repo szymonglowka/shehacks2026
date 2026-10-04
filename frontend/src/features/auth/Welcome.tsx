@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Brand } from '@/components/Brand';
 
 /** Public welcome screen (SCREENS §3.1). */
 export function WelcomePage() {
@@ -9,8 +8,7 @@ export function WelcomePage() {
     <main className="min-h-[calc(100vh-84px)] bg-cream">
       <div className="mx-auto grid max-w-5xl gap-10 px-6 py-14 min-[821px]:grid-cols-2 min-[821px]:items-center">
         <div>
-          <Brand />
-          <h1 className="mt-8 font-serif text-[clamp(38px,4vw,53px)] font-semibold leading-[1.06] tracking-[-1.2px]">
+          <h1 className="font-serif text-[clamp(38px,4vw,53px)] font-semibold leading-[1.06] tracking-[-1.2px]">
             {t('welcome_title')}
           </h1>
           <p className="mt-4 max-w-[420px] text-[15px] leading-relaxed text-muted">

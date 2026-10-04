@@ -60,8 +60,9 @@ const mobile = { width: 390, height: 844 };
   await shot(page, '/patterns', 'mobile-patterns');
   await ctx.close();
 }
-{ // night, mobile
+{ // night, mobile — clock pinned to 3:12 so the Night Shift header reads like the real use case
   const { ctx, page } = await session(mobile, 'night');
+  await page.clock.setFixedTime(new Date('2026-10-04T03:12:00+02:00'));
   await shot(page, '/night', 'mobile-night');
   await shot(page, '/today', 'mobile-today-night');
   await ctx.close();

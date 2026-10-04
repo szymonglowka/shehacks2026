@@ -38,6 +38,7 @@
   --hero-eyebrow: #f5e1d6;
   --hero-btn-bg: #f5e1d6;
   --hero-btn-ink: #684b3d;
+  --brand-word: #80604b;
 }
 
 [data-theme='night'] {
@@ -72,6 +73,7 @@
   --hero-eyebrow: #b8a88f;
   --hero-btn-bg: #e0a46b;
   --hero-btn-ink: #1b1a17;
+  --brand-word: #dfc7b4;
 }
 
 * {

@@ -64,14 +64,14 @@ async function icon(Comp, color, size = 256) {
 pres.defineSlideMaster({
   title: 'TITLE_DARK',
   background: { color: HEX.forest },
-  objects: [{ image: { path: A('petals-ghost'), x: 7.4, y: -1.2, w: 7.6, h: 7.6 } }],
+  objects: [{ image: { path: A('logo-ghost'), x: 7.9, y: -0.9, w: 6.6, h: 6.6 * (262 / 231) } }],
 });
 pres.defineSlideMaster({
   title: 'CONTENT_LIGHT',
   background: { color: HEX.cream },
   margin: [0.5, M, 0.5, M],
   objects: [
-    { image: { path: A('petals-forest'), x: W - M - 0.28, y: H - 0.52, w: 0.28, h: 0.28 } },
+    { image: { path: A('logo-mark'), x: W - M - 0.28, y: H - 0.56, w: 0.28, h: 0.28 * (262 / 231) } },
     {
       placeholder: {
         options: { name: 'title', type: 'title', x: M, y: 0.45, w: 9.3, h: 0.9, fontFace: 'Georgia', fontSize: 32, color: C.text1, align: 'left', valign: 'top', margin: 0 },
@@ -91,7 +91,7 @@ pres.defineSlideMaster({
   title: 'CONTENT_NIGHT',
   background: { color: HEX.night },
   objects: [
-    { image: { path: A('petals-amber'), x: W - M - 0.28, y: H - 0.52, w: 0.28, h: 0.28 } },
+    { image: { path: A('logo-mark'), x: W - M - 0.28, y: H - 0.56, w: 0.28, h: 0.28 * (262 / 231) } },
     {
       placeholder: {
         options: { name: 'title', type: 'title', x: M, y: 0.45, w: 9.3, h: 0.9, fontFace: 'Georgia', fontSize: 32, color: HEX.nightInk, align: 'left', valign: 'top', margin: 0 },
@@ -144,8 +144,7 @@ async function build() {
   pres.addSection({ title: 'Opening' });
   {
     const s = pres.addSlide({ masterName: 'TITLE_DARK', sectionTitle: 'Opening' });
-    s.addImage({ path: A('petals-cream'), x: M, y: 0.7, w: 0.55, h: 0.55, objectName: 'logo mark' });
-    text(s, 'otula', { x: M + 0.7, y: 0.68, w: 3, h: 0.6, fontFace: 'Georgia', fontSize: 30, color: HEX.cream, valign: 'middle' });
+    s.addImage({ path: A('logo-lockup-cream'), x: M, y: 0.55, w: 0.85 * (2394 / 1048), h: 0.85, objectName: 'Otula logo' });
     text(s, 'Care for the mother,\nnot just the baby.', { x: M, y: 2.0, w: 7.2, h: 2.2, fontFace: 'Georgia', fontSize: 48, color: HEX.paper, valign: 'top', lineSpacingMultiple: 1.0 });
     text(s, 'A wellbeing companion for the fourth trimester — and every cycle after it. Daily check-ins, support on hard days, and a safety net that notices when it is more than a bad week.', {
       x: M, y: 4.35, w: 6.4, h: 1.2, fontSize: 16, color: HEX.sage,
@@ -389,8 +388,8 @@ async function build() {
       { text: 'AI: Meta Muse Code, Claude Code; design in Figma Make', options: { bullet: { indent: 12 }, breakLine: true } },
       { text: 'Concept and design drafted before the start; first code commits 22:55 on Oct 3 — full git history in the repo', options: { bullet: { indent: 12 } } },
     ], { x: 8.85, y: 3.4, w: 3.7, h: 2.5, fontSize: 11, color: HEX.sage, paraSpaceAfter: 4 });
-    s.addImage({ path: A('petals-cream'), x: M, y: 6.35, w: 0.42, h: 0.42, objectName: 'logo mark' });
-    text(s, 'otula — care for the mother, not just the baby.', { x: M + 0.6, y: 6.35, w: 7, h: 0.42, fontFace: 'Georgia', fontSize: 16, italic: true, color: HEX.cream, valign: 'middle' });
+    s.addImage({ path: A('logo-mark'), x: M, y: 6.3, w: 0.46 * (231 / 262), h: 0.46, objectName: 'Otula logo mark' });
+    text(s, 'Otula — care for the mother, not just the baby.', { x: M + 0.6, y: 6.35, w: 7, h: 0.42, fontFace: 'Georgia', fontSize: 16, italic: true, color: HEX.cream, valign: 'middle' });
     s.addNotes('Close: thank the jury. Offer the live demo (make demo-reset, demo user Marta). Every statement about AI and pre-event work matches the README disclosure.');
   }
 

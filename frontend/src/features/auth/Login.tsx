@@ -2,7 +2,6 @@ import { useState } from 'react';
 import type { FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Brand } from '@/components/Brand';
 import { Button } from '@/components/Button';
 import { Eyebrow } from '@/components/Eyebrow';
 import { ApiError } from '@/api/client';
@@ -33,7 +32,6 @@ export function LoginPage() {
 
   return (
     <main className="mx-auto w-full max-w-[440px] px-6 py-14">
-      <Brand />
       <Eyebrow className="mt-10">{t('login_eyebrow')}</Eyebrow>
       <h1 className="mt-2 font-serif text-[34px] font-semibold">{t('login_title')}</h1>
       <form onSubmit={submit} className="mt-6 grid gap-4">

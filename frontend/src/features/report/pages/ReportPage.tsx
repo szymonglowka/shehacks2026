@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Plus, Printer } from "lucide-react";
+import { Brand } from "@/components/Brand";
 import type { VisitReport } from "@/api/visit";
 import { useAddVisitQuestion, useToggleVisitQuestion, useVisitReport } from "@/api/visit";
 import "../print.css";
@@ -150,7 +151,10 @@ export default function ReportPage() {
       {report && (
         <div className="report-sheet mx-auto mt-6 max-w-[820px] rounded-[8px] bg-paper p-6 shadow-[var(--shadow)] sm:p-10">
           <header className="border-b border-line pb-4">
-            <p className="font-serif text-[24px] text-ink">otula · {t("title").toLowerCase()}</p>
+            <div className="flex items-center gap-3">
+              <Brand compact />
+              <span className="font-serif text-[22px] text-ink">· {t("title").toLowerCase()}</span>
+            </div>
             <p className="mt-1 text-[13px] text-muted">{t("forPerson", { name: report.profile.display_name })}</p>
           </header>
 

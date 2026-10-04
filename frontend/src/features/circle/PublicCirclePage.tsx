@@ -103,8 +103,7 @@ export function PublicCirclePage() {
 
   return (
     <main className="mx-auto max-w-xl px-4 pb-16 pt-8">
-      <div className="font-serif text-xl">otula</div>
-      <h1 className="mt-4 font-serif text-3xl">
+      <h1 className="font-serif text-3xl">
         {t("publicTitle", { name: momName })}
       </h1>
       <p className="mt-1 opacity-70">{t("publicSubtitle")}</p>

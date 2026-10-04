@@ -1,28 +1,36 @@
-/** Brand logo: four petals (from Figma Make App.tsx) + wordmark. */
+import { MARK_PATHS, MARK_VIEWBOX, WORD_PATH, WORD_VIEWBOX } from './brandPaths';
+
+/** Logo mark (official Otula petals, fixed brand colours). */
 export function BrandMark({ size = 32 }: { size?: number }) {
   return (
+    <svg width={size} height={size} viewBox={MARK_VIEWBOX} aria-hidden="true">
+      {MARK_PATHS.map((p) => (
+        <path key={p.d.slice(0, 24)} fill={p.fill} d={p.d} />
+      ))}
+    </svg>
+  );
+}
+
+/** Wordmark "otula"; colour follows the theme (--brand-word: logo brown by day, light beige at night). */
+export function BrandWord({ height = 20 }: { height?: number }) {
+  return (
     <svg
-      width={size}
-      height={size}
-      viewBox="0 0 36 36"
-      fill="currentColor"
-      aria-hidden="true"
+      height={height}
+      width={(height * 259) / 87}
+      viewBox={WORD_VIEWBOX}
+      role="img"
+      aria-label="otula"
     >
-      <path d="M18 17.8C6 15.2 7 4.9 11.3 4.1c4.5-.9 6.4 5.7 6.7 13.7Z" />
-      <path d="M18 17.8C30 15.2 29 4.9 24.7 4.1c-4.5-.9-6.4 5.7-6.7 13.7Z" />
-      <path d="M18 18.2C6 20.8 7 31.1 11.3 31.9c4.5.9 6.4-5.7 6.7-13.7Z" />
-      <path d="M18 18.2c12 2.6 11 12.9 6.7 13.7-4.5.9-6.4-5.7-6.7-13.7Z" />
+      <path fill="var(--brand-word)" fillRule="evenodd" d={WORD_PATH} />
     </svg>
   );
 }
 
 export function Brand({ compact = false }: { compact?: boolean }) {
   return (
-    <span className="flex items-center gap-2.5 text-forest">
-      <BrandMark size={compact ? 26 : 32} />
-      <span className="-tracking-[0.6px] font-serif text-[30px] font-semibold leading-none">
-        otula
-      </span>
+    <span className="flex items-center gap-2.5">
+      <BrandMark size={compact ? 30 : 38} />
+      <BrandWord height={compact ? 18 : 22} />
     </span>
   );
 }
